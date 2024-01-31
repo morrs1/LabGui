@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2e3033; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="BtnExit" layoutX="858.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" stylesheets="@StyleBtnExit.css" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="857.5999999999999" AnchorPane.rightAnchor="14.8" AnchorPane.topAnchor="14.0" />
+            <Text fill="#6e7b7d" layoutX="286.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Лабораторные работы">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="30.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnBackToMenu" layoutX="14.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" stylesheets="@StyleBtnExit.css" AnchorPane.bottomAnchor="35.19999999999999" AnchorPane.rightAnchor="858.8" AnchorPane.topAnchor="15.0" />
+            <AnchorPane layoutX="250.0" layoutY="55.0" prefHeight="7.0" prefWidth="400.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="486.0" prefWidth="210.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutY="31.2" prefHeight="460.0" prefWidth="210.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #000000; -fx-border-width: 5;" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="195.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" text="Лаба 1" textFill="#6e7b7d">
+                     <VBox.margin>
+                        <Insets left="4.2" right="4.2" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="195.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" text="Лаба 2" textFill="#6e7b7d">
+                     <VBox.margin>
+                        <Insets left="4.2" right="4.2" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="195.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" text="Лаба 3" textFill="#6e7b7d">
+                     <VBox.margin>
+                        <Insets left="4.2" right="4.2" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="195.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" text="Лаба 4" textFill="#6e7b7d">
+                     <VBox.margin>
+                        <Insets left="4.2" right="4.2" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="195.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" text="Лаба 5" textFill="#6e7b7d">
+                     <VBox.margin>
+                        <Insets left="4.2" right="4.2" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="195.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" text="Лаба 6" textFill="#6e7b7d">
+                     <VBox.margin>
+                        <Insets left="4.2" right="4.2" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="35.0" />
+         </BorderPane.margin>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="501.0" prefWidth="649.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane layoutX="14.0" layoutY="31.0" prefHeight="460.0" prefWidth="557.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 5; -fx-border-color: #000000;" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="31.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

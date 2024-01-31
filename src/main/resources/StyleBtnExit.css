@@ -1,0 +1,43 @@
+#BtnExit{
+  -fx-background-image: url('/Images/BtnExit1-round.png');
+  -fx-background-color: transparent;
+  -fx-background-size: cover;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-border-radius: 50%;
+  -fx-transition: all 0.3s ease;
+}
+#btnBackToMenu{
+  -fx-background-image: url('/Images/back(1).png');
+  -fx-background-color: transparent;
+  -fx-background-size: cover;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-border-radius: 50%;
+  -fx-transition: all 0.3s ease;
+}
+
+
+.button:hover {
+  /* Эффект при наведении */
+  -fx-translate-y: -2px;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 15, 0 , 0 , 8 );
+}
+#BtnExit:hover {
+  /* Эффект при наведении */
+  -fx-translate-y: -0.25px;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7, 0 , 0 , 4 );
+}
+
+#BtnExit:pressed {
+  /* Эффект при нажатии */
+  -fx-translate-y: +2px;
+  -fx-effect: null;
+}
+
+
+.button:pressed {
+  /* Эффект при нажатии */
+  -fx-translate-y: +2px;
+  -fx-effect: null;
+}
