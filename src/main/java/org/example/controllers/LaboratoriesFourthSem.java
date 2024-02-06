@@ -8,30 +8,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class MyController implements Initializable {
+public class LaboratoriesFourthSem implements Initializable {
+
   @FXML
   private Button BtnExit;
   @FXML
-  private Button goTo4thSem;
+  private Button btnBackToMenu;
+  private final ControllerOfScene controllerOfScene = new ControllerOfScene();
 
-  private void buttonExitEvent(){
-    BtnExit.setOnMouseClicked(x-> Platform.exit());
+  private void buttonExitEvent() {
+    BtnExit.setOnMouseClicked(event -> Platform.exit());
 
   }
-private void setGoTo4thSem(){
-    goTo4thSem.setOnMouseClicked(event -> {
+
+  private void backToMenu(){
+    btnBackToMenu.setOnMouseClicked(event -> {
       try {
-        new ControllerOfScene().switchFromMenuToLaboratoriesFourthSem(event);
+        controllerOfScene.switchToMenu(event);
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
     });
-}
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-  buttonExitEvent();
-  setGoTo4thSem();
+
   }
 
-
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    buttonExitEvent();
+    backToMenu();
+  }
 }

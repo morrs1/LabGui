@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.example.controllers.ControllerOfScene;
 
 public class Main extends Application {
 
@@ -19,33 +20,17 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-
-    Parent root = FXMLLoader.load(
-        Objects.requireNonNull(getClass().getResource("/mainSceneMenu.fxml")));
-    var scene = new Scene(root);
-    scene.setFill(Color.TRANSPARENT);
-
-    scene.setOnMousePressed(ev -> {
-      xOffset = ev.getSceneX();
-      yOffset = ev.getSceneY();
-    });
-
-    var myStage = initStage(stage, scene);
-
-    scene.setOnMouseDragged(ev -> {
-      myStage.setX(ev.getScreenX() - xOffset);
-      myStage.setY(ev.getScreenY() - yOffset);
-    });
-
-    myStage.show();
+    var stageInitialized = initStage(stage);
+    ControllerOfScene controller = new ControllerOfScene(stage);
+    controller.switchToMenu();
+    stageInitialized.show();
 
   }
 
 
-  private Stage initStage(Stage primaryStage, Scene scene) {
+  private Stage initStage(Stage primaryStage) {
     primaryStage.getIcons().add(new Image("/Images/free-icon-moon-2530905.png"));
     primaryStage.setResizable(false);
-    primaryStage.setScene(scene);
     primaryStage.initStyle(StageStyle.TRANSPARENT);
     return primaryStage;
   }
