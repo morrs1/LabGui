@@ -85,7 +85,7 @@ public class ControllerOfScene {
 
 
 
-  public void switchToMenu() throws IOException {
+  public void createMenu() throws IOException {
 
     if (!flagWindowCreated) {
       this.menu = createWindow();

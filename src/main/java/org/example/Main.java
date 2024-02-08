@@ -22,7 +22,7 @@ public class Main extends Application {
   public void start(Stage stage) throws Exception {
     var stageInitialized = initStage(stage);
     ControllerOfScene controller = new ControllerOfScene(stage);
-    controller.switchToMenu();
+    controller.createMenu();
     stageInitialized.show();
 
   }
