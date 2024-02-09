@@ -14,11 +14,9 @@ public class Main {
             switch (task) {
                 case 1 -> {
                     wordToNumber();
-
                 }
                 case 2 -> {
                     numberToWord();
-
                 }
                 default -> {
                     return;
