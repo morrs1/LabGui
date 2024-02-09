@@ -6,44 +6,32 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
-//        wordToNumber();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите алфавит: ");
-        Set<Character> alphabet = new LinkedHashSet<>();
 
-        String str = scanner.nextLine();
-        while (!str.equals("exit")) {
-            for (char c : str.toCharArray()) {
-                alphabet.add(c);
+        while (true) {
+            System.out.println("Введите, что вы хотите сделать: \n 1)Перевести слово в номер \n 2)Перевести номер в слово");
+            var task = scanner.nextInt();
+            switch (task) {
+                case 1 -> {
+                    wordToNumber();
+
+                }
+                case 2 -> {
+                    numberToWord();
+
+                }
+                default -> {
+                    return;
+                }
             }
-            str = scanner.nextLine();
+//            task = scanner.nextInt();
         }
-        var alphabet1 = new ArrayList<>(alphabet);
-        System.out.println("Введите лексико-графический номер слова: ");
-        var num = scanner.nextInt();
-        int numOfChar = 0;
-        int charSize = alphabet1.size();
-        int c = num;
-        StringBuilder finalStr = new StringBuilder();
 
-        while (c / charSize >= charSize) {
 
-            int p = c;
-            if (p % charSize == 0) {
-                numOfChar = charSize;
-                c = c / charSize - 1;
-            } else {
-                numOfChar = c % charSize;
-                c = c / charSize;
-            }
-            finalStr.append(alphabet1.get(numOfChar - 1));
-            System.out.printf("%d * %d + %d %n", c, charSize, numOfChar);
-        }
-        finalStr.append(alphabet1.get(c - 1));
-        System.out.println(finalStr.reverse());
     }
 
     private static void wordToNumber() {
+        int task;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите алфавит: ");
         Set<Character> alphabet = new LinkedHashSet<>();
@@ -76,4 +64,46 @@ public class Main {
 
         System.out.println("Лексико-графический номер: " + sum);
     }
+
+    public static void numberToWord() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите алфавит: ");
+        Set<Character> alphabet = new LinkedHashSet<>();
+
+        String str = scanner.nextLine();
+        while (!str.equals("exit")) {
+            for (char c : str.toCharArray()) {
+                alphabet.add(c);
+            }
+            str = scanner.nextLine();
+        }
+        var alphabet1 = new ArrayList<>(alphabet);
+
+        System.out.println("Введите лексико-графический номер слова: ");
+        var num = scanner.nextInt();
+
+        int numOfChar = 0;
+        int charSize = alphabet1.size();
+        int c = num;
+        StringBuilder finalStr = new StringBuilder();
+
+        while (c / charSize >= charSize || c > charSize) {
+
+            int p = c;
+            if (p % charSize == 0) {
+                numOfChar = charSize;
+                c = c / charSize - 1;
+            } else {
+                numOfChar = c % charSize;
+                c = c / charSize;
+            }
+            finalStr.append(alphabet1.get(numOfChar - 1));
+            System.out.printf("%d * %d + %d %n", c, charSize, numOfChar);
+        }
+        finalStr.append(alphabet1.get(c - 1));
+        System.out.println(finalStr.reverse());
+
+    }
 }
+
+
