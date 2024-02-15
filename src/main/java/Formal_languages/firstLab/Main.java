@@ -22,7 +22,7 @@ public class Main {
                     return;
                 }
             }
-//            task = scanner.nextInt();
+
         }
 
 

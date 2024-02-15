@@ -22,6 +22,8 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("de.vandermeer:asciitable:0.3.2")
+    implementation("com.google.guava:guava:33.0.0-jre")
 }
 
 tasks.test {
