@@ -3,7 +3,6 @@ package Programming.FourthSemLab.SecondLab;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -52,7 +51,7 @@ public class Main {
         }
         default -> {
           scanner.close();
-          yield  " ";
+          yield " ";
         }
       };
       System.out.println(string);
@@ -61,27 +60,21 @@ public class Main {
   }
 
   public static String firstTask(String ignoredUnused) {
-    var res = new StringBuilder();
-    res.append("Type\t   Size\tMin Value\tMax Value").append("\n");
-    res.append(
-        "Byte\t\t" + "  " + Byte.SIZE + "\t\t" + Byte.MIN_VALUE + "\t\t" + "     "
-            + Byte.MAX_VALUE).append("\n");
-    res.append(
-            "Short\t\t" + "  " + Short.SIZE + "\t\t" + Short.MIN_VALUE + "\t\t" + Short.MAX_VALUE)
-        .append("\n");
-    res.append(
-        "Int\t\t" + "    " + Integer.SIZE + "\t\t" + Integer.MIN_VALUE + "\t\t"
-            + Integer.MAX_VALUE).append("\n");
-    res.append(
-            "Long\t\t" + "  " + Long.SIZE + "\t\t" + Long.MIN_VALUE + "\t\t" + Long.MAX_VALUE)
-        .append("\n");
-    res.append(
-            "Float\t\t" + "  " + Float.SIZE + "\t\t" + Float.MIN_VALUE + "\t\t" + Float.MAX_VALUE)
-        .append("\n");
-    res.append(
-            "Double\t\t" + Double.SIZE + "\t\t" + Double.MIN_VALUE + "\t\t" + Double.MAX_VALUE)
-        .append("\n");
-    return res.toString();
+    return "Type\t   Size\tMin Value\tMax Value" + "\n"
+        + "Byte\t\t" + "  " + Byte.SIZE + "\t\t" + Byte.MIN_VALUE + "\t\t" + "     "
+        + Byte.MAX_VALUE
+        + "\n"
+        + "Short\t\t" + "  " + Short.SIZE + "\t\t" + Short.MIN_VALUE + "\t\t" + Short.MAX_VALUE
+        + "\n"
+        + "Int\t\t" + "    " + Integer.SIZE + "\t\t" + Integer.MIN_VALUE + "\t\t"
+        + Integer.MAX_VALUE
+        + "\n"
+        + "Long\t\t" + "  " + Long.SIZE + "\t\t" + Long.MIN_VALUE + "\t\t" + Long.MAX_VALUE
+        + "\n"
+        + "Float\t\t" + "  " + Float.SIZE + "\t\t" + Float.MIN_VALUE + "\t\t" + Float.MAX_VALUE
+        + "\n"
+        + "Double\t\t" + Double.SIZE + "\t\t" + Double.MIN_VALUE + "\t\t" + Double.MAX_VALUE
+        + "\n";
   }
 
   public static String secondTask(String ignoredUnused) {
@@ -135,13 +128,10 @@ public class Main {
 
   public static String fifthTask(String args) {
     int number = Integer.parseInt(args);
-    var res = new StringBuilder();
 
-    res.append("Число: ").append(number).append(" Двоичная: ").append(Integer.toString(number, 2))
-        .append(" Восьмеричная: ").append(Integer.toString(number, 8))
-        .append(" Шестнадцатеричная: ").append(Integer.toString(number, 16));
-
-    return res.toString();
+    return "Число: " + number + " Двоичная: " + Integer.toString(number, 2)
+        + " Восьмеричная: " + Integer.toString(number, 8)
+        + " Шестнадцатеричная: " + Integer.toString(number, 16);
   }
 
   public static String sixthTask(String ignoresUnused) {
@@ -194,21 +184,22 @@ public class Main {
     var streamDigit = arrChars.parallelStream().filter(Character::isDigit).count();
     var streamArabicDigit = arrChars.parallelStream().filter(x -> x >= '0' && x <= '9').count();
 
-    var res = String.format(
-        "Общее кол-во символов: %d \n"
-            + "Кол-во букв: %d \n"
-            + "Кол-во прописных букв: %d \n"
-            + "Кол-во заглавных букв: %d \n"
-            + "Кол-во цифр: %d \n"
-            + "Кол-во арабских цифр: %d \n"
-            + "Кол-во не арабских цифр: %d \n"
-            + "Кол-во других символов: %d \n"
+    return String.format(
+        """
+            Общее кол-во символов: %d\s
+            Кол-во букв: %d\s
+            Кол-во прописных букв: %d\s
+            Кол-во заглавных букв: %d\s
+            Кол-во цифр: %d\s
+            Кол-во арабских цифр: %d\s
+            Кол-во не арабских цифр: %d\s
+            Кол-во других символов: %d\s
+            """
         , arrChars.size(), streamLetter, streamLowerCase, streamUpperCase,
         streamDigit, streamArabicDigit,
         streamDigit - streamArabicDigit,
         arrChars.size() - streamLetter - streamDigit
     );
-    return res;
   }
 
   public static String ninth(String args) {
@@ -235,7 +226,7 @@ public class Main {
       queue.add(buf);
       res.append(String.join("", queue)).append("\n");
     }
-return res.toString();
+    return res.toString();
 
   }
 }
