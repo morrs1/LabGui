@@ -16,56 +16,76 @@ public class Main {
 
   public static void main(String[] args) {
     var scanner = new Scanner(System.in);
-
-    while (true) {
+    Object string = "";
+    while (string != " ") {
       System.out.println("Введите номер задания, которое хотите выполнить: ");
       var task = scanner.nextInt();
-      switch (task) {
-        case 1 -> firstTask();
-        case 2 -> secondTask();
-        case 3 -> thirdTask();
-        case 4 -> fourthTask();
-        case 5 -> fifthTask(args);
-        case 6 -> {
-          sixthTask(0x0400, 16, 16);
-          sixthTask(0x20a0, 2, 16);
+      string = switch (task) {
+        case 1 -> firstTask(" ");
+        case 2 -> secondTask(" ");
+        case 3 -> thirdTask(" ");
+        case 4 -> {
+          System.out.println("Введите R, r, x, y: (Через пробел!!!)");
+          scanner.nextLine();
+          var str = scanner.nextLine();
+          yield fourthTask(str);
         }
-        case 7 -> seventhTask();
-        case 8 -> {
+        case 5 -> {
+          System.out.println("Введите число: ");
+          var number = scanner.nextInt();
+          yield fifthTask(Integer.toString(number));
         }
+        case 6 -> sixthTask(" ");
+
+        case 7 -> seventhTask(" ");
         case 9 -> {
-          ninth();
+          System.out.println("Введите строку, подстроку: (Через пробел!!!)");
+          scanner.nextLine();
+          var str = scanner.nextLine();
+          yield ninth(str);
         }
         case 10 -> {
-          tenthTask();
+          System.out.println("Введите строку: ");
+          scanner.nextLine();
+          var str = scanner.nextLine();
+          yield tenthTask(str);
         }
         default -> {
-          return;
+          scanner.close();
+          yield  " ";
         }
-      }
+      };
+      System.out.println(string);
     }
+
   }
 
-  public static void firstTask() {
-    System.out.println("Type\t   Size\tMin Value\tMax Value");
-    System.out.println(
+  public static String firstTask(String ignoredUnused) {
+    var res = new StringBuilder();
+    res.append("Type\t   Size\tMin Value\tMax Value").append("\n");
+    res.append(
         "Byte\t\t" + "  " + Byte.SIZE + "\t\t" + Byte.MIN_VALUE + "\t\t" + "     "
-            + Byte.MAX_VALUE);
-    System.out.println(
-        "Short\t\t" + "  " + Short.SIZE + "\t\t" + Short.MIN_VALUE + "\t\t" + Short.MAX_VALUE);
-    System.out.println(
+            + Byte.MAX_VALUE).append("\n");
+    res.append(
+            "Short\t\t" + "  " + Short.SIZE + "\t\t" + Short.MIN_VALUE + "\t\t" + Short.MAX_VALUE)
+        .append("\n");
+    res.append(
         "Int\t\t" + "    " + Integer.SIZE + "\t\t" + Integer.MIN_VALUE + "\t\t"
-            + Integer.MAX_VALUE);
-    System.out.println(
-        "Long\t\t" + "  " + Long.SIZE + "\t\t" + Long.MIN_VALUE + "\t\t" + Long.MAX_VALUE);
-    System.out.println(
-        "Float\t\t" + "  " + Float.SIZE + "\t\t" + Float.MIN_VALUE + "\t\t" + Float.MAX_VALUE);
-    System.out.println(
-        "Double\t\t" + Double.SIZE + "\t\t" + Double.MIN_VALUE + "\t\t" + Double.MAX_VALUE);
-
+            + Integer.MAX_VALUE).append("\n");
+    res.append(
+            "Long\t\t" + "  " + Long.SIZE + "\t\t" + Long.MIN_VALUE + "\t\t" + Long.MAX_VALUE)
+        .append("\n");
+    res.append(
+            "Float\t\t" + "  " + Float.SIZE + "\t\t" + Float.MIN_VALUE + "\t\t" + Float.MAX_VALUE)
+        .append("\n");
+    res.append(
+            "Double\t\t" + Double.SIZE + "\t\t" + Double.MIN_VALUE + "\t\t" + Double.MAX_VALUE)
+        .append("\n");
+    return res.toString();
   }
 
-  public static void secondTask() {
+  public static String secondTask(String ignoredUnused) {
+    var res = new StringBuilder();
     int[] arr = new int[]{-3, -3, 3, 10};
     double product = 1.0;
     int count = 0;
@@ -75,64 +95,56 @@ public class Main {
         count += 1;
       }
     }
-    System.out.println("Массив: " + Arrays.toString(arr));
-    System.out.println(
-        "Среднее геометрическое отрицательных элементов:" + Math.pow(product, 1.0 / count));
+    res.append("Массив: ").append(Arrays.toString(arr)).append("\n");
+    res.append("Среднее геометрическое отрицательных элементов:")
+        .append(Math.pow(product, 1.0 / count));
+    return res.toString();
   }
 
-  public static void thirdTask() {
-
+  public static String thirdTask(String ignoredUnused) {
+    var result = new StringBuilder();
     double R = 200.0, r = 20.0;
     int x = 150, y = 150;
     var res = Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 1.0 / 2.0);
     if (res < r) {
-      System.out.println("Тревога");
+      result.append("Тревога");
     } else if (res > r && res < R) {
-      System.out.println("Обнаружен");
+      result.append("Обнаружен");
     } else {
-      System.out.println("Не обнаружен");
+      result.append("Не обнаружен");
     }
-
-
+    return result.toString();
   }
 
-  public static void fourthTask() {
-    var scanner = new Scanner(System.in);
-    double R, r;
-    int x, y;
-    System.out.println("Введите R: ");
-    R = scanner.nextDouble();
-    System.out.println("Введите r: ");
-    r = scanner.nextDouble();
-    System.out.println("Введите x: ");
-    x = scanner.nextInt();
-    System.out.println("Введите y: ");
-    y = scanner.nextInt();
+  public static String fourthTask(String args) {
+    var result = new StringBuilder();
+    var arrNumbers = args.split(" ");
+    int R = Integer.parseInt(arrNumbers[0]), r = Integer.parseInt(
+        arrNumbers[1]), x = Integer.parseInt(arrNumbers[2]), y = Integer.parseInt(arrNumbers[3]);
+
     var res = Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 1.0 / 2.0);
-    if (res <= r) {
-      System.out.println("Тревога");
-    } else if (res > r && res <= R) {
-      System.out.println("Обнаружен");
+    if (res < r) {
+      result.append("Тревога");
+    } else if (res > r && res < R) {
+      result.append("Обнаружен");
     } else {
-      System.out.println("Не обнаружен");
+      result.append("Не обнаружен");
     }
+    return result.toString();
   }
 
-  public static void fifthTask(String[] args) {
-//    System.out.println(args[0]);
-//    var scanner = new Scanner(System.in);
-//    System.out.println("Введите число: ");
-//    var number = scanner.nextInt();
-    System.out.println(args[0]);
-    var number = Integer.parseInt(args[0]);
-    System.out.println(
-        "Число: " + number +
-            " Двоичная: " + Integer.toString(number, 2) +
-            " Восьмеричная: " + Integer.toString(number, 8) +
-            " Шестнадцатеричная: " + Integer.toString(number, 16));
+  public static String fifthTask(String args) {
+    int number = Integer.parseInt(args);
+    var res = new StringBuilder();
+
+    res.append("Число: ").append(number).append(" Двоичная: ").append(Integer.toString(number, 2))
+        .append(" Восьмеричная: ").append(Integer.toString(number, 8))
+        .append(" Шестнадцатеричная: ").append(Integer.toString(number, 16));
+
+    return res.toString();
   }
 
-  public static void sixthTask(int start, int rows, int cols) {
+  public static String sixthTask(String ignoresUnused) {
 //    var rowKeys = IntStream.range(0, rows).mapToObj(x -> Integer.toString(x, 16)).toList();
 //    var colKeys = IntStream.range(0, cols).mapToObj(x -> String.format("%4X ", start + x * cols)).toList();
 //    Table<String, String, Object> at = ArrayTable.create(rowKeys, colKeys);
@@ -146,22 +158,30 @@ public class Main {
 //    for (Cell<String, String, Object> cell : at.cellSet()) {
 //      System.out.printf("(%s, %s) => %s%n", cell.getRowKey(), cell.getColumnKey(), cell.getValue());
 //    }
-    System.out.println(
-        "     " + IntStream.range(0, cols)
-            .mapToObj(x -> Integer.toString(x, 16))
-            .collect(Collectors.joining("  "))
+//    var str1 = "0x040" + "16" + "16";
+    var res = matrix(0x0400, 16, 16).append("\n").append(matrix(0x20a0, 2, 16));
+    return res.toString();
+  }
+
+
+  private static StringBuilder matrix(int start, int rows, int cols) {
+    var res = new StringBuilder();
+    System.out.println("  " + IntStream.range(0, cols)
+        .mapToObj(x -> Integer.toString(x, 16))
+        .collect(Collectors.joining("  "))
     );
     for (int i = 0; i < rows; i++) {
       var row = new StringBuilder(String.format("%4X ", start + i * cols));
       for (int j = 0; j < cols; j++) {
         row.append((char) (start + i * cols + j)).append("  ");
       }
-      System.out.println(row);
+      res.append(row).append("\n");
 
     }
+    return res;
   }
 
-  public static void seventhTask() {
+  public static String seventhTask(String ignoredUnused) {
     String str = "Hello W3or56ld";
 
     List<Character> arrChars = new ArrayList<>();
@@ -174,7 +194,7 @@ public class Main {
     var streamDigit = arrChars.parallelStream().filter(Character::isDigit).count();
     var streamArabicDigit = arrChars.parallelStream().filter(x -> x >= '0' && x <= '9').count();
 
-    System.out.printf(
+    var res = String.format(
         "Общее кол-во символов: %d \n"
             + "Кол-во букв: %d \n"
             + "Кол-во прописных букв: %d \n"
@@ -188,39 +208,34 @@ public class Main {
         streamDigit - streamArabicDigit,
         arrChars.size() - streamLetter - streamDigit
     );
-
+    return res;
   }
 
-  public static void ninth() {
-
-    var scanner = new Scanner(System.in);
-    System.out.println("Введите строку: ");
-    var str = new StringBuilder(scanner.nextLine());
-    System.out.println("Введите подстроку: ");
-    var subStr = scanner.nextLine();
+  public static String ninth(String args) {
+    var res = args.split(" ");
+    var str = new StringBuilder(res[0]);
+    var subStr = res[1];
 
     var c = 0;
     while (str.indexOf(subStr) >= 0) {
       str.delete(str.indexOf(subStr), str.indexOf(subStr) + subStr.length());
       c += 1;
     }
-    System.out.printf("Данная подстрока встречается %d раз \n", c);
+    return String.format("Данная подстрока встречается %d раз \n", c);
 
   }
 
-  public static void tenthTask() {
-    var scanner = new Scanner(System.in);
-    System.out.println("Введите строку: ");
-    var str = scanner.nextLine();
-
+  public static String tenthTask(String args) {
+    var res = new StringBuilder();
     Queue<String> queue = new LinkedList<>();
-    str.chars().forEach(x -> queue.add(String.valueOf((char) x)));
+    args.chars().forEach(x -> queue.add(String.valueOf((char) x)));
 
-    for (var i = 0; i < str.length(); i++) {
+    for (var i = 0; i < args.length(); i++) {
       var buf = queue.remove();
       queue.add(buf);
-      System.out.println(String.join("", queue));
+      res.append(String.join("", queue)).append("\n");
     }
+return res.toString();
 
   }
 }
