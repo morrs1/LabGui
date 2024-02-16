@@ -25,7 +25,7 @@ public class Main {
         case 2 -> secondTask();
         case 3 -> thirdTask();
         case 4 -> fourthTask();
-        case 5 -> fifthTask();
+        case 5 -> fifthTask(args);
         case 6 -> {
           sixthTask(0x0400, 16, 16);
           sixthTask(0x20a0, 2, 16);
@@ -66,8 +66,7 @@ public class Main {
   }
 
   public static void secondTask() {
-    int[] arr = new int[]{-1, 2, -3, 4, -5, 6, -7, 8, -9, 10, -11, 12, -13, 14, -30, 16, -17, 18,
-        -19, 20};
+    int[] arr = new int[]{-3, -3, 3, 10};
     double product = 1.0;
     int count = 0;
     for (double number : arr) {
@@ -82,6 +81,7 @@ public class Main {
   }
 
   public static void thirdTask() {
+
     double R = 200.0, r = 20.0;
     int x = 150, y = 150;
     var res = Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 1.0 / 2.0);
@@ -109,19 +109,22 @@ public class Main {
     System.out.println("Введите y: ");
     y = scanner.nextInt();
     var res = Math.pow((Math.pow(x, 2) + Math.pow(y, 2)), 1.0 / 2.0);
-    if (res < r) {
+    if (res <= r) {
       System.out.println("Тревога");
-    } else if (res > r && res < R) {
+    } else if (res > r && res <= R) {
       System.out.println("Обнаружен");
     } else {
       System.out.println("Не обнаружен");
     }
   }
 
-  public static void fifthTask() {
-    var scanner = new Scanner(System.in);
-    System.out.println("Введите число: ");
-    var number = scanner.nextInt();
+  public static void fifthTask(String[] args) {
+//    System.out.println(args[0]);
+//    var scanner = new Scanner(System.in);
+//    System.out.println("Введите число: ");
+//    var number = scanner.nextInt();
+    System.out.println(args[0]);
+    var number = Integer.parseInt(args[0]);
     System.out.println(
         "Число: " + number +
             " Двоичная: " + Integer.toString(number, 2) +

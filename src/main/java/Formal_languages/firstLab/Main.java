@@ -49,9 +49,11 @@ public class Main {
         boolean allCharsValid = alphabet.containsAll(charArr);
         double sum = 0;
         var index = 0;
+        var strRes = new StringBuilder();
         if (allCharsValid) {
             System.out.println("Слово соответствует алфавиту");
             for (var i = charArr.size() - 1; i >= 0; i--) {
+                strRes.append(alphabet1.size()).append("**").append(i).append(" *").append(alphabet1.indexOf(charArr.get(index)) + 1).append(" + ");
                 sum += Math.pow(alphabet1.size(), i) * (alphabet1.indexOf(charArr.get(index)) + 1);
                 index++;
             }
@@ -59,7 +61,7 @@ public class Main {
         } else {
             System.out.println("Слово не соответствует алфавиту, введите заново");
         }
-
+        System.out.println(strRes.delete(strRes.length()-3, strRes.length() - 1));
         System.out.println("Лексико-графический номер: " + sum);
     }
 
