@@ -50,13 +50,16 @@ public class Main {
           yield tenthTask(str);
         }
         default -> {
-          scanner.close();
+          System.out.println("Неправильно выбрано задание");
+          System.exit(0);
           yield " ";
         }
+
       };
+
       System.out.println(string);
     }
-
+    scanner.close();
   }
 
   public static String firstTask(String ignoredUnused) {

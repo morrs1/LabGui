@@ -28,6 +28,11 @@
   -fx-translate-y: -0.25px;
   -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7, 0 , 0 , 4 );
 }
+#btnBackToMenu:hover {
+  /* Эффект при наведении */
+  -fx-translate-y: -0.25px;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7, 0 , 0 , 4 );
+}
 
 #BtnExit:pressed {
   /* Эффект при нажатии */
@@ -40,4 +45,13 @@
   /* Эффект при нажатии */
   -fx-translate-y: +2px;
   -fx-effect: null;
+}
+
+.split-pane-divider {
+  -fx-background-color: black;
+  -fx-min-width:  1px;
+  -fx-border-width: 0px;
+}
+.split-pane {
+  -fx-padding: 0px;
 }
