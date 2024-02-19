@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 
+import java.awt.TextArea;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 public class ControllerOfScene {
 

@@ -1,4 +1,4 @@
-#BtnExit{
+#BtnExit {
   -fx-background-image: url('/Images/BtnExit1-round.png');
   -fx-background-color: transparent;
   -fx-background-size: cover;
@@ -7,7 +7,8 @@
   -fx-border-radius: 50%;
   -fx-transition: all 0.3s ease;
 }
-#btnBackToMenu{
+
+#btnBackToMenu {
   -fx-background-image: url('/Images/back(1).png');
   -fx-background-color: transparent;
   -fx-background-size: cover;
@@ -21,17 +22,19 @@
 .button:hover {
   /* Эффект при наведении */
   -fx-translate-y: -2px;
-  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 15, 0 , 0 , 8 );
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 15, 0, 0, 8);
 }
+
 #BtnExit:hover {
   /* Эффект при наведении */
   -fx-translate-y: -0.25px;
-  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7, 0 , 0 , 4 );
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 7, 0, 0, 4);
 }
+
 #btnBackToMenu:hover {
   /* Эффект при наведении */
   -fx-translate-y: -0.25px;
-  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7, 0 , 0 , 4 );
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 7, 0, 0, 4);
 }
 
 #BtnExit:pressed {
@@ -49,9 +52,51 @@
 
 .split-pane-divider {
   -fx-background-color: black;
-  -fx-min-width:  1px;
+  -fx-min-width: 1px;
   -fx-border-width: 0px;
 }
+
 .split-pane {
   -fx-padding: 0px;
 }
+
+.text-area .content {
+  -fx-background-radius: 0px;
+  -fx-background-color:  #2e3033;
+}
+
+.text-area {
+  -fx-background-color:  #2e3033;
+  -fx-text-fill: #6e7b7d;
+  -fx-font-family: "Comic Sans MS";
+  -fx-font-weight: bold;
+  -fx-font-size: 14;
+  -fx-control-inner-background: #1b191a;
+  -fx-text-box-border: transparent;
+  -fx-faint-focus-color: transparent;
+  -fx-focus-color: transparent;
+  -fx-prompt-text-fill: #6e7b7d;
+}
+.text-field {
+  -fx-font-family: "Comic Sans MS";
+  -fx-font-weight: bold;
+  -fx-text-fill: black;
+  -fx-font-size: 16;
+}
+
+.text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+/* Стилизация вертикального скроллбара */
+.text-area .scroll-bar {
+  -fx-background-color: #2e3033; /* Цвет фона скроллбара */
+  -fx-background-insets:  0; /* Отступы фона */
+  -fx-background-radius:  0; /* Радиус скругления фона */
+  -fx-thumb-insets:  0; /* Отступы ползунка */
+}
+.text-area .thumb {
+  -fx-background-color: #6e7b7d;
+}
+
+
