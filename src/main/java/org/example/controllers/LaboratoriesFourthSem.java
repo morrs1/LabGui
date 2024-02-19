@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import org.example.util.ParserConditions;
+import org.json.simple.JSONObject;
 
 public class LaboratoriesFourthSem implements Initializable {
 
@@ -19,6 +21,8 @@ public class LaboratoriesFourthSem implements Initializable {
   @FXML
   private TextArea textAreaCondition, textAreaOutPut;
   private final ControllerOfScene controllerOfScene = new ControllerOfScene();
+
+  private ParserConditions data = new ParserConditions();
 
   private void buttonExitEvent() {
     BtnExit.setOnMouseClicked(event -> Platform.exit());
@@ -42,5 +46,7 @@ public class LaboratoriesFourthSem implements Initializable {
     backToMenu();
     textAreaCondition.setEditable(false);
     textAreaOutPut.setEditable(false);
+    var condition = new ParserConditions();
+    condition.get("2 лаба", "5 задание");
   }
 }
