@@ -7,31 +7,31 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import org.example.util.ButtonConfigurator;
 
 public class MyController implements Initializable {
+
   @FXML
   private Button btnExit;
   @FXML
   private Button goTo4thSem;
+  private final ButtonConfigurator buttonConfigurator = new ButtonConfigurator();
 
-  private void buttonExitEvent(){
-    btnExit.setOnMouseClicked(x-> Platform.exit());
 
-  }
-private void setGoTo4thSem(){
-    goTo4thSem.setOnMouseClicked(event -> {
-      try {
-        new ControllerOfScene().switchFromMenuToLaboratoriesFourthSem(event);
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    });
-}
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-  buttonExitEvent();
-  setGoTo4thSem();
+    buttonsEvent();
   }
 
+  private void buttonsEvent() {
+  buttonConfigurator.configureButton(btnExit, event -> Platform.exit());
+  buttonConfigurator.configureButton(goTo4thSem, event -> {
+    try {
+      new ControllerOfScene().switchFromMenuToLaboratoriesFourthSem(event);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  });
+  }
 
 }
