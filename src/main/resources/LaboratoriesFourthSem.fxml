@@ -33,7 +33,7 @@
          <children>
             <VBox layoutY="0.8" prefHeight="505.0" prefWidth="225.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #000000; -fx-border-width: 5;" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="1.0">
                <children>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 2" textFill="#6e7b7d">
+                  <Button fx:id="secondButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 2" textFill="#6e7b7d">
                      <VBox.margin>
                         <Insets left="4.5" right="4.5" top="10.0" />
                      </VBox.margin>
@@ -41,7 +41,7 @@
                         <Font name="Comic Sans MS Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 3" textFill="#6e7b7d">
+                  <Button fx:id="thirdButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 3" textFill="#6e7b7d">
                      <VBox.margin>
                         <Insets left="4.5" right="4.5" top="10.0" />
                      </VBox.margin>
@@ -49,7 +49,7 @@
                         <Font name="Comic Sans MS Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 4" textFill="#6e7b7d">
+                  <Button fx:id="fourthButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 4" textFill="#6e7b7d">
                      <VBox.margin>
                         <Insets left="4.5" right="4.5" top="10.0" />
                      </VBox.margin>
@@ -57,7 +57,7 @@
                         <Font name="Comic Sans MS Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 5" textFill="#6e7b7d">
+                  <Button fx:id="fifthButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 5" textFill="#6e7b7d">
                      <VBox.margin>
                         <Insets left="4.5" right="4.5" top="10.0" />
                      </VBox.margin>
@@ -65,7 +65,7 @@
                         <Font name="Comic Sans MS Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 6" textFill="#6e7b7d">
+                  <Button fx:id="sixthButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 6" textFill="#6e7b7d">
                      <VBox.margin>
                         <Insets left="4.5" right="4.5" top="10.0" />
                      </VBox.margin>
@@ -73,7 +73,7 @@
                         <Font name="Comic Sans MS Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 7" textFill="#6e7b7d">
+                  <Button fx:id="seventhButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="69.0" prefWidth="205.0" style="-fx-background-color: #000000; -fx-border-color: #000000; -fx-border-radius: 15; -fx-border-width: 5; -fx-background-radius: 15;" stylesheets="@StyleBtnExit.css" text="Лаба 7" textFill="#6e7b7d">
                      <VBox.margin>
                         <Insets left="4.5" right="4.5" top="10.0" />
                      </VBox.margin>

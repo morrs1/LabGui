@@ -20,18 +20,24 @@ public class LaboratoriesFourthSem implements Initializable {
   @FXML
   private TextArea textAreaCondition, textAreaOutPut;
   private final ControllerOfScene controllerOfScene = new ControllerOfScene();
-  private ButtonConfigurator buttonConfigurator = new ButtonConfigurator();
-
+  private final ButtonConfigurator buttonConfigurator = new ButtonConfigurator();
   private final ParserConditions data = new ParserConditions();
+  @FXML
+  private Button secondButton, thirdButton, fourthButton, fifthButton, sixthButton, seventhButton;
 
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    buttonEvent();
+    laboratoriesButtonsEvent();
 
-//  private void buttonExitEvent() {
-//    BtnExit.setOnMouseClicked(event -> Platform.exit());
-//
-//  }
+    textAreaCondition.setEditable(false);
+    textAreaOutPut.setEditable(false);
+    data.get("2 лаба", "5 задание");
+  }
 
-  private void backToMenu() {
-    btnBackToMenu.setOnMouseClicked(event -> {
+  private void buttonEvent() {
+    buttonConfigurator.configureButton(btnExit, event -> Platform.exit());
+    buttonConfigurator.configureButton(btnBackToMenu, event -> {
       try {
         controllerOfScene.switchToMenu(event);
       } catch (IOException e) {
@@ -40,14 +46,16 @@ public class LaboratoriesFourthSem implements Initializable {
     });
   }
 
+  private void laboratoriesButtonsEvent() {
+    Button[] allButtons = {secondButton, thirdButton, fourthButton, fifthButton, sixthButton,
+        seventhButton};
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    buttonConfigurator.configureButton(btnExit, event -> Platform.exit());
-//    buttonExitEvent();
-    backToMenu();
-    textAreaCondition.setEditable(false);
-    textAreaOutPut.setEditable(false);
-    data.get("2 лаба", "5 задание");
+    for (var btn : allButtons) {
+      buttonConfigurator.configureButton(btn, event -> {
+        var buttonText = btn.getText();
+        System.out.println(buttonText);
+      });
+    }
   }
+
 }
