@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import org.example.util.ParserConditions;
-import org.json.simple.JSONObject;
+
 
 public class LaboratoriesFourthSem implements Initializable {
 
@@ -46,7 +46,6 @@ public class LaboratoriesFourthSem implements Initializable {
     backToMenu();
     textAreaCondition.setEditable(false);
     textAreaOutPut.setEditable(false);
-    var condition = new ParserConditions();
-    condition.get("2 лаба", "5 задание");
+    data.get("2 лаба", "5 задание");
   }
 }

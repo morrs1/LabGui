@@ -76,6 +76,7 @@
   -fx-faint-focus-color: transparent;
   -fx-focus-color: transparent;
   -fx-prompt-text-fill: #6e7b7d;
+
 }
 .text-field {
   -fx-font-family: "Comic Sans MS";
