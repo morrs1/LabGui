@@ -10,12 +10,12 @@ import javafx.scene.control.Button;
 
 public class MyController implements Initializable {
   @FXML
-  private Button BtnExit;
+  private Button btnExit;
   @FXML
   private Button goTo4thSem;
 
   private void buttonExitEvent(){
-    BtnExit.setOnMouseClicked(x-> Platform.exit());
+    btnExit.setOnMouseClicked(x-> Platform.exit());
 
   }
 private void setGoTo4thSem(){

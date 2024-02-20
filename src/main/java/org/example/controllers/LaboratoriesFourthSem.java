@@ -9,25 +9,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import org.example.util.ButtonConfigurator;
 import org.example.util.ParserConditions;
 
 
 public class LaboratoriesFourthSem implements Initializable {
 
   @FXML
-  private Button BtnExit;
-  @FXML
-  private Button btnBackToMenu;
+  private Button btnExit, btnBackToMenu;
   @FXML
   private TextArea textAreaCondition, textAreaOutPut;
   private final ControllerOfScene controllerOfScene = new ControllerOfScene();
+  private ButtonConfigurator buttonConfigurator = new ButtonConfigurator();
 
-  private ParserConditions data = new ParserConditions();
+  private final ParserConditions data = new ParserConditions();
 
-  private void buttonExitEvent() {
-    BtnExit.setOnMouseClicked(event -> Platform.exit());
 
-  }
+//  private void buttonExitEvent() {
+//    BtnExit.setOnMouseClicked(event -> Platform.exit());
+//
+//  }
 
   private void backToMenu() {
     btnBackToMenu.setOnMouseClicked(event -> {
@@ -37,12 +38,13 @@ public class LaboratoriesFourthSem implements Initializable {
         throw new RuntimeException(e);
       }
     });
-
   }
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    buttonExitEvent();
+    buttonConfigurator.configureButton(btnExit, event -> Platform.exit());
+//    buttonExitEvent();
     backToMenu();
     textAreaCondition.setEditable(false);
     textAreaOutPut.setEditable(false);

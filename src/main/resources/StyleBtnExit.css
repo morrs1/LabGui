@@ -1,4 +1,4 @@
-#BtnExit {
+#btnExit {
   -fx-background-image: url('/Images/BtnExit1-round.png');
   -fx-background-color: transparent;
   -fx-background-size: cover;
@@ -25,7 +25,7 @@
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 15, 0, 0, 8);
 }
 
-#BtnExit:hover {
+#btnExit:hover {
   /* Эффект при наведении */
   -fx-translate-y: -0.25px;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 7, 0, 0, 4);
@@ -37,7 +37,7 @@
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 7, 0, 0, 4);
 }
 
-#BtnExit:pressed {
+#btnExit:pressed {
   /* Эффект при нажатии */
   -fx-translate-y: +2px;
   -fx-effect: null;
