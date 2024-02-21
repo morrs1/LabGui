@@ -96,7 +96,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="164.0" prefWidth="614.0" style="-fx-background-color: transparent; -fx-border-width: 2;">
                      <children>
-                        <TextArea fx:id="textAreaCondition" layoutX="4.0" layoutY="14.0" prefHeight="157.0" prefWidth="602.0" promptText="Выберите лабораторную работу и задание" stylesheets="@StyleBtnExit.css" wrapText="true" />
+                        <TextArea fx:id="textAreaCondition" layoutX="4.0" layoutY="2.0" prefHeight="157.0" prefWidth="602.0" promptText="Выберите лабораторную работу и задание" stylesheets="@StyleBtnExit.css" wrapText="true" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="599.0">

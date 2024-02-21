@@ -55,3 +55,19 @@
   -fx-padding: 5px;
   -fx-background-color: #2e3033;
 }
+
+.combo-box .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+/* Стилизация вертикального скроллбара */
+.combo-box .scroll-bar {
+  -fx-background-color: #2e3033; /* Цвет фона скроллбара */
+  -fx-background-insets:  0; /* Отступы фона */
+  -fx-background-radius:  0; /* Радиус скругления фона */
+  -fx-thumb-insets:  0; /* Отступы ползунка */
+}
+
+.combo-box .thumb {
+  -fx-background-color: #6e7b7d;
+}
