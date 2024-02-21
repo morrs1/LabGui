@@ -37,11 +37,12 @@ public class Main {
         case 6 -> sixthTask(" ");
 
         case 7 -> seventhTask(" ");
+        case 8 -> eighthTask(" ");
         case 9 -> {
           System.out.println("Введите строку, подстроку: (Через пробел!!!)");
           scanner.nextLine();
           var str = scanner.nextLine();
-          yield ninth(str);
+          yield ninthTask(str);
         }
         case 10 -> {
           System.out.println("Введите строку: ");
@@ -205,7 +206,10 @@ public class Main {
     );
   }
 
-  public static String ninth(String args) {
+  public static String eighthTask(String ignoredUnused){
+    return "Я разобрался +_+";
+  }
+  public static String ninthTask(String args) {
     var res = args.split(" ");
     var str = new StringBuilder(res[0]);
     var subStr = res[1];

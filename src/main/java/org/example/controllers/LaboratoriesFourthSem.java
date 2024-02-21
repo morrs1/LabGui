@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import org.example.util.ButtonConfigurator;
+import org.example.util.ComboBoxConfigurator;
 import org.example.util.ParserConditions;
 import org.example.util.ParserLaboratories;
 
@@ -25,6 +26,7 @@ public class LaboratoriesFourthSem implements Initializable {
   private final ControllerOfScene controllerOfScene = new ControllerOfScene();
   private final ButtonConfigurator buttonConfigurator = new ButtonConfigurator();
   private final ParserConditions data = new ParserConditions();
+  private final ComboBoxConfigurator comboBoxConfigurator = new ComboBoxConfigurator();
   @FXML
   private Button secondButton, thirdButton, fourthButton, fifthButton, sixthButton, seventhButton;
   @FXML
@@ -66,7 +68,7 @@ public class LaboratoriesFourthSem implements Initializable {
     for (var btn : allButtons) {
       buttonConfigurator.configureButton(btn, event -> {
         var buttonText = btn.getText();
-        System.out.println(buttonText);
+        comboBoxConfigurator.configureCombobox(comboBox, btn);
       });
     }
   }

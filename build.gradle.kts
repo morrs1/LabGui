@@ -25,6 +25,7 @@ dependencies {
     implementation("de.vandermeer:asciitable:0.3.2")
     implementation("com.google.guava:guava:33.0.0-jre")
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("com.ibm.icu:icu4j:73.2")
 }
 
 tasks.test {

@@ -24,7 +24,7 @@
             </Text>
             <Button fx:id="btnBackToMenu" layoutX="14.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="27.0" stylesheets="@StyleBtnExit.css" AnchorPane.bottomAnchor="35.19999999999999" AnchorPane.rightAnchor="858.8" AnchorPane.topAnchor="15.0" />
             <AnchorPane layoutX="250.0" layoutY="55.0" prefHeight="7.0" prefWidth="400.0" style="-fx-background-color: #000000; -fx-background-radius: 10;" />
-            <ComboBox fx:id="comboBox" layoutX="670.0" layoutY="20.0" prefHeight="42.0" prefWidth="174.0" promptText="Выберите задание" stylesheets="@comboBox.css" />
+            <ComboBox fx:id="comboBox" layoutX="670.0" layoutY="20.0" prefHeight="42.0" prefWidth="174.0" promptText="Выберите задание" stylesheets="@comboBox.css" visibleRowCount="5" />
          </children>
       </AnchorPane>
    </top>
