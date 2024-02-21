@@ -18,7 +18,7 @@ import org.example.util.ParserLaboratories;
 
 
 public class LaboratoriesFourthSem implements Initializable {
-
+private String buttonText;
   @FXML
   private Button btnExit, btnBackToMenu;
   @FXML
@@ -37,9 +37,14 @@ public class LaboratoriesFourthSem implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    buttonEvent();
     laboratoriesButtonsEvent();
+    buttonEvent();
+    comboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
 
+      if (newVal != null)
+        textAreaCondition.setText(data.get(buttonText, newVal.toLowerCase()));
+      System.out.println(data.get(buttonText, newVal));
+    });
     textAreaCondition.setEditable(false);
     textAreaOutPut.setEditable(false);
     data.get("2 лаба", "5 задание");
@@ -50,6 +55,22 @@ public class LaboratoriesFourthSem implements Initializable {
     }
   }
 
+  private void laboratoriesButtonsEvent() {
+    Button[] allButtons = {secondButton, thirdButton, fourthButton, fifthButton, sixthButton,
+        seventhButton};
+
+    for (var btn : allButtons) {
+      buttonConfigurator.configureButton(btn, event -> {
+//         buttonText = btn.getText();
+
+        buttonText = btn.getText().charAt(btn.getText().length()-1) + " лаба";
+        System.out.println(buttonText);
+        comboBoxConfigurator.configureCombobox(comboBox, btn);
+      });
+
+
+    }
+  }
   private void buttonEvent() {
     buttonConfigurator.configureButton(btnExit, event -> Platform.exit());
     buttonConfigurator.configureButton(btnBackToMenu, event -> {
@@ -61,16 +82,6 @@ public class LaboratoriesFourthSem implements Initializable {
     });
   }
 
-  private void laboratoriesButtonsEvent() {
-    Button[] allButtons = {secondButton, thirdButton, fourthButton, fifthButton, sixthButton,
-        seventhButton};
 
-    for (var btn : allButtons) {
-      buttonConfigurator.configureButton(btn, event -> {
-        var buttonText = btn.getText();
-        comboBoxConfigurator.configureCombobox(comboBox, btn);
-      });
-    }
-  }
 
 }
