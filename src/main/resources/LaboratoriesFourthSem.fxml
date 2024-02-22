@@ -105,7 +105,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <TextField fx:id="textField" layoutX="15.0" layoutY="20.5" prefHeight="26.0" prefWidth="588.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 3;" />
+                                    <TextField fx:id="textField" layoutX="15.0" layoutY="16.0" prefHeight="26.0" prefWidth="588.0" promptText="Введите аргументы" style="-fx-background-color: transparent; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 3;" />
                                  </children></AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="258.0" prefWidth="575.0" style="-fx-background-color: transparent;">
                                  <children>

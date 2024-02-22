@@ -83,6 +83,7 @@
   -fx-font-weight: bold;
   -fx-text-fill: black;
   -fx-font-size: 16;
+  -fx-prompt-text-fill: #6e7b7d;
 }
 
 .text-area .scroll-pane {
