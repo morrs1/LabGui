@@ -34,7 +34,7 @@ public class ComboBoxConfigurator {
     comboBox.getItems().addAll(linkedList);
   }
 
-  private String parseNumToNameOfClass(String numberOfQuestion) {
+  public String parseNumToNameOfClass(String numberOfQuestion) {
     //Programming.FourthSemLab.SecondLab.Main
     return "Programming.FourthSemLab." + capitalizeFirstLetter(
         numberFormat.format(Integer.parseInt(numberOfQuestion), "%spellout-ordinal")) + "Lab.Main";

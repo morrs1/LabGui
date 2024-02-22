@@ -8,5 +8,6 @@ public class ButtonConfigurator {
 
   public void configureButton(Button button, EventHandler<MouseEvent> eventHandler){
     button.setOnMouseClicked(eventHandler);
+
   }
 }
