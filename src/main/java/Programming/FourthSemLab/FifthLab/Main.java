@@ -6,8 +6,8 @@ public class Main {
 
   }
 
-  public void firstTask(String args){
-
+  public String firstTask(String args){
+    return "";
   }
 
   public void secondTask(String args){

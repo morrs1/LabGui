@@ -85,7 +85,7 @@ public class Main {
 
     protected static ArrayList<Character> setupAlphabet(){
 
-//        System.out.println("Введите алфавит: ");
+        System.out.println("Введите алфавит: ");
         Set<Character> alphabet = new LinkedHashSet<>();
 
         String str = scanner.nextLine();

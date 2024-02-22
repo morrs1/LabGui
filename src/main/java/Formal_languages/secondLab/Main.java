@@ -2,6 +2,8 @@ package Formal_languages.secondLab;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,36 +16,45 @@ public class Main extends Formal_languages.firstLab.Main {
 
     public static void main(String[] args) {
         var alphabet = setupAlphabet();
+        var flag = false;
+        while (!flag) {
+            if (alphabet.size() != 3 || !alphabet.containsAll(Arrays.asList('a', 'b', 'c'))){
+                alphabet = setupAlphabet();
+            }
+            else {
+                flag = true;
+            }
+        }
         System.out.println("Алфавит: " + alphabet);
         System.out.println("Введите кол-во цепочек: ");
         var amountOfWords = scanner.nextInt();
         System.out.println(regularToWord(amountOfWords, alphabet));
     }
 
-    protected static ArrayList<String> regularToWord(int amountOfWords, ArrayList<Character> alphabet) {
-        var arr = new ArrayList<String>();
+    protected static LinkedHashMap<String, Integer> regularToWord(int amountOfWords, ArrayList<Character> alphabet) {
+        var map = new LinkedHashMap<String, Integer>();
         var word = "";
-        for (var i = 1; i <= amountOfWords; i++) {
-            word =  numberToWord(i, alphabet);
+        int amountWords = 0;
+        int c = 1;
+        while (amountWords != amountOfWords){
+            word = numberToWord(c, alphabet);
+            System.out.println(word);
             Matcher matcher = pattern.matcher(word);
             if (matcher.matches()) {
-                System.out.println(word);
-                arr.add(word);
+                amountWords+=1;
+                map.put(word, c);
             }
+            c+=1;
         }
-        return arr;
+
+        return map;
     }
 
 
 
 
     protected static String numberToWord(int num, ArrayList<Character> alphabet1) {
-
-
-
-//        System.out.println("Введите лексико-графический номер слова: ");
-
-        int numOfChar = 0;
+        int numOfChar;
         int charSize = alphabet1.size();
         int c = num;
         StringBuilder finalStr = new StringBuilder();
@@ -59,11 +70,9 @@ public class Main extends Formal_languages.firstLab.Main {
                 c = c / charSize;
             }
             finalStr.append(alphabet1.get(numOfChar - 1));
-            System.out.printf("%d * %d + %d %n", c, charSize, numOfChar);
         }
         finalStr.append(alphabet1.get(c - 1));
         return finalStr.reverse().toString();
-//        System.out.println(finalStr.reverse());
 
     }
 }
