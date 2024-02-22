@@ -1,52 +1,21 @@
 package Formal_languages.firstLab;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
-
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Введите, что вы хотите сделать: \n 1)Перевести слово в номер \n 2)Перевести номер в слово");
-            var task = scanner.nextInt();
-            switch (task) {
-                case 1 -> {
-                    wordToNumber();
-                }
-                case 2 -> {
-                    numberToWord();
-                }
-                default -> {
-                    return;
-                }
-            }
-
-        }
-
-
+        setup();
     }
 
-    private static void wordToNumber() {
-        int task;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите алфавит: ");
-        Set<Character> alphabet = new LinkedHashSet<>();
+    protected static void wordToNumber() {
 
-        String str = scanner.nextLine();
-        while (!str.equals("exit")) {
-            for (char c : str.toCharArray()) {
-                alphabet.add(c);
-            }
-            str = scanner.nextLine();
-        }
-        var alphabet1 = new ArrayList<>(alphabet);
+        var alphabet1 = setupAlphabet();
         System.out.println("Введите слово: ");
         var word = scanner.nextLine();
-        var charArr = word.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
+        var charArr = word.chars().mapToObj(c -> (char) c).toList();
 
-        boolean allCharsValid = alphabet.containsAll(charArr);
+        boolean allCharsValid = alphabet1.containsAll(charArr);
         double sum = 0;
         var index = 0;
         var strRes = new StringBuilder();
@@ -65,19 +34,9 @@ public class Main {
         System.out.println("Лексико-графический номер: " + sum);
     }
 
-    public static void numberToWord() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите алфавит: ");
-        Set<Character> alphabet = new LinkedHashSet<>();
+    protected static void numberToWord() {
 
-        String str = scanner.nextLine();
-        while (!str.equals("exit")) {
-            for (char c : str.toCharArray()) {
-                alphabet.add(c);
-            }
-            str = scanner.nextLine();
-        }
-        var alphabet1 = new ArrayList<>(alphabet);
+        var alphabet1 = setupAlphabet();
 
         System.out.println("Введите лексико-графический номер слова: ");
         var num = scanner.nextInt();
@@ -103,6 +62,40 @@ public class Main {
         finalStr.append(alphabet1.get(c - 1));
         System.out.println(finalStr.reverse());
 
+    }
+
+    protected static void setup(){
+        while (true) {
+            System.out.println("Введите, что вы хотите сделать: \n 1)Перевести слово в номер \n 2)Перевести номер в слово");
+            var task = scanner.nextInt();
+            switch (task) {
+                case 1 -> {
+                    wordToNumber();
+                }
+                case 2 -> {
+                    numberToWord();
+                }
+                default -> {
+                    return;
+                }
+            }
+
+        }
+    }
+
+    protected static ArrayList<Character> setupAlphabet(){
+
+//        System.out.println("Введите алфавит: ");
+        Set<Character> alphabet = new LinkedHashSet<>();
+
+        String str = scanner.nextLine();
+        while (!str.equals("exit")) {
+            for (char c : str.toCharArray()) {
+                alphabet.add(c);
+            }
+            str = scanner.nextLine();
+        }
+        return new ArrayList<>(alphabet);
     }
 }
 
