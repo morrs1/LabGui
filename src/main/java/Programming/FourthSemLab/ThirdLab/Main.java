@@ -6,8 +6,26 @@ import java.util.stream.IntStream;
 
 public class Main {
 
+  private final static Scanner scanner = new Scanner(System.in);
+
   public static void main(String[] args) {
-    firstTask("");
+    Object string = "";
+    while (string != " ") {
+      System.out.println("Введите задание: ");
+      var task = scanner.nextInt();
+      string = switch (task) {
+        case 1 -> firstTask(" ");
+        case 2 -> secondTask(" ");
+        default -> {
+          System.out.println("Вы ввели неправильное задание");
+          yield " ";
+        }
+      };
+      System.out.println(string);
+    }
+
+//    firstTask("");
+    secondTask("");
   }
 
   public static String firstTask(String ignoredUnused) {
@@ -16,15 +34,17 @@ public class Main {
     return makeTable(listX, makeListSin(listX), makeListE(listX));
   }
 
-  public static String secondTask(String ignoredUnused){
-     List <ArrayList<Double>> arr1 = new ArrayList<>();
-     var r = (int) (Math.random() * 10);
-    IntStream.range(0,r).forEach(x-> arr1.add(new ArrayList<>()));
-    System.out.println(arr1);
-    return "";
+  public static String secondTask(String ignoredUnused) {
+    List<ArrayList<Integer>> arr = makeRandomArray();
+    var result = new StringBuilder();
+    arr.forEach(x -> result.append(x.toString()).append("\n"));
+    var maxNegative = maxNegative(arr);
+    return "Массив:\n" + result + "Максимальный отрицательный элемент: " + maxNegative;
   }
 
-  private static String makeTable(ArrayList<String> listX, ArrayList<String> listSin, ArrayList<String> listE) {
+
+  private static String makeTable(ArrayList<String> listX, ArrayList<String> listSin,
+      ArrayList<String> listE) {
     List<List<String>> columns = new ArrayList<>();
     listX.add(0, "x");
     listX.add(1, "-".repeat(15));
@@ -47,9 +67,7 @@ public class Main {
     }
 
     return table.toString();
-    }
-
-
+  }
 
 
   private static ArrayList<String> makeListX() {
@@ -78,6 +96,27 @@ public class Main {
             Double.parseDouble(x))))));
 
     return listE;
+  }
+
+
+  private static List<ArrayList<Integer>> makeRandomArray() {
+    List<ArrayList<Integer>> arr1 = new ArrayList<>();
+    var r = new Random();
+    IntStream.range(1, r.nextInt(2, 10)).forEach(x -> {
+      var arr2 = new ArrayList<Integer>();
+      IntStream.range(0, r.nextInt(2, 10)).forEach(y -> arr2.add(r.nextInt(-100, 100)));
+      arr1.add(arr2);
+    });
+
+    return arr1;
+  }
+
+  private static Integer maxNegative(List<ArrayList<Integer>> arr) {
+    return arr.stream().map(x -> x
+            .parallelStream().filter(xx -> xx < 0)
+            .max(Comparator.naturalOrder())
+            .orElse(Integer.MIN_VALUE))
+        .max(Comparator.naturalOrder()).orElseThrow();
   }
 
 }
