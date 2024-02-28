@@ -1,9 +1,6 @@
 package Programming.FourthSemLab.ThirdLab;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
@@ -17,6 +14,14 @@ public class Main {
     var listX = makeListX();
 //    System.out.println(makeTable(listX, makeListSin(listX), makeListE(listX)));
     return makeTable(listX, makeListSin(listX), makeListE(listX));
+  }
+
+  public static String secondTask(String ignoredUnused){
+     List <ArrayList<Double>> arr1 = new ArrayList<>();
+     var r = (int) (Math.random() * 10);
+    IntStream.range(0,r).forEach(x-> arr1.add(new ArrayList<>()));
+    System.out.println(arr1);
+    return "";
   }
 
   private static String makeTable(ArrayList<String> listX, ArrayList<String> listSin, ArrayList<String> listE) {
