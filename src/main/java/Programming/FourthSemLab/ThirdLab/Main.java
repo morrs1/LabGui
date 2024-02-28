@@ -16,6 +16,7 @@ public class Main {
       string = switch (task) {
         case 1 -> firstTask(" ");
         case 2 -> secondTask(" ");
+        case 3-> thirdTask(" ");
         default -> {
           System.out.println("Вы ввели неправильное задание");
           yield " ";
@@ -24,8 +25,6 @@ public class Main {
       System.out.println(string);
     }
 
-//    firstTask("");
-    secondTask("");
   }
 
   public static String firstTask(String ignoredUnused) {
@@ -42,6 +41,16 @@ public class Main {
     return "Массив:\n" + result + "Максимальный отрицательный элемент: " + maxNegative;
   }
 
+  public static String thirdTask(String ignoredUnused) {
+    var matrix = makeRandomMatrix();
+    var result = new StringBuilder();
+    result.append("Изначальный массив:\n");
+    matrix.forEach(x -> result.append(x.toString()).append("\n"));
+    result.append("Отсортированная матрица:\n");
+    matrix.forEach(x->x.sort(Comparator.naturalOrder()));
+    matrix.forEach(x -> result.append(x.toString()).append("\n"));
+    return result.toString();
+  }
 
   private static String makeTable(ArrayList<String> listX, ArrayList<String> listSin,
       ArrayList<String> listE) {
@@ -117,6 +126,17 @@ public class Main {
             .max(Comparator.naturalOrder())
             .orElse(Integer.MIN_VALUE))
         .max(Comparator.naturalOrder()).orElseThrow();
+  }
+
+  private static List<ArrayList<Integer>> makeRandomMatrix() {
+    List<ArrayList<Integer>> matrix = new ArrayList<>();
+    IntStream.range(0,3).forEach(x->{
+      var arr = new ArrayList<Integer>();
+      IntStream.range(0, 3).forEach(xx-> arr.add(new Random().nextInt(-10,10)));
+      matrix.add(arr);
+    });
+
+    return matrix;
   }
 
 }
