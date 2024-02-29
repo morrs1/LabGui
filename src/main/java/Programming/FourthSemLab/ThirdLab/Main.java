@@ -17,12 +17,12 @@ public class Main {
         case 1 -> firstTask(" ");
         case 2 -> secondTask(" ");
         case 3 -> thirdTask(" ");
-        case 4 -> {
-          System.out.println(
-              "Введите координаты центра первой окружности и ее радиус, и координаты центра и радиус второй окружности (Все через пробел!! x1 y1 r1 x2 y2 r2 )");
+        case 4, 5 -> fourthAndFive();
+        case 6 -> {
+          System.out.println("Введите отрезок: ");
           scanner.nextLine();
           var str = scanner.nextLine();
-          yield fourthTask(str);
+          yield sixthTask(str);
         }
         default -> {
           System.out.println("Вы ввели неправильное задание");
@@ -65,7 +65,7 @@ public class Main {
 
   public static String fourthTask(String args) {
     var res = Circles.defineCircles(args);
-    return switch (res){
+    return switch (res) {
       case COINCIDENT -> "Совпадают";
       case TOUCHING -> "Касаются";
       case INTERSECTING_AT_TWO_POINTS -> "Пересекаются в двух точках";
@@ -73,6 +73,24 @@ public class Main {
       case SECOND_CIRCLE_EMBEDDED -> "Вторая окружность вложена в первую";
       case NON_INTERSECTING -> "Не пересекаются";
     };
+  }
+
+  public static String fifthTask(String args) {
+    return fourthTask(args);
+  }
+
+  public static String sixthTask(String args) {
+    var str = new StringBuilder();
+    var arg = Arrays.stream(args.split(" ")).map(Double::parseDouble).toList();
+    var b = arg.get(1);
+    var a = arg.get(0);
+    var tabArr = tabulateFunc(a, b);
+
+    var exactIntegral = Math.exp(b) - b * b * b * b / 4 - Math.exp(a) + a * a * a * a / 4;
+    return str.append("Значение интеграла: ")
+        .append(String.format("%.4f",integrateLeftRectangles(tabArr.get(0), tabArr.get(1)))).append("\n")
+        .append("Точное значение интеграла: ").append(String.format("%.4f",exactIntegral)).toString();
+
   }
 
   private static String makeTable(ArrayList<String> listX, ArrayList<String> listSin,
@@ -160,6 +178,42 @@ public class Main {
     });
 
     return matrix;
+  }
+
+  private static String fourthAndFive() {
+    System.out.println(
+        "Введите координаты центра первой окружности и ее радиус, и координаты центра и радиус второй окружности (Все через пробел!! x1 y1 r1 x2 y2 r2 )");
+    scanner.nextLine();
+    var str = scanner.nextLine();
+    return fourthTask(str);
+  }
+
+  private static ArrayList<ArrayList<Double>> tabulateFunc(Double a, Double b) {
+    var arr = new ArrayList<ArrayList<Double>>();
+    var arrX = new ArrayList<Double>();
+    var arrY = new ArrayList<Double>();
+    var step = (b - a) / 100;
+
+    IntStream.range(0, 101).forEach(x -> {
+      arrX.add(a + x * step);
+      arrY.add(Math.exp(arrX.get(x)) - Math.pow(arrX.get(x), 3));
+    });
+    arr.add(arrX);
+    arr.add(arrY);
+    return arr;
+  }
+
+  private static Double integrateLeftRectangles(ArrayList<Double> arrX, ArrayList<Double> arrY) {
+    double integral = 0;
+
+    for (var i = 0; i < arrX.size() - 1; i++) {
+      double width = arrX.get(i + 1) - arrX.get(i);
+      double height = arrY.get(i);
+      integral += width * height;
+    }
+
+    return integral;
+
   }
 
 }
