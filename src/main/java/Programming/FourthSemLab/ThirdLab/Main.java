@@ -66,13 +66,12 @@ public class Main {
   public static String fourthTask(String args) {
     var res = Circles.defineCircles(args);
     return switch (res){
-      case 1 -> "Совпадают";
-      case 2 -> "Касаются";
-      case 3 -> "Пересекаются в двух точках";
-      case 4 -> "Первая окружность вложена во вторую";
-      case 5 -> "Вторая окружность вложена в первую";
-      case 6 -> "Не пересекаются";
-      default -> "Неизвестный результат";
+      case COINCIDENT -> "Совпадают";
+      case TOUCHING -> "Касаются";
+      case INTERSECTING_AT_TWO_POINTS -> "Пересекаются в двух точках";
+      case FIRST_CIRCLE_EMBEDDED -> "Первая окружность вложена во вторую";
+      case SECOND_CIRCLE_EMBEDDED -> "Вторая окружность вложена в первую";
+      case NON_INTERSECTING -> "Не пересекаются";
     };
   }
 
