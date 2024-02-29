@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
+
 public class Main {
 
   private final static Scanner scanner = new Scanner(System.in);
@@ -75,6 +76,7 @@ public class Main {
     };
   }
 
+  @SuppressWarnings("unused")
   public static String fifthTask(String args) {
     return fourthTask(args);
   }
