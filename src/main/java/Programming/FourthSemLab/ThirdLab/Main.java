@@ -1,6 +1,8 @@
 package Programming.FourthSemLab.ThirdLab;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
@@ -8,6 +10,13 @@ import java.util.stream.IntStream;
 public class Main {
 
     private final static Scanner scanner = new Scanner(System.in);
+    private static final String regexWithBrackets = ("((\\+7|8)[-\\s(]?\\d{3}[-\\s)]?\\s?\\d{3}([-\\s]?\\d{2}){2})");
+
+    private static final String regexFor7Numbers = "\\b[23][-\\s]?\\d{2}[-\\s]?\\d{2}[-\\s]?\\d{2}\\b";
+
+    private static final Pattern patternMob = Pattern.compile(regexWithBrackets);
+    private static final Pattern patternFor7Numbers = Pattern.compile(regexFor7Numbers);
+    private static final String some = "Мои номера 220-30-40 и 8904-378-16-61 не считая служебных";
 
     public static void main(String[] args) {
         Object string = "";
@@ -35,6 +44,14 @@ public class Main {
                     }
                     yield seventhTask(str);
                 }
+                case 8 -> {
+                    System.out.println("Введите x: ");
+                    scanner.nextLine();
+                    var str = scanner.nextLine();
+                    yield eighthTask(str);
+                }
+                case 9 -> ninthTask(" ");
+                case 10 -> tenthTask(" ");
                 default -> {
                     System.out.println("Вы ввели неправильное задание");
                     yield " ";
@@ -106,13 +123,60 @@ public class Main {
     }
 
     public static String seventhTask(String args) {
+        return "Число ручным переводом: " + convertNum(args) +
+                "\n" + "Число переводом toString: " +
+                Integer.toString(Integer.parseInt(args.split(" ")[0]), Integer.parseInt(args.split(" ")[1]));
+    }
+
+    public static String eighthTask(String args) {
+        var coeffs = new ArrayList<>(Arrays.asList(1.0, 2.0, 3.0, 4.0));
+        var x = Double.parseDouble(args);
+        return String.format("Значение полинома при x = %.3f равно %.4f %n", x, horner(coeffs, x));
+    }
+
+    public static String ninthTask(String ignoredUnused) {
+
+        String[] phoneNumbers = {
+                "+7(904)3781661", "+7(904) 378-16 61",
+                "+79043781661", "+7 904 378 1661", "+7 904  378 16 61",
+                "+7-904-378-16-61", "+7(904)3781661", "+7(904) 378-16 61",
+                "8(904)3781661", "8(904) 378-16 61",
+                "89043781661", "8 904 378-16-61",
+                "8904-378-16-61"
+        };
+
         var res = new StringBuilder();
-        res.append("Число ручным переводом: ").append(convertNum(args))
-                .append("\n").append("Число переводом toString: ")
-                .append(Integer.toString(Integer.parseInt(args.split(" ")[0]), Integer.parseInt(args.split(" ")[1])));
+
+        for (String phoneNumber : phoneNumbers) {
+            if (patternMob.matcher(phoneNumber).matches()) {
+                res.append(phoneNumber).append(" подходит.\n");
+            } else {
+                res.append(phoneNumber).append(" не подходит. \n");
+            }
+        }
+        res.append("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных");
+        var a = (patternFor7Numbers.matcher("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных").matches()) ? ("\nЭта строка подходит под регулярное выражение") : ("\nЭта строка не подходит под регулярное выражение");
+        return res.append(a).toString();
+    }
+
+    public static String tenthTask(String ignoredUnused) {
+        var res = new StringBuilder();
+        res.append("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных\n");
+        Matcher match_mob = patternMob.matcher(some);
+        Matcher match_home = patternFor7Numbers.matcher(some);
+
+        while (match_mob.find()) {
+            res.append(match_mob.group()).append("\n");
+        }
+
+        while (match_home.find()) {
+            res.append(match_home.group()).append("\n");
+        }
         return res.toString();
     }
 
+
+    //////////////////Вспомогательные методы//////////////////
     private static String makeTable(ArrayList<String> listX, ArrayList<String> listSin,
                                     ArrayList<String> listE) {
         List<List<String>> columns = new ArrayList<>();
@@ -248,5 +312,15 @@ public class Main {
         }
 
         return result.toString();
+    }
+
+    private static Double horner(ArrayList<Double> coeffs, Double x) {
+        int n = coeffs.size() - 1;
+        double polynomial = coeffs.get(n);
+        for (int k = n - 1; k >= 0; k--) {
+            polynomial = polynomial * x + coeffs.get(k);
+        }
+        return polynomial;
+
     }
 }
