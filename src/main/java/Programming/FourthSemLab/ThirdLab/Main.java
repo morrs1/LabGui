@@ -16,7 +16,7 @@ public class Main {
 
     private static final Pattern patternMob = Pattern.compile(regexWithBrackets);
     private static final Pattern patternFor7Numbers = Pattern.compile(regexFor7Numbers);
-    private static final String some = "Мои номера 220-30-40 и 8904-378-16-61 не считая служебных";
+    private static final String testStr = "Мои номера 220-30-40 и 8904-378-16-61 не считая служебных";
 
     public static void main(String[] args) {
         Object string = "";
@@ -154,16 +154,17 @@ public class Main {
                 res.append(phoneNumber).append(" не подходит. \n");
             }
         }
+        var patternHome = Pattern.compile(".*[23][-\\s]?\\d{2}[-\\s]?\\d{2}[-\\s]?\\d{2}.*");
         res.append("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных");
-        var a = (patternFor7Numbers.matcher("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных").matches()) ? ("\nЭта строка подходит под регулярное выражение") : ("\nЭта строка не подходит под регулярное выражение");
+        var a = (patternHome.matcher("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных").matches()) ? ("\nЭта строка подходит под регулярное выражение") : ("\nЭта строка не подходит под регулярное выражение");
         return res.append(a).toString();
     }
 
     public static String tenthTask(String ignoredUnused) {
         var res = new StringBuilder();
         res.append("Мои номера 220-30-40 и 8904-378-16-61 не считая служебных\n");
-        Matcher match_mob = patternMob.matcher(some);
-        Matcher match_home = patternFor7Numbers.matcher(some);
+        Matcher match_mob = patternMob.matcher(testStr);
+        Matcher match_home = patternFor7Numbers.matcher(testStr);
 
         while (match_mob.find()) {
             res.append(match_mob.group()).append("\n");
