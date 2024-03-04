@@ -25,4 +25,8 @@ public class Main {
 
         return " fdfd";
     }
+    public static String thirdTask(String ignoredUnused){
+
+        return "";
+    }
 }
