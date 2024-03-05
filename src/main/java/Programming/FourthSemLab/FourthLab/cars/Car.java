@@ -47,7 +47,7 @@ public class Car {
     this.color = color;
   }
 
-  public void setEnginePower(Engine engine) {
+  public void setEngine(Engine engine) {
     this.engine = engine;
   }
 
@@ -85,7 +85,7 @@ public class Car {
     return color;
   }
 
-  public Engine getEnginePower() {
+  public Engine getEngine() {
     return engine;
   }
 
