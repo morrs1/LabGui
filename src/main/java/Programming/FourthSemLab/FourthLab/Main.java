@@ -1,6 +1,6 @@
 package Programming.FourthSemLab.FourthLab;
 
-import Programming.FourthSemLab.FourthLab.car.Car;
+import Programming.FourthSemLab.FourthLab.cars.Car;
 
 public class Main {
 
@@ -22,7 +22,8 @@ public class Main {
         return res.toString();
     }
     public static String secondTask(String ignoredUnused){
-
+        Car car = new Car("Audi", Car.CarType.PASSENGER, "blue", 200, 4);
+        System.out.println(car);
         return " fdfd";
     }
     public static String thirdTask(String ignoredUnused){
