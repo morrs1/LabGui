@@ -1,8 +1,12 @@
 package Programming.FourthSemLab.FourthLab;
 
+import Programming.FourthSemLab.FourthLab.cars.Bus;
 import Programming.FourthSemLab.FourthLab.cars.Car;
 import Programming.FourthSemLab.FourthLab.cars.Engine;
 import Programming.FourthSemLab.FourthLab.cars.Engine.TypeOfFuel;
+import Programming.FourthSemLab.FourthLab.cars.Passenger;
+import Programming.FourthSemLab.FourthLab.cars.SpecialCar;
+import Programming.FourthSemLab.FourthLab.cars.Truck;
 
 public class Main {
 
@@ -45,8 +49,19 @@ public class Main {
         + car;
   }
 
-  public static String fifthTask(String ignoredUnused){
-
-    return "";
+  public static String fifthTask(String ignoredUnused) {
+    Bus bus = new Bus("Mercedes", "blue",
+        new Engine("11233", 200.0, 400.0, TypeOfFuel.DIESEL, 10.5, 16), 4);
+    Passenger passenger = new Passenger("BMW", "black",
+        new Engine("11233", 200.0, 400.0, TypeOfFuel.DIESEL, 10.5, 16), 4);
+    Truck truck = new Truck("Land Rover", "pink",
+        new Engine("11233", 2000.0, 400.0, TypeOfFuel.DIESEL, 10.5, 16), 4);
+    SpecialCar specialCar = new SpecialCar("Lada", "gray",
+        new Engine("1178233", 20000.0, 4000.0, TypeOfFuel.DIESEL, 100.5, 32), 6);
+    truck.setRegPlate("А123АА177RUS");
+    specialCar.setRegPlate("1323АВ177RUS");
+    return bus + "\n\n" + passenger + "\n\n" + truck + "\n\n" + specialCar;
   }
+
+
 }

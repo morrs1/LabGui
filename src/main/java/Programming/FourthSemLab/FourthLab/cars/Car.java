@@ -3,12 +3,13 @@ package Programming.FourthSemLab.FourthLab.cars;
 
 public class Car {
 
-  private String regPlate;
-  private final String brand;
+  protected String regPlate;
+  protected final String brand;
   private final CarType type;
-  private String color;
-  private Engine engine;
-  private final Integer amountOfWheels;
+
+  protected String color;
+  protected Engine engine;
+  protected final Integer amountOfWheels;
 
   public enum CarType {PASSENGER, TRUCK, BUS}
 
@@ -33,6 +34,23 @@ public class Car {
     this.color = color;
     this.engine = engine;
     this.amountOfWheels = amountOfWheels;
+  }
+
+  public Car(String regPlate, String brand, String color, Engine engine, Integer amountOfWheels) {
+    this.regPlate = regPlate;
+    this.brand = brand;
+    this.color = color;
+    this.engine = engine;
+    this.amountOfWheels = amountOfWheels;
+    this.type = null;
+  }
+
+  public Car(String brand, String color, Engine engine, Integer amountOfWheels) {
+    this.brand = brand;
+    this.color = color;
+    this.engine = engine;
+    this.amountOfWheels = amountOfWheels;
+    this.type = null;
   }
 
   public void setRegPlate(String regPlate) {
