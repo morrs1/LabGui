@@ -20,5 +20,4 @@ public record Engine(String serialNumber, Double capacity, Double workingVolume,
         '}';
   }
 
-
 }
