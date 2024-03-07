@@ -64,7 +64,7 @@ public class Car {
   }
 
 
-  private boolean checkRegPlate(String regPlate) {
+  protected boolean checkRegPlate(String regPlate) {
     var regex = "[АВЕКМНОРСТУХ]\\d{3}[АВЕКМНОРСТУХ]{2}\\d{2,3}RUS";
     return regPlate.matches(regex);
   }

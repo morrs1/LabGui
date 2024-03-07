@@ -44,4 +44,9 @@ public class Main {
         + car.getEngine().capacity() + "\n\n"
         + car;
   }
+
+  public static String fifthTask(String ignoredUnused){
+
+    return "";
+  }
 }
