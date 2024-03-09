@@ -64,4 +64,14 @@ public class Main {
   }
 
 
+  public static String sixthTask(String ignoredUnused){
+    return "Не знаю, что здесь тестить, тк изменения были чисто внутренними";
+  }
+
+
+  public String seventhTask(String ignoredUnused){
+    return "";
+  }
+
+
 }
