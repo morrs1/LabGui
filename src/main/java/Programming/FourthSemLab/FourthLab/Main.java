@@ -2,6 +2,9 @@ package Programming.FourthSemLab.FourthLab;
 
 import Programming.FourthSemLab.FourthLab.cars.Bus;
 import Programming.FourthSemLab.FourthLab.cars.Car;
+import Programming.FourthSemLab.FourthLab.cars.Car.CarType;
+import Programming.FourthSemLab.FourthLab.cars.CarBase;
+import Programming.FourthSemLab.FourthLab.cars.CarFactory;
 import Programming.FourthSemLab.FourthLab.cars.Engine;
 import Programming.FourthSemLab.FourthLab.cars.Engine.TypeOfFuel;
 import Programming.FourthSemLab.FourthLab.cars.Passenger;
@@ -11,7 +14,7 @@ import Programming.FourthSemLab.FourthLab.cars.Truck;
 public class Main {
 
   public static void main(String[] args) {
-//        firstTask(" ");
+    System.out.println(seventhTask(" "));
   }
 
   public static String firstTask(String ignoredUnused) {
@@ -64,13 +67,34 @@ public class Main {
   }
 
 
-  public static String sixthTask(String ignoredUnused){
+  public static String sixthTask(String ignoredUnused) {
     return "Не знаю, что здесь тестить, тк изменения были чисто внутренними";
   }
 
 
-  public String seventhTask(String ignoredUnused){
-    return "";
+  public static String seventhTask(String ignoredUnused) {
+    var base = new CarBase(5);
+    var car1 = CarFactory.createCar(CarType.PASSENGER, "Audi", "blue",
+        new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
+    var car2 = CarFactory.createCar(CarType.PASSENGER, "Audi11", "blue",
+        new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
+    var car3 = CarFactory.createCar(CarType.PASSENGER, "Audi22", "blue",
+        new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
+    var car4 = CarFactory.createCar(CarType.PASSENGER, "Audi33", "blue",
+        new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
+    var car5 = CarFactory.createCar(CarType.PASSENGER, "Audi44", "blue",
+        new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
+    var car6 = CarFactory.createCar(CarType.PASSENGER, "Audi55", "blue",
+        new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
+
+    base.addCarToBase(car1);
+    base.addCarToBase(car2);
+    base.addCarToBase(car3);
+    base.addCarToBase(car4);
+    base.addCarToBase(car5);
+    base.removeCarFromBase(car4);
+    base.removeCarFromBase(car1);
+    return base.toString();
 
   }
 

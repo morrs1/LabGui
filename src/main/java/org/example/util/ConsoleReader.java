@@ -22,7 +22,7 @@ public class ConsoleReader {
       return method.invoke(solutionClass.getDeclaredConstructor().newInstance(), args);
 
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-      return "Вы выбрали неверное задание";
+      return e.toString();
     }
   }
 }
