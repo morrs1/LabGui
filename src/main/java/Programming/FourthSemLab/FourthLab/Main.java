@@ -73,6 +73,7 @@ public class Main {
 
 
   public static String seventhTask(String ignoredUnused) {
+    var res = new StringBuilder();
     var base = new CarBase(5);
     var car1 = CarFactory.createCar(CarType.PASSENGER, "Audi", "blue",
         new Engine("1000", 20.0, 100.0, TypeOfFuel.DIESEL, 3.0, 16), 4);
@@ -92,9 +93,19 @@ public class Main {
     base.addCarToBase(car3);
     base.addCarToBase(car4);
     base.addCarToBase(car5);
+    res.append(base).append("\n\n");
+
     base.removeCarFromBase(car4);
     base.removeCarFromBase(car1);
-    return base.toString();
+    res.append(base).append("\n\n");
+
+    base.sendCarToRepair(car2);
+    base.sendCarToTransit(car3);
+    res.append(base).append("\n\n");
+
+
+    res.append(base.getCarsParked()).append("\n").append(base.getCarsInRepair()).append("\n").append(base.getCarsInTransit());
+    return res.toString();
 
   }
 

@@ -23,13 +23,41 @@ public class CarBase {
     removeCarFromArray(car, carsParked);
   }
 
+  public void sendCarToTransit(Car car){
+    addCarToArray(car, carsInTransit);
+    removeCarFromArray(car, carsParked);
+  }
 
+  public void sendCarToRepair(Car car){
+    addCarToArray(car, carsInRepair);
+    removeCarFromArray(car, carsParked);
+  }
+
+  public void returnCarFromTransit(Car car){
+    addCarToArray(car, carsParked);
+    removeCarFromArray(car, carsInTransit);
+  }
+
+  public void returnCarFromRepair(Car car){
+    addCarToArray(car, carsParked);
+    removeCarFromArray(car, carsInRepair);
+  }
+
+  public String getCarsParked(){
+    return "Машины на базе: " + carsParked;
+  }
+  public String getCarsInTransit(){
+    return "Машины в пути: " + carsInTransit;
+  }
+  public String getCarsInRepair(){
+    return "Машины в ремонте: " + carsInRepair;
+  }
   @Override
   public String toString() {
     return "CarBase{" +
         "carsParked=" + carsParked.stream().map(Car::getBrand).toList() +
-        "\n carsInTransit=" + carsInTransit +
-        "\n carsInRepair=" + carsInRepair +
+        "\n carsInTransit=" + carsInTransit.stream().map(Car::getBrand).toList() +
+        "\n carsInRepair=" + carsInRepair.stream().map(Car::getBrand).toList() +
         '}';
   }
 
