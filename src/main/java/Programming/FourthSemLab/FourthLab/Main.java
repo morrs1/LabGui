@@ -10,11 +10,13 @@ import Programming.FourthSemLab.FourthLab.cars.Engine.TypeOfFuel;
 import Programming.FourthSemLab.FourthLab.cars.Passenger;
 import Programming.FourthSemLab.FourthLab.cars.SpecialCar;
 import Programming.FourthSemLab.FourthLab.cars.Truck;
+import Programming.FourthSemLab.FourthLab.complex.Complex;
+import Programming.FourthSemLab.FourthLab.complex.ComplexMath;
 
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println(seventhTask(" "));
+    System.out.println(thirdTask(" "));
   }
 
   public static String firstTask(String ignoredUnused) {
@@ -35,12 +37,46 @@ public class Main {
   }
 
   public static String secondTask(String ignoredUnused) {
-    return " fdfd";
+    Complex a = new Complex(1, 2);
+    Complex b = new Complex(3, 4);
+
+
+      return a.add(b) + "\n" +
+            a.subtract(b) + "\n" +
+            a.multiply(b) + "\n" +
+            a.divide(b) + "\n";
   }
 
   public static String thirdTask(String ignoredUnused) {
+    Complex z1 = new Complex(3, 4);
+    Complex z2 = new Complex(2, 5);
+var res = new StringBuilder();
+    res.append("z1 = ").append(z1).append("\n");
+    res.append("z2 = ").append(z2).append("\n");
 
-    return "";
+
+    res.append("\nz1 + z2 = ").append(z1.add(z2)).append("\n");
+    res.append("z1 - z2 = ").append(z1.subtract(z2)).append("\n");
+    res.append("z1 * z2 = ").append(z1.multiply(z2)).append("\n");
+    res.append("z1 / z2 = ").append(z1.divide(z2)).append("\n");
+
+    res.append("\nconjugate(z1) = ").append(z1.conjugate()).append("\n");
+    res.append("abs(z1) = ").append(ComplexMath.abs(z1)).append("\n");
+    res.append("phase(z1) = ").append(z1.phase()).append("\n");
+    res.append("exp(z1) = ").append(ComplexMath.exp(z1)).append("\n");
+    res.append("sin(z1) = ").append(ComplexMath.sin(z1)).append("\n");
+    res.append("cos(z1) = ").append(ComplexMath.cos(z1)).append("\n");
+    res.append("tan(z1) = ").append(ComplexMath.tan(z1)).append("\n");
+    res.append("arctan(z1) = ").append(ComplexMath.arcTan(z1)).append("\n");
+    res.append("sinh(z1) = ").append(ComplexMath.sinh(z1)).append("\n");
+    res.append("cosh(z1) = ").append(ComplexMath.cosh(z1)).append("\n");
+    res.append("tanh(z1) = ").append(ComplexMath.tanh(z1)).append("\n");
+    res.append("coth(z1) = ").append(ComplexMath.coth(z1)).append("\n");
+    res.append("exp(z1) = ").append(ComplexMath.exp(z1)).append("\n");
+
+    res.append("\nAsTrigString(z1) = ").append(z1.toTrigString()).append("\n");
+    res.append("AsString(z1) = ").append(z1).append("\n");
+    return res.toString();
   }
 
   public static String fourthTask(String ignoredUnused) {
@@ -105,6 +141,9 @@ public class Main {
 
 
     res.append(base.getCarsParked()).append("\n").append(base.getCarsInRepair()).append("\n").append(base.getCarsInTransit());
+    base.returnCarFromRepair(car2);
+    base.returnCarFromTransit(car3);
+    res.append("\n\n").append(base);
     return res.toString();
 
   }
