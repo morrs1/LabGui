@@ -17,6 +17,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -27,6 +28,12 @@ dependencies {
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
     implementation("com.ibm.icu:icu4j:73.2")
     implementation("org.jgrapht:jgrapht-core:1.5.1")
+////    implementation("net.automatalib:automata-dot-visualizer:0.11.0")
+//    implementation ("net.automatalib:automata-parent:0.11.0")
+//    implementation("net.automatalib:automata-serialization-saf:0.11.0")
+//    implementation("com.github.LearnLib:automatalib:develop-SNAPSHOT")
+
+
 }
 
 tasks.test {

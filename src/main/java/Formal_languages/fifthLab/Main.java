@@ -21,5 +21,25 @@ public class Main {
     // Вывод информации о графе
     System.out.println("Вершины графа: " + graph.vertexSet());
     System.out.println("Ребра графа: " + graph.edgeSet());
+
+//// Создание алфавита
+//    Alphabet<Character> alphabet = Alphabets.characters('a', 'b');
+//
+//    // Создание автомата
+//    DFA<?, Character> dfa = Automaton.newDFA(alphabet)
+//        .withInitial("q0")
+//        .from("q0")
+//        .on('a').to("q1")
+//        .from("q1")
+//        .on('a').to("q1")
+//        .on('b').to("q2")
+//        .from("q2")
+//        .on('b').to("q2")
+//        .withAccepting("q2")
+//        .create();
+//
+//    // Вывод автомата
+//    System.out.println("Конечный автомат: " + dfa);
+
   }
 }
