@@ -26,6 +26,7 @@ dependencies {
     implementation("com.google.guava:guava:33.0.0-jre")
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
     implementation("com.ibm.icu:icu4j:73.2")
+    implementation("org.jgrapht:jgrapht-core:1.5.1")
 }
 
 tasks.test {
