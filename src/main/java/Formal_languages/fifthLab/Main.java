@@ -4,42 +4,60 @@ import org.jgrapht.Graph;
 
 import org.jgrapht.graph.SimpleDirectedGraph;
 
-public class Main {
-  public static void main(String[] args) {
-    // Создание ориентированного графа с именованными ребрами
-    Graph<String, NamedEdge> graph = new SimpleDirectedGraph<>(NamedEdge.class);
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
-    // Добавление вершин
-    String v1 = "v1";
-    String v2 = "v2";
-    graph.addVertex(v1);
-    graph.addVertex(v2);
+public class Main extends Formal_languages.firstLab.Main {
+    static Scanner scanner = new Scanner(System.in);
 
-    // Добавление ориентированного ребра с именем "а"
-    graph.addEdge(v1, v2, new NamedEdge(String.format("%s -> %s (a)", v1, v2)));
+    public static void main(String[] args) {
+        var alphabet = setupAlphabet();
+        System.out.println("Введите кол-во вершин: ");
+        var arrConditions = setupConditions(scanner.nextInt());
+        var arrStart = addVertex(arrConditions, "начальные");
+        var arrEnd = addVertex(arrConditions, "конечные");
 
-    // Вывод информации о графе
-    System.out.println("Вершины графа: " + graph.vertexSet());
-    System.out.println("Ребра графа: " + graph.edgeSet());
+        // Создание ориентированного графа с именованными ребрами
+        Graph<String, NamedEdge> graph = new SimpleDirectedGraph<>(NamedEdge.class);
 
-//// Создание алфавита
-//    Alphabet<Character> alphabet = Alphabets.characters('a', 'b');
-//
-//    // Создание автомата
-//    DFA<?, Character> dfa = Automaton.newDFA(alphabet)
-//        .withInitial("q0")
-//        .from("q0")
-//        .on('a').to("q1")
-//        .from("q1")
-//        .on('a').to("q1")
-//        .on('b').to("q2")
-//        .from("q2")
-//        .on('b').to("q2")
-//        .withAccepting("q2")
-//        .create();
-//
-//    // Вывод автомата
-//    System.out.println("Конечный автомат: " + dfa);
+        // Добавление вершин
+        addVertexToGraph(arrConditions, graph);
 
-  }
+        // Добавление ориентированного ребра с именем "а"
+        graph.addEdge(arrConditions.get(1), arrConditions.get(2), new NamedEdge(String.format("(%s, a) -> %s ", arrConditions.get(1), arrConditions.get(2))));
+
+        // Вывод информации о графе
+        System.out.println("Вершины графа: " + graph.vertexSet());
+        System.out.println("Ребра графа: " + graph.edgeSet());
+        System.out.println(alphabet + "\n" + arrConditions + "\n Начальные:" + arrStart + "\n Конечные:" + arrEnd);
+
+
+    }
+
+    private static ArrayList<String> setupConditions(Integer amount) {
+        var arr = new ArrayList<String>();
+        IntStream.range(0, amount).forEach(x -> arr.add(String.format("v%d", x)));
+        return arr;
+    }
+
+    private static void addVertexToGraph(ArrayList<String> arrV, Graph<String, NamedEdge> graph) {
+        arrV.forEach(graph::addVertex);
+    }
+
+    private static ArrayList<String> addVertex(ArrayList<String> arrV, String buf) {
+        var arrayV = new ArrayList<String>();
+        System.out.printf("Введите %s вершины: %n", buf);
+        String str = scanner.nextLine();
+        while (!str.equals("exit")) {
+            while (!arrV.contains(str)) {
+                System.out.println("Такой вершины нет во множестве вершин, введите заново: ");
+                str = scanner.nextLine();
+                if(str.equals("exit")) return arrayV;
+            }
+            if(!arrayV.contains(str)) arrayV.add(str);
+            str = scanner.nextLine();
+        }
+        return arrayV;
+    }
 }

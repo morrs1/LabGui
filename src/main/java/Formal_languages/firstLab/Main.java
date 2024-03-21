@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         setup();
     }
@@ -30,7 +31,7 @@ public class Main {
         } else {
             System.out.println("Слово не соответствует алфавиту, введите заново");
         }
-        System.out.println(strRes.delete(strRes.length()-3, strRes.length() - 1));
+        System.out.println(strRes.delete(strRes.length() - 3, strRes.length() - 1));
         System.out.println("Лексико-графический номер: " + sum);
     }
 
@@ -64,7 +65,7 @@ public class Main {
 
     }
 
-    protected static void setup(){
+    protected static void setup() {
         while (true) {
             System.out.println("Введите, что вы хотите сделать: \n 1)Перевести слово в номер \n 2)Перевести номер в слово");
             var task = scanner.nextInt();
@@ -83,7 +84,7 @@ public class Main {
         }
     }
 
-    protected static ArrayList<Character> setupAlphabet(){
+    protected static ArrayList<Character> setupAlphabet() {
 
         System.out.println("Введите алфавит: ");
         Set<Character> alphabet = new LinkedHashSet<>();
@@ -91,7 +92,7 @@ public class Main {
         String str = scanner.nextLine();
         while (!str.equals("exit")) {
             for (char c : str.toCharArray()) {
-                alphabet.add(c);
+                if (c != ' ') alphabet.add(c);
             }
             str = scanner.nextLine();
         }

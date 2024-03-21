@@ -16,7 +16,7 @@ import Programming.FourthSemLab.FourthLab.complex.ComplexMath;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println(thirdTask(" "));
+    System.out.println(seventhTask(" "));
   }
 
   public static String firstTask(String ignoredUnused) {
