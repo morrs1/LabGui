@@ -1,7 +1,6 @@
 package Formal_languages.fifthLab;
 
 import org.jgrapht.Graph;
-
 import org.jgrapht.graph.SimpleDirectedGraph;
 
 import java.util.ArrayList;
@@ -59,5 +58,10 @@ public class Main extends Formal_languages.firstLab.Main {
             str = scanner.nextLine();
         }
         return arrayV;
+    }
+
+    private static ArrayList<ArrayList<String>> addEdgesToGraph(){
+
+        return null;
     }
 }
