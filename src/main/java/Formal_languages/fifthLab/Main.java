@@ -1,7 +1,17 @@
 package Formal_languages.fifthLab;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
+import org.checkerframework.checker.units.qual.A;
 import org.jgrapht.Graph;
-import org.jgrapht.graph.SimpleDirectedGraph;
+import org.jgrapht.graph.DefaultDirectedGraph;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,27 +19,25 @@ import java.util.stream.IntStream;
 
 public class Main extends Formal_languages.firstLab.Main {
     static Scanner scanner = new Scanner(System.in);
-
+    private static final Graph<String, NamedEdge> graph = new DefaultDirectedGraph<>(NamedEdge.class);
+    private static  ArrayList<Character> alphabet;
+    private static ArrayList<String> arrConditions;
     public static void main(String[] args) {
-        var alphabet = setupAlphabet();
+        alphabet = setupAlphabet();
         System.out.println("Введите кол-во вершин: ");
-        var arrConditions = setupConditions(scanner.nextInt());
-        var arrStart = addVertex(arrConditions, "начальные");
-        var arrEnd = addVertex(arrConditions, "конечные");
-
-        // Создание ориентированного графа с именованными ребрами
-        Graph<String, NamedEdge> graph = new SimpleDirectedGraph<>(NamedEdge.class);
+         arrConditions = setupConditions(scanner.nextInt());
+        var arrStart = setupVertex(arrConditions, "начальные");
+        var arrEnd = setupVertex(arrConditions, "конечные");
 
         // Добавление вершин
-        addVertexToGraph(arrConditions, graph);
+        addVertexToGraph(arrConditions);
 
-        // Добавление ориентированного ребра с именем "а"
-        graph.addEdge(arrConditions.get(1), arrConditions.get(2), new NamedEdge(String.format("(%s, a) -> %s ", arrConditions.get(1), arrConditions.get(2))));
+        System.out.println(addEdgesToGraph());
 
         // Вывод информации о графе
-        System.out.println("Вершины графа: " + graph.vertexSet());
-        System.out.println("Ребра графа: " + graph.edgeSet());
-        System.out.println(alphabet + "\n" + arrConditions + "\n Начальные:" + arrStart + "\n Конечные:" + arrEnd);
+        System.out.println("Вершины графа:\n" + graph.vertexSet());
+        System.out.println("Граф:\n" + String.join("\n", graph.edgeSet().toString().replace("]","").replace("[", "").split(" , ")));
+        System.out.println("Начальные:\n" + arrStart + "\nКонечные:\n" + arrEnd + "\nАлфавит: " + alphabet);
 
 
     }
@@ -40,11 +48,11 @@ public class Main extends Formal_languages.firstLab.Main {
         return arr;
     }
 
-    private static void addVertexToGraph(ArrayList<String> arrV, Graph<String, NamedEdge> graph) {
+    private static void addVertexToGraph(ArrayList<String> arrV) {
         arrV.forEach(graph::addVertex);
     }
 
-    private static ArrayList<String> addVertex(ArrayList<String> arrV, String buf) {
+    private static ArrayList<String> setupVertex(ArrayList<String> arrV, String buf) {
         var arrayV = new ArrayList<String>();
         System.out.printf("Введите %s вершины: %n", buf);
         String str = scanner.nextLine();
@@ -60,8 +68,52 @@ public class Main extends Formal_languages.firstLab.Main {
         return arrayV;
     }
 
-    private static ArrayList<ArrayList<String>> addEdgesToGraph(){
+    private static Map<String,Map<String, Set<String>>> addEdgesToGraph(){
+        System.out.println("Введите дуги графа(ИСХ вершина ВХД вершина символ алфавита)");
+        var input = scanner.nextLine();
+        var inf = new ArrayList<String[]>();
+        while (!input.equals("exit")){
+            var info = input.split(" ");
+            inf.add(info);
+            graph.addEdge(info[0], info[1], new NamedEdge(String.format("(%s, %s) -> %s ", info[0],info[2] ,info[1])));
+            input = scanner.nextLine();
+        }
+        return setupTable(inf);
+    }
 
-        return null;
+    private static Map<String, Map<String, Set<String>>> setupTable(ArrayList<String[]> inf) {
+        var table = new LinkedHashMap<String, Map<String, Set<String>>>();
+
+        inf.forEach(x -> {
+          Map<String, Set<String>> innerMap = table.computeIfAbsent(x[0],
+              k -> new LinkedHashMap<>());
+            Set<String> states = innerMap.computeIfAbsent(x[2], k -> new HashSet<>());
+            states.add(x[1]);
+        });
+
+        return table;
+    }
+    public static Set<String> findEpsilonClosure(Map<String, Map<String, Set<String>>> graph, String startVertex) {
+        Set<String> closure = new HashSet<>();
+        Stack<String> stack = new Stack<>();
+
+        closure.add(startVertex);
+        stack.push(startVertex);
+
+        while (!stack.isEmpty()) {
+            String currentVertex = stack.pop();
+
+            if (graph.get(currentVertex).containsKey("")) {
+                for (String nextVertex : graph.get(currentVertex).get("")) {
+                    if (!closure.contains(nextVertex)) {
+                        closure.add(nextVertex);
+                        stack.push(nextVertex);
+                    }
+                }
+            }
+        }
+
+        return closure;
     }
 }
+
