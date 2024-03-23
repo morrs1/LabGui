@@ -112,17 +112,14 @@ public class Main extends Formal_languages.firstLab.Main {
     v3Transitions.put("c", Set.of("v3"));
     bagaTransitions.put("v3", v3Transitions);
 
-
-
     var calcSTable = calculateSTable(mainTable, epsilonClosure);
     System.out.println(calcSTable);
     var bufMap = new HashMap<Set<String>, String>();
-    var cc= 0;
+    var cc = 0;
     for (var cs : calcSTable.keySet()) {
       bufMap.put(cs, String.format("S%d", cc));
-      cc+=1;
+      cc += 1;
     }
-
 
     System.out.println("\n" + bufMap);
     transformDictionary(calcSTable, bufMap);
@@ -271,11 +268,12 @@ public class Main extends Formal_languages.firstLab.Main {
   public static void transformDictionary(
       Map<Set<String>, Map<String, Set<String>>> dict1,
       Map<Set<String>, String> dict2) {
-var hs = new HashSet<String>();
-    for (var fL: dict1.keySet()){
-      for(var sL: dict1.get(fL).keySet()){
-        for(var tL: dict2.keySet()){
-          if (dict1.get(fL).get(sL).containsAll(tL)){
+
+    var hs = new HashSet<String>();
+    for (var fL : dict1.keySet()) {
+      for (var sL : dict1.get(fL).keySet()) {
+        for (var tL : dict2.keySet()) {
+          if (dict1.get(fL).get(sL).containsAll(tL)) {
             hs.add(dict2.get(tL));
           }
         }
