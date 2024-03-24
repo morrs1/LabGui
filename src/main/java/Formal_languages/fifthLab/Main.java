@@ -1,5 +1,6 @@
 package Formal_languages.fifthLab;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
+import java.util.stream.Collectors;
 import org.checkerframework.checker.units.qual.A;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -30,60 +32,64 @@ public class Main extends Formal_languages.firstLab.Main {
   private static ArrayList<String> arrConditions;
 
   public static void main(String[] args) {
-    alphabet = setupAlphabet();
-    System.out.println("Введите кол-во вершин: ");
-    arrConditions = setupConditions(scanner.nextInt());
-    var arrStart = setupVertex(arrConditions, "начальные");
-    var arrEnd = setupVertex(arrConditions, "конечные");
-
-    // Добавление вершин
-    addVertexToGraph(arrConditions);
-    var mainGraph = addEdgesToGraph();
-    System.out.println(mainGraph);
-
-    // Вывод информации о графе
-    System.out.println("Вершины графа:\n" + graph.vertexSet());
-    System.out.println("Граф:\n" + String.join("\n",
-        graph.edgeSet().toString().replace("]", "").replace("[", "").split(" , ")));
-    System.out.println(
-        "Начальные:\n" + arrStart + "\nКонечные:\n" + arrEnd + "\nАлфавит: " + alphabet);
-    var epsilonClosure = calculateEpsilonClosure(mainGraph);
-    System.out.println("Эпсилон-замыкания: " + epsilonClosure);
-
-
-//    Map<String, Set<String>> epsilonClosure = new HashMap<>();
-//    Set<String> v0Set = new HashSet<>();
-//    v0Set.add("v0");
-//    v0Set.add("v3");
-//    epsilonClosure.put("v0", v0Set);
-//    Set<String> v1Set = new HashSet<>();
-//    v1Set.add("v1");
-//    v1Set.add("v2");
-//    epsilonClosure.put("v1", v1Set);
-//    Set<String> v2Set = new HashSet<>();
-//    v2Set.add("v2");
-//    epsilonClosure.put("v2", v2Set);
-//    Set<String> v3Set = new HashSet<>();
-//    v3Set.add("v3");
-//    epsilonClosure.put("v3", v3Set);
+//    alphabet = setupAlphabet();
+//    System.out.println("Введите кол-во вершин: ");
+//    arrConditions = setupConditions(scanner.nextInt());
+//    var arrStart = setupVertex(arrConditions, "начальные");
+//    var arrEnd = setupVertex(arrConditions, "конечные");
 //
-//    Map<String, Map<String, Set<String>>> mainTable = new HashMap<>();
-//    Map<String, Set<String>> v0Map = new HashMap<>();
-//    v0Map.put("a", new HashSet<>(Set.of("v1")));
-//    v0Map.put("b", new HashSet<>(Set.of("v0")));
-//    v0Map.put("ε", new HashSet<>(Set.of("v3")));
-//    mainTable.put("v0", v0Map);
-//    Map<String, Set<String>> v1Map = new HashMap<>();
-//    v1Map.put("c", new HashSet<>(Set.of("v3")));
-//    v1Map.put("ε", new HashSet<>(Set.of("v2")));
-//    mainTable.put("v1", v1Map);
-//    Map<String, Set<String>> v2Map = new HashMap<>();
-//    v2Map.put("a", new HashSet<>(Set.of("v3")));
-//    v2Map.put("b", new HashSet<>(Set.of("v1")));
-//    mainTable.put("v2", v2Map);
-//    Map<String, Set<String>> v3Map = new HashMap<>();
-//    v3Map.put("c", new HashSet<>(Set.of("v3")));
-//    mainTable.put("v3", v3Map);
+//    // Добавление вершин
+//    addVertexToGraph(arrConditions);
+//    var mainGraph = addEdgesToGraph();
+//    System.out.println(mainGraph);
+//
+//    // Вывод информации о графе
+//    System.out.println("Вершины графа:\n" + graph.vertexSet());
+//    System.out.println("Граф:\n" + String.join("\n",
+//        graph.edgeSet().toString().replace("]", "").replace("[", "").split(" , ")));
+//    System.out.println(
+//        "Начальные:\n" + arrStart + "\nКонечные:\n" + arrEnd + "\nАлфавит: " + alphabet);
+//    var epsilonClosure = calculateEpsilonClosure(mainGraph);
+//    System.out.println("Эпсилон-замыкания: " + epsilonClosure);
+
+    Map<String, Set<String>> epsilonClosure = new HashMap<>();
+    Set<String> v0Set = new HashSet<>();
+    v0Set.add("v0");
+    v0Set.add("v3");
+    epsilonClosure.put("v0", v0Set);
+    Set<String> v1Set = new HashSet<>();
+    v1Set.add("v1");
+    v1Set.add("v2");
+    epsilonClosure.put("v1", v1Set);
+    Set<String> v2Set = new HashSet<>();
+    v2Set.add("v2");
+    epsilonClosure.put("v2", v2Set);
+    Set<String> v3Set = new HashSet<>();
+    v3Set.add("v3");
+    epsilonClosure.put("v3", v3Set);
+
+    Map<String, Map<String, Set<String>>> mainGraph = new HashMap<>();
+    Map<String, Set<String>> v0Map = new HashMap<>();
+    v0Map.put("a", new HashSet<>(Set.of("v1")));
+    v0Map.put("b", new HashSet<>(Set.of("v0")));
+    v0Map.put("ε", new HashSet<>(Set.of("v3")));
+    mainGraph.put("v0", v0Map);
+    Map<String, Set<String>> v1Map = new HashMap<>();
+    v1Map.put("c", new HashSet<>(Set.of("v3")));
+    v1Map.put("ε", new HashSet<>(Set.of("v2")));
+    mainGraph.put("v1", v1Map);
+    Map<String, Set<String>> v2Map = new HashMap<>();
+    v2Map.put("a", new HashSet<>(Set.of("v3")));
+    v2Map.put("b", new HashSet<>(Set.of("v1")));
+    mainGraph.put("v2", v2Map);
+    Map<String, Set<String>> v3Map = new HashMap<>();
+    v3Map.put("c", new HashSet<>(Set.of("v3")));
+    mainGraph.put("v3", v3Map);
+    var arrStart = new ArrayList<String>();
+    arrStart.add("v0");
+    arrStart.add("v3");
+    var arrEnd = new ArrayList<String>();
+    arrEnd.add("v3");
 //
 //    System.out.println("Граф:\n" + mainTable);
 //    System.out.println("\nЭпсилон-замыкания:\n" + epsilonClosure);
@@ -114,7 +120,6 @@ public class Main extends Formal_languages.firstLab.Main {
 //    v3Transitions.put("c", Set.of("v3"));
 //    bagaTransitions.put("v3", v3Transitions);
 
-
     var calcSTable = calculateSTable(mainGraph, epsilonClosure);
 
     var calcSTable1 = new LinkedHashMap<>(calcSTable);
@@ -136,13 +141,35 @@ public class Main extends Formal_languages.firstLab.Main {
     transformDictionary(calcSTable, bufMap);
     System.out.println("\nS-таблица:\n" + calcSTable);
 
-
-    System.out.println(bufMap1);
-    System.out.println(bufMap);
+//    System.out.println(bufMap1);
+//    System.out.println(bufMap);
     var startVertexS = castStartEnd(bufMap1, arrStart);
     var endVertexS = castStartEnd(bufMap1, arrEnd);
     System.out.println("Начальные S вершины" + startVertexS);
     System.out.println("Конечные S вершины" + endVertexS);
+
+   var firstPTable = calculatePTable(calcSTable, startVertexS);
+
+    var bufMap3 = new LinkedHashMap<Set<String>, String>();
+    var cc2 = 0;
+    for (var pt : firstPTable.keySet()) {
+      bufMap3.put(pt, String.format("P%d", cc2));
+      cc2 += 1;
+    }
+    System.out.println(firstPTable);
+
+    System.out.println("\n" + bufMap3);
+
+for(var v: firstPTable.keySet()){
+//  for(var k: bufMap3.keySet()){
+//    if (v==k) {
+//      v.clear();
+//      v.add(bufMap3.get(k));
+//    }
+//  }
+}
+
+    System.out.println(firstPTable);
   }
 
   private static ArrayList<String> setupConditions(Integer amount) {
@@ -319,15 +346,96 @@ public class Main extends Formal_languages.firstLab.Main {
     dict1.putAll(newDict1);
   }
 
-private static LinkedHashSet<String> castStartEnd(LinkedHashMap<String, Set<String>> bufMap1, ArrayList<String> arr){
-  var startVertexS = new LinkedHashSet<String>();
-    for (var bm:bufMap1.keySet()){
-    for (var vv: bufMap1.get(bm)){
-      if (arr.contains(vv)) startVertexS.add(bm);
+  private static LinkedHashSet<String> castStartEnd(LinkedHashMap<String, Set<String>> bufMap1,
+      ArrayList<String> arr) {
+    var startVertexS = new LinkedHashSet<String>();
+    for (var bm : bufMap1.keySet()) {
+      for (var vv : bufMap1.get(bm)) {
+        if (arr.contains(vv)) {
+          startVertexS.add(bm);
+        }
+      }
     }
+    return startVertexS;
   }
-  return startVertexS;
-}
+
+  private static Map<Set<String>, Map<String, Set<String>>> calculatePTable(
+      Map<Set<String>, Map<String, Set<String>>> sTable, Set<String> startSet) {
+
+    var mainMap = new LinkedHashMap<Set<String>, Map<String, Set<String>>>();
+    Map<String, Map<String, Set<String>>> Stable = transformKeysToString(sTable);
+    System.out.println(Stable + "\n");
+
+    for (var a : alphabet) {
+      var hs = new LinkedHashSet<String>();
+      for (var fV : startSet) {
+        hs.addAll(Stable.get(fV).get(a.toString()));
+      }
+      var notMainMap = new LinkedHashMap<String, Set<String>>();
+      notMainMap.put(a.toString(), hs);
+
+      if (mainMap.containsKey(startSet)) {
+        mainMap.get(startSet).putAll(notMainMap);
+      } else {
+        mainMap.put(startSet, notMainMap);
+      }
+
+    }
+    System.out.println(mainMap);
+
+    var mainMap2 = new LinkedHashMap<Set<String>, Map<String, Set<String>>>(mainMap);
+    int countOfP;
+    do {
+      countOfP = mainMap.keySet().size();
+      for (var v : mainMap.keySet()) {
+        for (var a : alphabet) {
+          if (!mainMap.containsKey(mainMap.get(v).get(a.toString()))) {
+            mainMap2.put(mainMap.get(v).get(a.toString()), new LinkedHashMap<>());
+          }
+        }
+      }
+
+    }
+    while (countOfP != mainMap.keySet().size());
+
+    System.out.println(mainMap2);
+
+    var hk = new LinkedHashMap<String, Set<String>>();
+    for (var k : mainMap2.keySet()) {
+      if (mainMap2.get(k).isEmpty()) {
+
+        for (var a : alphabet) {
+          var hs = new LinkedHashSet<String>();
+          for (var v : k) {
+            hs.addAll(Stable.get(v).get(a.toString()));
+          }
+          var notMainMap = new LinkedHashMap<String, Set<String>>();
+          notMainMap.put(a.toString(), hs);
+
+          mainMap2.get(k).putAll(notMainMap);
+
+        }
+      }
+    }
+
+    System.out.println(mainMap2);
+
+    return mainMap2;
+  }
+
+
+  private static Map<String, Map<String, Set<String>>> transformKeysToString(
+      Map<Set<String>, Map<String, Set<String>>> originalSet) {
+    Map<String, Map<String, Set<String>>> transformedSet = new LinkedHashMap<>();
+
+    originalSet.forEach((keySet, valueMap) -> {
+      // Преобразование множества ключей в строку
+      String keyString = String.join(", ", keySet);
+      transformedSet.put(keyString, valueMap);
+    });
+
+    return transformedSet;
+  }
 
 }
 
