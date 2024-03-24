@@ -405,7 +405,7 @@ public class Main extends Formal_languages.firstLab.Main {
 
     System.out.println("mm2" + mainMap2);
 
-    var hk = new LinkedHashMap<String, Set<String>>();
+
     for (var k : mainMap2.keySet()) {
       if (mainMap2.get(k).isEmpty()) {
 
@@ -434,6 +434,15 @@ public class Main extends Formal_languages.firstLab.Main {
       }
     }
     System.out.println("mm3" + mainMap3);
+
+for(var m: mainMap3.keySet()){
+ if(mainMap3.get(m).isEmpty()){
+   for(var a: alphabet){
+     mainMap3.get(m).put(a.toString(), sTable.get(m).get(a.toString()));
+   }
+ }
+}
+
 
     return mainMap3;
   }
