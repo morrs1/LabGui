@@ -369,7 +369,7 @@ public class Main extends Formal_languages.firstLab.Main {
 
     var mainMap = new LinkedHashMap<Set<String>, Map<String, Set<String>>>();
     Map<String, Map<String, Set<String>>> Stable = transformKeysToString(sTable);
-
+    System.out.println(Stable + "\n");
 
     for (var a : alphabet) {
       var hs = new LinkedHashSet<String>();
@@ -386,7 +386,7 @@ public class Main extends Formal_languages.firstLab.Main {
       }
 
     }
-
+    System.out.println("mm" + mainMap);
 
     var mainMap2 = new LinkedHashMap<Set<String>, Map<String, Set<String>>>(mainMap);
     int countOfP;
@@ -403,7 +403,7 @@ public class Main extends Formal_languages.firstLab.Main {
     }
     while (countOfP != mainMap.keySet().size());
 
-
+    System.out.println("mm2" + mainMap2);
 
     var hk = new LinkedHashMap<String, Set<String>>();
     for (var k : mainMap2.keySet()) {
@@ -424,8 +424,18 @@ public class Main extends Formal_languages.firstLab.Main {
     }
 
 
+    System.out.println("mm2.2" + mainMap2);
+  var mainMap3 = new LinkedHashMap<>(mainMap2);
+    for(var b: mainMap2.keySet()){
+      for(var k: mainMap2.get(b).values()){
+        if (!mainMap2.containsKey(k)){
+          if(!k.isEmpty()) mainMap3.put(k, new LinkedHashMap<>());
+        }
+      }
+    }
+    System.out.println("mm3" + mainMap3);
 
-    return mainMap2;
+    return mainMap3;
   }
 
 
