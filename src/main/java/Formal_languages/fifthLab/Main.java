@@ -149,31 +149,31 @@ public class Main extends Formal_languages.firstLab.Main {
     System.out.println("Начальные S вершины" + startVertexS);
     System.out.println("Конечные S вершины" + endVertexS);
 
-    System.out.println(calcP(calcSTable, startVertexS));
+    var firstPTable = calcP(calcSTable, startVertexS);
 
 //    var firstPTable = calculatePTable(calcSTable, startVertexS);
 //
-//    var bufMap3 = new LinkedHashMap<Set<String>, String>();
-//    var cc2 = 0;
-//    for (var pt : firstPTable.keySet()) {
-//      bufMap3.put(pt, String.format("P%d", cc2));
-//      cc2 += 1;
-//    }
-//    var bufMap4 = new LinkedHashMap<String, Set<String>>();
-//    var cc3 = 0;
-//    for (var pt : firstPTable.keySet()) {
-//      bufMap4.put(String.format("P%d", cc3), pt);
-//      cc3 += 1;
-//    }
-////    System.out.println(firstPTable);
-////    System.out.println( firstPTable + "\n\n");\
-//    var pTable = transformPString(firstPTable, bufMap3);
-//    System.out.println("\nP-таблица:\n" + pTable);
-//    System.out.println(bufMap3);
-//    var startVertexP = castStartEnd(bufMap4, new ArrayList<>(startVertexS));
-//    var endVertexP = castStartEnd(bufMap4, new ArrayList<>(endVertexS));
-//    System.out.println("Начальные P вершины" + startVertexP);
-//    System.out.println("Конечные P вершины" + endVertexP);
+    var bufMap3 = new LinkedHashMap<Set<String>, String>();
+    var cc2 = 0;
+    for (var pt : firstPTable.keySet()) {
+      bufMap3.put(pt, String.format("P%d", cc2));
+      cc2 += 1;
+    }
+    var bufMap4 = new LinkedHashMap<String, Set<String>>();
+    var cc3 = 0;
+    for (var pt : firstPTable.keySet()) {
+      bufMap4.put(String.format("P%d", cc3), pt);
+      cc3 += 1;
+    }
+//    System.out.println(firstPTable);
+//    System.out.println( firstPTable + "\n\n");\
+    var pTable = transformPString(firstPTable, bufMap3);
+    System.out.println("\nP-таблица:\n" + pTable);
+    System.out.println(bufMap3);
+    var startVertexP = castStartEnd(bufMap4, new ArrayList<>(startVertexS));
+    var endVertexP = castStartEnd(bufMap4, new ArrayList<>(endVertexS));
+    System.out.println("Начальные P вершины" + startVertexP);
+    System.out.println("Конечные P вершины" + endVertexP);
 
 //    checkWord(pTable, startVertexP, endVertexP);
 
@@ -485,14 +485,28 @@ public class Main extends Formal_languages.firstLab.Main {
 
     var firstPTable = new LinkedHashMap<Set<String>, Map<String, Set<String>>>();
     var sTable1 = transformKeysToString(sTable);
+
     Map<String, Set<String>> mm = calculateNodeOfPTable(startSet, sTable1);
-    var queue = new LinkedList<>(mm.values());
+
+    var queue = new LinkedList<Set<String>>();
+    queue.add(startSet);
+    queue.addAll(mm.values());
+//    System.out.println(mm + " f");
+//    System.out.println(queue);
 
     while(!queue.isEmpty()) {
       var q = queue.poll();
       mm = calculateNodeOfPTable(q, sTable1);
-      firstPTable.put(q, mm);
-      System.out.println(mm);
+      if (!firstPTable.containsKey(q)){
+        firstPTable.put(q, mm);
+      }
+      for(var m: mm.values()){
+      if(!firstPTable.containsKey(m) && !m.isEmpty()){
+        queue.add(m);
+      }
+      }
+
+//      System.out.println(mm);
 
     }
     return firstPTable;
@@ -511,7 +525,7 @@ public class Main extends Formal_languages.firstLab.Main {
         }else if(!map.containsKey(a.toString())){
           map.put(a.toString(), curentSet);
         }
-        System.out.println(a + " " +sTable.get(s).get(a.toString()));
+//        System.out.println(a + " " +sTable.get(s).get(a.toString()));
       }
     }
     return map;
