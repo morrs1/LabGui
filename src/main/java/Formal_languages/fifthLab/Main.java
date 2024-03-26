@@ -92,8 +92,6 @@ public class Main extends Formal_languages.firstLab.Main {
 //    var arrEnd = new ArrayList<String>();
 //    arrEnd.add("v3");
 
-
-
 //
 //    System.out.println("Граф:\n" + mainTable);
 //    System.out.println("\nЭпсилон-замыкания:\n" + epsilonClosure);
@@ -151,29 +149,33 @@ public class Main extends Formal_languages.firstLab.Main {
     System.out.println("Начальные S вершины" + startVertexS);
     System.out.println("Конечные S вершины" + endVertexS);
 
-   var firstPTable = calculatePTable(calcSTable, startVertexS);
+    System.out.println(calcP(calcSTable, startVertexS));
 
-    var bufMap3 = new LinkedHashMap<Set<String>, String>();
-    var cc2 = 0;
-    for (var pt : firstPTable.keySet()) {
-      bufMap3.put(pt, String.format("P%d", cc2));
-      cc2 += 1;
-    }
-    var bufMap4 = new LinkedHashMap<String, Set<String>>();
-    var cc3 = 0;
-    for (var pt : firstPTable.keySet()) {
-      bufMap4.put(String.format("P%d", cc3), pt);
-      cc3 += 1;
-    }
-//    System.out.println(firstPTable);
-//    System.out.println( firstPTable + "\n\n");
-    System.out.println("\nP-таблица:\n" + transformPString(firstPTable, bufMap3));
-    System.out.println(bufMap3);
-    var startVertexP = castStartEnd(bufMap4, new ArrayList<>(startVertexS));
-    var endVertexP = castStartEnd(bufMap4, new ArrayList<>(endVertexS));
-    System.out.println("Начальные P вершины" + startVertexP);
-    System.out.println("Конечные P вершины" + endVertexP);
+//    var firstPTable = calculatePTable(calcSTable, startVertexS);
+//
+//    var bufMap3 = new LinkedHashMap<Set<String>, String>();
+//    var cc2 = 0;
+//    for (var pt : firstPTable.keySet()) {
+//      bufMap3.put(pt, String.format("P%d", cc2));
+//      cc2 += 1;
+//    }
+//    var bufMap4 = new LinkedHashMap<String, Set<String>>();
+//    var cc3 = 0;
+//    for (var pt : firstPTable.keySet()) {
+//      bufMap4.put(String.format("P%d", cc3), pt);
+//      cc3 += 1;
+//    }
+////    System.out.println(firstPTable);
+////    System.out.println( firstPTable + "\n\n");\
+//    var pTable = transformPString(firstPTable, bufMap3);
+//    System.out.println("\nP-таблица:\n" + pTable);
+//    System.out.println(bufMap3);
+//    var startVertexP = castStartEnd(bufMap4, new ArrayList<>(startVertexS));
+//    var endVertexP = castStartEnd(bufMap4, new ArrayList<>(endVertexS));
+//    System.out.println("Начальные P вершины" + startVertexP);
+//    System.out.println("Конечные P вершины" + endVertexP);
 
+//    checkWord(pTable, startVertexP, endVertexP);
 
   }
 
@@ -369,7 +371,7 @@ public class Main extends Formal_languages.firstLab.Main {
 
     var mainMap = new LinkedHashMap<Set<String>, Map<String, Set<String>>>();
     Map<String, Map<String, Set<String>>> Stable = transformKeysToString(sTable);
-    System.out.println(Stable + "\n");
+//    System.out.println(Stable + "\n");
 
     for (var a : alphabet) {
       var hs = new LinkedHashSet<String>();
@@ -386,7 +388,7 @@ public class Main extends Formal_languages.firstLab.Main {
       }
 
     }
-    System.out.println("mm" + mainMap);
+//    System.out.println("mm" + mainMap);
 
     var mainMap2 = new LinkedHashMap<Set<String>, Map<String, Set<String>>>(mainMap);
     int countOfP;
@@ -403,8 +405,7 @@ public class Main extends Formal_languages.firstLab.Main {
     }
     while (countOfP != mainMap.keySet().size());
 
-    System.out.println("mm2" + mainMap2);
-
+//    System.out.println("mm2" + mainMap2);
 
     for (var k : mainMap2.keySet()) {
       if (mainMap2.get(k).isEmpty()) {
@@ -423,26 +424,26 @@ public class Main extends Formal_languages.firstLab.Main {
       }
     }
 
-
-    System.out.println("mm2.2" + mainMap2);
-  var mainMap3 = new LinkedHashMap<>(mainMap2);
-    for(var b: mainMap2.keySet()){
-      for(var k: mainMap2.get(b).values()){
-        if (!mainMap2.containsKey(k)){
-          if(!k.isEmpty()) mainMap3.put(k, new LinkedHashMap<>());
+//    System.out.println("mm2.2" + mainMap2);
+    var mainMap3 = new LinkedHashMap<>(mainMap2);
+    for (var b : mainMap2.keySet()) {
+      for (var k : mainMap2.get(b).values()) {
+        if (!mainMap2.containsKey(k)) {
+          if (!k.isEmpty()) {
+            mainMap3.put(k, new LinkedHashMap<>());
+          }
         }
       }
     }
-    System.out.println("mm3" + mainMap3);
+    //System.out.println("mm3" + mainMap3);
 
-for(var m: mainMap3.keySet()){
- if(mainMap3.get(m).isEmpty()){
-   for(var a: alphabet){
-     mainMap3.get(m).put(a.toString(), sTable.get(m).get(a.toString()));
-   }
- }
-}
-
+    for (var m : mainMap3.keySet()) {
+      if (mainMap3.get(m).isEmpty()) {
+        for (var a : alphabet) {
+          mainMap3.get(m).put(a.toString(), sTable.get(m).get(a.toString()));
+        }
+      }
+    }
 
     return mainMap3;
   }
@@ -462,25 +463,66 @@ for(var m: mainMap3.keySet()){
   }
 
 
-  private static Map<Object, Object> transformPString(Map<Set<String>, Map<String, Set<String>>> pTable, LinkedHashMap<Set<String>, String> bufMap){
-    var hm = new LinkedHashMap<>();
-    for(var k:pTable.entrySet()){
-
-      var hm1 = new LinkedHashMap<String, String>();
-      for(var v: k.getValue().entrySet()){
-
-        hm1.put(v.getKey(), bufMap.get(v.getValue()));
+  private static Map<String, Map<String, String>> transformPString(
+      Map<Set<String>, Map<String, Set<String>>> pTable,
+      LinkedHashMap<Set<String>, String> bufMap) {
+    Map<String, Map<String, String>> resultMap = new LinkedHashMap<>();
+    for (Map.Entry<Set<String>, Map<String, Set<String>>> entry : pTable.entrySet()) {
+      String key = bufMap.get(entry.getKey()); // Преобразование ключа в строку
+      Map<String, String> innerMap = new LinkedHashMap<>();
+      for (Map.Entry<String, Set<String>> innerEntry : entry.getValue().entrySet()) {
+        String innerKey = innerEntry.getKey();
+        String innerValue = bufMap.get(innerEntry.getValue()); // Преобразование значения в строку
+        innerMap.put(innerKey, innerValue);
       }
-
-      if(!hm.containsKey(k.getKey())){
-        hm.put(bufMap.get(k.getKey()), hm1);
-      }else {
-        hm.putAll(hm1);
-      }
-    };
-
-    return hm;
+      resultMap.put(key, innerMap);
+    }
+    return resultMap;
   }
 
+  private static Map<Set<String>, Map<String, Set<String>>> calcP(
+      Map<Set<String>, Map<String, Set<String>>> sTable, Set<String> startSet) {
+
+    var firstPTable = new LinkedHashMap<Set<String>, Map<String, Set<String>>>();
+    var sTable1 = transformKeysToString(sTable);
+    Map<String, Set<String>> mm = calculateNodeOfPTable(startSet, sTable1);
+    var queue = new LinkedList<>(mm.values());
+
+    while(!queue.isEmpty()) {
+      var q = queue.poll();
+      mm = calculateNodeOfPTable(q, sTable1);
+      firstPTable.put(q, mm);
+      System.out.println(mm);
+
+    }
+    return firstPTable;
+  }
+
+  private static Map<String, Set<String>> calculateNodeOfPTable(Set<String> set,
+      Map<String, Map<String, Set<String>>> sTable) {
+
+    var map = new LinkedHashMap<String, Set<String>>();
+
+    for (var a : alphabet) {
+      for (var s : set) {
+        var curentSet = sTable.get(s).get(a.toString());
+        if(map.containsKey(a.toString()) && !curentSet.isEmpty()){
+          map.get(a.toString()).addAll(curentSet);
+        }else if(!map.containsKey(a.toString())){
+          map.put(a.toString(), curentSet);
+        }
+        System.out.println(a + " " +sTable.get(s).get(a.toString()));
+      }
+    }
+    return map;
+  }
+
+  private static String checkWord(Map<String, Map<String, String>> pTable,
+      LinkedHashSet<String> startV, LinkedHashSet<String> endV) {
+    System.out.println("Введите строку, которую хотите проверить: ");
+    var str = scanner.nextLine();
+
+    return "";
+  }
 }
 
