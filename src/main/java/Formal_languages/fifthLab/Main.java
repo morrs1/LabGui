@@ -175,7 +175,7 @@ public class Main extends Formal_languages.firstLab.Main {
     System.out.println("Начальные P вершины" + startVertexP);
     System.out.println("Конечные P вершины" + endVertexP);
 
-//    checkWord(pTable, startVertexP, endVertexP);
+    checkWord(pTable, startVertexP, endVertexP);
 
   }
 
@@ -494,16 +494,16 @@ public class Main extends Formal_languages.firstLab.Main {
 //    System.out.println(mm + " f");
 //    System.out.println(queue);
 
-    while(!queue.isEmpty()) {
+    while (!queue.isEmpty()) {
       var q = queue.poll();
       mm = calculateNodeOfPTable(q, sTable1);
-      if (!firstPTable.containsKey(q)){
+      if (!firstPTable.containsKey(q)) {
         firstPTable.put(q, mm);
       }
-      for(var m: mm.values()){
-      if(!firstPTable.containsKey(m) && !m.isEmpty()){
-        queue.add(m);
-      }
+      for (var m : mm.values()) {
+        if (!firstPTable.containsKey(m) && !m.isEmpty()) {
+          queue.add(m);
+        }
       }
 
 //      System.out.println(mm);
@@ -520,9 +520,9 @@ public class Main extends Formal_languages.firstLab.Main {
     for (var a : alphabet) {
       for (var s : set) {
         var curentSet = sTable.get(s).get(a.toString());
-        if(map.containsKey(a.toString()) && !curentSet.isEmpty()){
+        if (map.containsKey(a.toString()) && !curentSet.isEmpty()) {
           map.get(a.toString()).addAll(curentSet);
-        }else if(!map.containsKey(a.toString())){
+        } else if (!map.containsKey(a.toString())) {
           map.put(a.toString(), curentSet);
         }
 //        System.out.println(a + " " +sTable.get(s).get(a.toString()));
@@ -531,12 +531,37 @@ public class Main extends Formal_languages.firstLab.Main {
     return map;
   }
 
-  private static String checkWord(Map<String, Map<String, String>> pTable,
+  private static void checkWord(Map<String, Map<String, String>> pTable,
       LinkedHashSet<String> startV, LinkedHashSet<String> endV) {
-    System.out.println("Введите строку, которую хотите проверить: ");
-    var str = scanner.nextLine();
 
-    return "";
+    while (true) {
+      System.out.println("Введите строку, которую хотите проверить: ");
+      var str = scanner.nextLine();
+      if(str.equals("exit")){
+        break;
+      }
+      var queue = new LinkedList<>(Arrays.asList(str.split("")));
+      var flag = false;
+
+      for (var s : startV) {
+        var curr = s;
+        while (!queue.isEmpty()) {
+          var q = queue.poll();
+          var nextV = pTable.get(curr).get(q);
+          if (endV.contains(nextV) && queue.isEmpty()) {
+            flag = true;
+          }
+          curr = nextV;
+        }
+      }
+      if (flag) {
+        System.out.println("Строка подходит");
+      } else {
+        System.out.println("Строка не подходит");
+      }
+
+    }
+
   }
 }
 
