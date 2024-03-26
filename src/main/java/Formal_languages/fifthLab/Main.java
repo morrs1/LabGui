@@ -36,14 +36,15 @@ public class Main extends Formal_languages.firstLab.Main {
     alphabet = setupAlphabet();
     System.out.println("Введите кол-во вершин: ");
     arrConditions = setupConditions(scanner.nextInt());
-    var arrStart = setupVertex(arrConditions, "начальные");
+    var arrS = setupVertex(arrConditions, "начальные");
+
     var arrEnd = setupVertex(arrConditions, "конечные");
 
     // Добавление вершин
     addVertexToGraph(arrConditions);
     var mainGraph = addEdgesToGraph();
     System.out.println(mainGraph);
-
+    var arrStart = checkStart(arrS, mainGraph);
     // Вывод информации о графе
     System.out.println("Вершины графа:\n" + graph.vertexSet());
     System.out.println("Граф:\n" + String.join("\n",
@@ -176,6 +177,25 @@ public class Main extends Formal_languages.firstLab.Main {
     System.out.println("Конечные P вершины" + endVertexP);
 
     checkWord(pTable, startVertexP, endVertexP);
+
+  }
+
+  private static ArrayList<String> checkStart(ArrayList<String> arrS,
+      Map<String, Map<String, Set<String>>> mainT) {
+    var arrStart = new ArrayList<>(arrS);
+    var curr = arrS.get(0);
+    while (true) {
+      if (mainT.get(curr).containsKey("ε")) {
+        if(!arrStart.contains(mainT.get(curr).get("ε").toString().replace("[", "").replace("]",""))){
+          arrStart.add(mainT.get(curr).get("ε").toString().replace("[", "").replace("]",""));
+        }
+        curr = mainT.get(curr).get("ε").toString().replace("[", "").replace("]","");
+      } else {
+        break;
+      }
+
+    }
+return arrStart;
 
   }
 
@@ -537,7 +557,7 @@ public class Main extends Formal_languages.firstLab.Main {
     while (true) {
       System.out.println("Введите строку, которую хотите проверить: ");
       var str = scanner.nextLine();
-      if(str.equals("exit")){
+      if (str.equals("exit")) {
         break;
       }
       var queue = new LinkedList<>(Arrays.asList(str.split("")));
