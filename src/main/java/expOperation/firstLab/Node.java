@@ -4,9 +4,8 @@ public class Node {
     private Integer cost;
     private Integer amount;
 
-    public Node(Integer cost, Integer amount) {
+    public Node(Integer cost) {
         this.cost = cost;
-        this.amount = amount;
     }
 
     public Integer getCost() {
