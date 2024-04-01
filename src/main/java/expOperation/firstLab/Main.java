@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         var mainTable = new TableTransportTask();
         mainTable.setTable();
+        System.out.println(mainTable);
     }
 
 

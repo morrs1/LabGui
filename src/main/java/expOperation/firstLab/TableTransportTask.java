@@ -28,11 +28,11 @@ public class TableTransportTask {
 
     // Создаем внешний LinkedHashMap для третьего внешнего ключа
     LinkedHashMap<HeadNode, Node> innerMap3 = new LinkedHashMap<>();
-    innerMap2.put(new HeadNode("b1", 120), new Node(2));
-    innerMap2.put(new HeadNode("b2",120), new Node(2));
-    innerMap2.put(new HeadNode("b3", 200), new Node(3));
-    innerMap2.put(new HeadNode("b4",180), new Node(4));
-    innerMap2.put(new HeadNode("b5", 110), new Node(5));
+    innerMap3.put(new HeadNode("b1", 120), new Node(2));
+    innerMap3.put(new HeadNode("b2",120), new Node(2));
+    innerMap3.put(new HeadNode("b3", 200), new Node(3));
+    innerMap3.put(new HeadNode("b4",180), new Node(4));
+    innerMap3.put(new HeadNode("b5", 110), new Node(5));
 
 
     // Добавляем внутренние LinkedHashMap в основную таблицу
@@ -43,5 +43,28 @@ public class TableTransportTask {
     this.table = mainTable;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    // Предполагаем, что максимальная длина строки для каждого столбца равна 10 символам
+    int columnWidth = 10;
 
+    // Выводим заголовки столбцов
+    sb.append(String.format("%-" + columnWidth + "s", "")); // Пустой столбец для заголовка столбцов
+    for (HeadNode innerKey : table.values().iterator().next().keySet()) {
+      sb.append(String.format("%-" + columnWidth + "s", innerKey.toString()));
+    }
+    sb.append("\n");
+
+    // Выводим строки таблицы
+    for (HeadNode outerKey : table.keySet()) {
+      sb.append(String.format("%-" + columnWidth + "s", outerKey.toString()));
+      for (Node node : table.get(outerKey).values()) {
+        sb.append(String.format("%-" + columnWidth + "s", node.toString()));
+      }
+      sb.append("\n");
+    }
+
+    return sb.toString();
+  }
 }

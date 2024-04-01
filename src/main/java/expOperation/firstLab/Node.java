@@ -8,6 +8,7 @@ public class Node {
         this.cost = cost;
     }
 
+
     public Integer getCost() {
         return cost;
     }
@@ -22,5 +23,12 @@ public class Node {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return
+              cost + " "
+             + amount;
     }
 }
