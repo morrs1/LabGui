@@ -9,7 +9,7 @@ public class TableTransportTask {
   private int[][] costs; // Затраты на перевоз товаров
   private int[] supplies; // Объемы товаров, которые нужно перевезти из каждого пункта отправления
   private int[] demands; // Объемы товаров, которые нужно принять в каждом пункте назначения
-
+  private int[][] amount;//Объем товаров после разгрузки
 
 
   public TableTransportTask(int[][] costs, int[] supplies, int[] demands) {
@@ -57,7 +57,7 @@ public class TableTransportTask {
         j++;
       }
     }
-
+    this.amount = amount;
     return new TableTransportTask(amount, this.supplies, this.demands);
   }
 
