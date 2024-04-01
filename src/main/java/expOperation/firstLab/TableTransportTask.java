@@ -7,8 +7,8 @@ import org.checkerframework.checker.units.qual.A;
 public class TableTransportTask {
 
   private int[][] costs; // Затраты на перевоз товаров
-  private int[] supplies; // Объемы товаров, которые нужно перевезти из каждого пункта отправления
-  private int[] demands; // Объемы товаров, которые нужно принять в каждом пункте назначения
+  private int[] demands; // Объемы товаров, которые нужно перевезти из каждого пункта отправления
+  private int[] supplies; // Объемы товаров, которые нужно принять в каждом пункте назначения
   private int[][] amount;//Объем товаров после разгрузки
 
 
@@ -24,7 +24,6 @@ public class TableTransportTask {
 
     AtomicInteger sumDem = new AtomicInteger();
     Arrays.stream(demands).forEach(sumDem::addAndGet);
-    System.out.println(sumSup +" "+ sumDem);
 
     if (sumSup.get() > sumDem.get()){
       var newCosts = Arrays.copyOf(costs, costs.length+1);
@@ -33,7 +32,7 @@ public class TableTransportTask {
       demands = Arrays.copyOf(demands, demands.length + 1);
       demands[demands.length-1] = sumSup.get() - sumDem.get();
     }
-    System.out.println(Arrays.deepToString(costs));
+
   }
 
   public TableTransportTask northWestAngle() {
