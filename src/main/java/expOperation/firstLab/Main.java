@@ -15,8 +15,10 @@ public class Main {
 
     TableTransportTask mainTable = new TableTransportTask(costs, supplies, demands);
     System.out.println(mainTable);
+    mainTable.checkForEquality();
     var ss = mainTable.northWestAngle();
     System.out.println(ss);
+
   }
 
 
