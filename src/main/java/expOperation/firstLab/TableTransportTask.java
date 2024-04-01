@@ -11,6 +11,7 @@ public class TableTransportTask {
   private int[] supplies; // Объемы товаров, которые нужно принять в каждом пункте назначения
   private int[][] amount;//Объем товаров после разгрузки
 
+  private static final int WIDTH = 10;
 
   public TableTransportTask(int[][] costs, int[] supplies, int[] demands) {
     this.costs = costs;
@@ -64,24 +65,29 @@ public class TableTransportTask {
 
   @Override
   public String toString() {
-    var res = new StringBuilder();
-    var str = new StringBuilder().append("      ");
-    for (var s : supplies) {
-      str.append(s).append("      ");
-    }
-    res.append(str).append("\n");
+    StringBuilder table = new StringBuilder();
 
-    for (var i = 0; i < costs.length; i++) {
-      str = new StringBuilder();
-      str.append(demands[i]).append("    ");
-      for (var j = 0; j < costs[0].length; j++) {
-        str.append(costs[i][j]).append("        ");
+    // Header row
+    table.append(String.format("%-" + WIDTH + "s", ""));
+    for (int i = 0; i < costs[0].length; i++) {
+      table.append(String.format("%-" + WIDTH + "d", supplies[i]));
+    }
+    table.append("\n");
+
+    // First table
+    for (int i = 0; i < costs.length; i++) {
+      table.append(String.format("%-" + WIDTH + "d", demands[i]));
+      for (int j = 0; j < costs[0].length; j++) {
+        table.append(String.format("%-" + WIDTH + "d", costs[i][j]));
       }
-      str.append("\n");
-      res.append(str);
+      table.append("\n");
     }
 
-    return res.toString();
+    // Empty line
+    table.append("\n");
+
+
+    return table.toString();
   }
 
 }
