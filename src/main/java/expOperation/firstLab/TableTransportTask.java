@@ -2,7 +2,6 @@ package expOperation.firstLab;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.checkerframework.checker.units.qual.A;
 
 public class TableTransportTask {
 

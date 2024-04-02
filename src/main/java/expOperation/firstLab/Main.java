@@ -17,6 +17,7 @@ public class Main {
     System.out.println(mainTable);
     mainTable.checkForEquality();
     var ss = mainTable.northWestAngle();
+    System.out.println(mainTable);
     System.out.println(ss);
 
   }
