@@ -38,8 +38,6 @@ public class TableTransportTask {
           costs[i] = Arrays.copyOf(costs[i], supplies.length);
         }
         }
-//      }
-
     }
 
     public void northWestAngle() {

@@ -1,12 +1,10 @@
 package expOperation.firstLab;
 
-import java.util.Scanner;
-
 public class Main {
 
   public static void main(String[] args) {
-    /////1 вариант/////
-    var mainTable = getTableTransportTask(9);
+
+    var mainTable = getTableTransportTask(17);
     System.out.println("Изначальная таблица:");
     mainTable.printTable(true);
     mainTable.checkForEquality();
@@ -45,6 +43,15 @@ public class Main {
         };
     supplies = new int[]{100, 120, 130, 100, 90};
     demands = new int[]{300, 120, 300};
+      }
+      case 17->{
+        costs = new int[][]{
+            {1, 4, 7, 2, 1},
+            {2, 5, 1, 4, 3},
+            {2, 3, 1, 2, 1}
+        };
+        supplies = new int[]{100, 100, 80, 90, 70};
+        demands = new int[]{200, 350, 150};
       }
     }
 
