@@ -15,7 +15,11 @@ public class Main {
     System.out.println("Таблица после метода северо-западного угла:");
     mainTable.printTable(false);
     mainTable.calculatePotentials();
-    mainTable.printTable(false);
+    System.out.println("Таблица потенциалов:");
+    mainTable.printPotentialTable(1);
+    mainTable.calculateIndirectCosts();
+    System.out.println("Таблица косвенных стоимостей:");
+    mainTable.printPotentialTable(2);
   }
 
   private static TableTransportTask getTableTransportTask() {

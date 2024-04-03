@@ -1,9 +1,6 @@
 package expOperation.firstLab;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class TableTransportTask {
 
@@ -14,6 +11,7 @@ public class TableTransportTask {
 
   private Integer[] demandsPotentials; // Заголовки слева и их потенциалы
   private Integer[] suppliesPotentials; // Заголовки сверху и их потенциалы
+  private Integer[][] tableIndirectCosts;//Косвенные стоимости
 
   private static final int WIDTH = 10;
 
@@ -24,21 +22,19 @@ public class TableTransportTask {
   }
 
   public void checkForEquality() {
-    AtomicInteger sumSup = new AtomicInteger();
-    Arrays.stream(supplies).forEach(sumSup::addAndGet);
-    AtomicInteger sumDem = new AtomicInteger();
-    Arrays.stream(demands).forEach(sumDem::addAndGet);
+    int sumSup = Arrays.stream(supplies).sum();
+    int sumDem = Arrays.stream(demands).sum();
 
-    if (sumSup.get() > sumDem.get()) {
+    if (sumSup > sumDem) {
       var newCosts = Arrays.copyOf(costs, costs.length + 1);
       newCosts[costs.length] = new int[supplies.length];
       costs = newCosts;
       demands = Arrays.copyOf(demands, demands.length + 1);
-      demands[demands.length - 1] = sumSup.get() - sumDem.get();
+      demands[demands.length - 1] = sumSup - sumDem;
     }
-    if (sumSup.get() < sumDem.get()) {
+    if (sumSup < sumDem) {
       supplies = Arrays.copyOf(supplies, supplies.length + 1);
-      supplies[supplies.length - 1] = sumDem.get() - sumSup.get();
+      supplies[supplies.length - 1] = sumDem - sumSup;
       for (var i = 0; i < demands.length; i++) {
         costs[i] = Arrays.copyOf(costs[i], supplies.length);
       }
@@ -101,6 +97,39 @@ public class TableTransportTask {
     System.out.println(table);
   }
 
+  public void printPotentialTable(Integer b) {
+
+    var amount = new Integer[this.amount.length][this.amount[0].length];
+    if (b==1){
+       amount = this.amount;
+    }else {
+      amount = this.tableIndirectCosts;
+    }
+    StringBuilder table = new StringBuilder();
+
+    table.append(String.format("%-" + WIDTH + "s", ""));
+    for (int i = 0; i < amount[0].length; i++) {
+      table.append(String.format("%-" + WIDTH + "d", suppliesPotentials[i]));
+    }
+    table.append("\n");
+
+    for (int i = 0; i < amount.length; i++) {
+      table.append(String.format("%-" + WIDTH + "d", demandsPotentials[i]));
+      for (int j = 0; j < amount[0].length; j++) {
+        if (amount[i][j] != null) {
+          table.append(String.format("%-" + WIDTH + "d", amount[i][j]));
+        } else {
+          table.append(String.format("%-" + WIDTH + "s", "---"));
+        }
+      }
+      table.append("\n");
+    }
+
+    table.append("\n");
+    System.out.println(table);
+  }
+
+
   public void calculatePotentials() {
     demandsPotentials = new Integer[demands.length];
     suppliesPotentials = new Integer[supplies.length];
@@ -112,21 +141,30 @@ public class TableTransportTask {
       var i = Arrays.asList(demandsPotentials).indexOf(null);
       var j = Arrays.asList(suppliesPotentials).indexOf(null);
       //проверка на случай, когда получается пустой столбец(тогда i становится -1 из-за того, что нет null)
-      if(i == -1){
+      if (i == -1) {
         i = 1;
       }
-      if(j == -1){
+      if (j == -1) {
         j = 1;
-        i+=1;
+        i += 1;
       }
       amount[i - 1][j] = 0;
       calculatePotentialsHelper();
     }
+  }
 
-    System.out.println(Arrays.toString(demandsPotentials));
-    System.out.println(Arrays.toString(suppliesPotentials));
+  public void calculateIndirectCosts() {
+    tableIndirectCosts = new Integer[amount.length][amount[0].length];
+    for (var i = 0; i < amount.length; i++) {
+      for (var j = 0; j < amount[0].length; j++) {
+        if (amount[i][j] == null) {
+          tableIndirectCosts[i][j] = costs[i][j] - demandsPotentials[i] - suppliesPotentials[j];
+        }
+      }
+    }
 
   }
+
 
   /**
    * Метод в котором происходит обход массива amount и подсчет потенциалов верхний цикл сделан для
@@ -134,7 +172,6 @@ public class TableTransportTask {
    * хаотично. Выделил в отдельный метод для того, чтобы при появлении вырожденной таблицы повторить
    * проход по массиву и дозаполнить потенциалы
    */
-
   private void calculatePotentialsHelper() {
     for (var g = 0; g < amount.length + amount[0].length; g++) {
       for (var i = 0; i < amount.length; i++) {
