@@ -2,9 +2,11 @@ package expOperation.firstLab;
 
 public class Main {
 
+  private static final int task = 9;
+
   public static void main(String[] args) {
 
-    var mainTable = getTableTransportTask(17);
+    var mainTable = getTableTransportTask();
     System.out.println("Изначальная таблица:");
     mainTable.printTable(true);
     mainTable.checkForEquality();
@@ -20,12 +22,12 @@ public class Main {
 
 
 
-  private static TableTransportTask getTableTransportTask(int Task) {
+  private static TableTransportTask getTableTransportTask() {
     int[][] costs = new int[0][0];
     int[] supplies = new int[0];
     int[] demands = new int[0];
 
-    switch (Task){
+    switch (task){
       case 1->{
         costs = new int[][]{
             {1, 2, 3, 5, 2},
