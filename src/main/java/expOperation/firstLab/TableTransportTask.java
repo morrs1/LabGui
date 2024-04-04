@@ -1,6 +1,10 @@
 package expOperation.firstLab;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import org.checkerframework.checker.units.qual.A;
 
 public class TableTransportTask {
 
@@ -12,6 +16,7 @@ public class TableTransportTask {
   private Integer[] demandsPotentials; // Заголовки слева и их потенциалы
   private Integer[] suppliesPotentials; // Заголовки сверху и их потенциалы
   private Integer[][] tableIndirectCosts;//Косвенные стоимости
+
 
   private static final int WIDTH = 10;
 
@@ -100,9 +105,9 @@ public class TableTransportTask {
   public void printPotentialTable(Integer b) {
 
     var amount = new Integer[this.amount.length][this.amount[0].length];
-    if (b==1){
-       amount = this.amount;
-    }else {
+    if (b == 1) {
+      amount = this.amount;
+    } else {
       amount = this.tableIndirectCosts;
     }
     StringBuilder table = new StringBuilder();
@@ -166,6 +171,129 @@ public class TableTransportTask {
   }
 
 
+  public Cell getNearestCell(Cell cell, Direction dir) {
+    var I = cell.getI();
+    var J = cell.getJ();
+
+    switch (dir) {
+      case RIGHT -> {
+        for (var j = J + 1; j < amount[0].length; j++) {
+          if (amount[I][j] != null) {
+//            System.out.println(amount[I][j] + " "+  I + " "+ j);
+            return new Cell(I, j);
+          }
+        }
+        return null;
+      }
+      case DOWN -> {
+        for (var i = I + 1; i < amount.length; i++) {
+          if (amount[i][J] != null) {
+//            System.out.println(amount[i][J]+ " " + i + " "+ J);
+            return new Cell(i, J);
+          }
+        }
+        return null;
+      }
+      case LEFT -> {
+        for (var j = J - 1; j >= 0; j--) {
+          if (amount[I][j] != null) {
+//            System.out.println(amount[I][j]+ " " + I + " "+ j);
+            return new Cell(I, j);
+          }
+        }
+        return null;
+      }
+      case UP -> {
+        for (var i = I - 1; i >= 0; i--) {
+          if (amount[i][J] != null) {
+//            System.out.println(amount[i][J]+ " " + i + " "+ J);
+            return new Cell(i, J);
+          }
+        }
+        return null;
+      }
+    }
+    return null;
+  }
+
+  public List<Cell> getFirstCycle() {
+    var min = 1000;
+    var I = 0;
+    var J = 0;
+    for (var i = 0; i < amount.length; i++) {
+      for (var j = 0; j < amount[0].length; j++) {
+        if (tableIndirectCosts[i][j] != null && tableIndirectCosts[i][j] < min) {
+          min = tableIndirectCosts[i][j];
+          I = i;
+          J = j;
+        }
+      }
+    }
+
+    return new ArrayList<>(Collections.singleton(new Cell(I, J)));
+  }
+
+  public void potentialMethod() {
+    var cycle = getFirstCycle();
+    System.out.println(cycle);
+    FindNextStep(cycle, null);
+    System.out.println(cycle);
+  }
+
+  public boolean FindNextStep(List<Cell> cycle, Direction prevDir) {
+    Cell cell = cycle.get(cycle.size() - 1);
+    // Ищем соседей по всем направлениям
+    for (Direction dir : Direction.values()) {
+      Cell nearestCell = getNearestCell(cell, dir);
+      if (nearestCell != null) {
+        // Если в цикле уже есть ячейка
+        if (cycle.contains(nearestCell)) {
+          // Если пришли в начальную ячейку
+          if (nearestCell == cycle.get(0)) {
+            // Убираем из цикла ячейку-посредника на линии
+            if (dir == prevDir) {
+              cycle.remove(cell);
+            }
+            // Цикл существует
+            if (cycle.size() % 2 == 0 && cycle.size() >= 4) {
+              cycle.add(nearestCell);
+              return true;
+            }
+            // Цикл невозможен
+            continue;
+          }
+          continue;
+        }
+        // Если есть прошлое направление
+        if (prevDir != null) {
+          // Если направление совпадает с прошлым направлением (не ломанная)
+          if (dir == prevDir) {
+            cycle.remove(cell);
+            cycle.add(nearestCell);
+            if (FindNextStep(cycle, dir)) {
+              return true;
+            }
+            continue;
+          }
+          // Если направление противоположно прошлому направлению (не ломанная)
+          if (dir.getCode() == prevDir.getCode()) {
+            continue;
+          }
+        }
+        cycle.add(nearestCell);
+        if (FindNextStep(cycle, dir)) {
+          return true;
+        }
+      }
+      cycle.forEach(x -> {
+        System.out.print(amount[x.getI()][x.getJ()] + " ");
+      });
+      System.out.println("\n");
+    }
+    cycle.remove(cell);
+    return false;
+  }
+
   /**
    * Метод в котором происходит обход массива amount и подсчет потенциалов верхний цикл сделан для
    * того, чтобы исключить ситуацию, когда непустые ячейки расположены непоследовательно, а
@@ -186,6 +314,20 @@ public class TableTransportTask {
           }
         }
       }
+    }
+  }
+
+
+  public enum Direction {
+    UP(0), RIGHT(1), DOWN(0), LEFT(1);
+    private final int code;
+
+    Direction(int code) {
+      this.code = code;
+    }
+
+    public int getCode() {
+      return code;
     }
   }
 }

@@ -1,8 +1,10 @@
 package expOperation.firstLab;
 
+import expOperation.firstLab.TableTransportTask.Direction;
+
 public class Main {
 
-  private static final int task = 17;
+  private static final int task = 1;
 
   public static void main(String[] args) {
     var mainTable = getTableTransportTask();
@@ -20,6 +22,11 @@ public class Main {
     mainTable.calculateIndirectCosts();
     System.out.println("Таблица косвенных стоимостей:");
     mainTable.printPotentialTable(2);
+
+
+    mainTable.getNearestCell(new Cell(1,1), Direction.UP);
+
+    mainTable.potentialMethod();
   }
 
   private static TableTransportTask getTableTransportTask() {
