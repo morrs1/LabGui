@@ -171,13 +171,21 @@ public class TableTransportTask {
 
   }
 
-  public void pM() {
-
-  }
-
-  public void potentialMethod() {
-    prepareToPotentialMethod();
-    //нахождение минимальной дельты и добавление ее в цикл
+  public boolean pM(int ccc) {
+    if(ccc>0){
+      calculatePotentials2();
+    }
+    System.out.println(
+        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
+    if (calculateIndirectCosts2()){
+      return true;
+    };
+    for (var c : cells) {
+      for (var cc : c) {
+        System.out.print(cc.getDelta() + " ");
+      }
+      System.out.print("\n");
+    }
     var min = new Cell(0, 0, 0);
     min.setTraffic(1000);
     min.setDelta(1000);
@@ -190,133 +198,11 @@ public class TableTransportTask {
       }
     }
     min.setTraffic(0);
-    var cycle = new ArrayList<>(Collections.singleton(min));
-    CycleFinder.FindCycle(cycle, cells);
-    System.out.println(cycle + "\n");
-    var lambda = 1000;
-    //нахождение лямбды
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() < lambda) {
-          lambda = cycle.get(i).getTraffic();
-        }
-      }
-    }
-    //перестановка значений в цикле
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() == lambda) {
-          cycle.get(i).removeTraffic();
-        } else {
-          cycle.get(i).setTraffic(cycle.get(i).getTraffic() - lambda);
-        }
-      } else {
-        cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
-      }
-    }
-    //проверка на то, чтобы не образовывалась вырожденная таблица
-    var count = 0;
-    for (var c : cycle) {
-      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
-        count += 1;
-        if (count == 2 && c!= cycle.get(0)) {
-          c.setTraffic(0);
-        }
-      }
-    }
-
-    System.out.println(cycle + "\n");
-
-    PrintTable(cells);
-    calculatePotentials2();
-    System.out.println(
-        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
-    calculateIndirectCosts2();
-    for (var c : cells) {
-      for (var cc : c) {
-        System.out.print(cc.getDelta() + " ");
-      }
-      System.out.print("\n");
-    }
-    min = new Cell(0, 0, 0);
-    min.setTraffic(1000);
-    min.setDelta(1000);
-    for (var c : cells) {
-      for (var cc : c) {
-        if (cc.getDelta() < min.getDelta()) {
-          min = cc;
-        }
-
-      }
-    }
-    min.setTraffic(0);
-    cycle = new ArrayList<>(Collections.singleton(min));
+   var  cycle = new ArrayList<>(Collections.singleton(min));
     CycleFinder.FindCycle(cycle, cells);
     System.out.println(cycle + "\n");
 
-    lambda = 1000;
-    //нахождение лямбды
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() < lambda) {
-          lambda = cycle.get(i).getTraffic();
-        }
-      }
-    }
-    //перестановка значений в цикле
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() == lambda) {
-          cycle.get(i).removeTraffic();
-        } else {
-          cycle.get(i).setTraffic(cycle.get(i).getTraffic() - lambda);
-        }
-      } else {
-        cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
-      }
-    }
-    //проверка на то, чтобы не образовывалась вырожденная таблица
-    count = 0;
-    for (var c : cycle) {
-      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
-        count += 1;
-        if (count == 2 && c!= cycle.get(0)) {
-          c.setTraffic(0);
-        }
-      }
-    }
-    System.out.println(cycle + "\n");
-    PrintTable(cells);
-
-
-    calculatePotentials2();
-    System.out.println(
-        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
-    calculateIndirectCosts2();
-    for (var c : cells) {
-      for (var cc : c) {
-        System.out.print(cc.getDelta() + " ");
-      }
-      System.out.print("\n");
-    }
-    min = new Cell(0, 0, 0);
-    min.setTraffic(1000);
-    min.setDelta(1000);
-    for (var c : cells) {
-      for (var cc : c) {
-        if (cc.getDelta() < min.getDelta()) {
-          min = cc;
-        }
-
-      }
-    }
-    min.setTraffic(0);
-    cycle = new ArrayList<>(Collections.singleton(min));
-    CycleFinder.FindCycle(cycle, cells);
-    System.out.println(cycle + "\n");
-
-
-    lambda = 1000;
+   var lambda = 1000;
     //нахождение лямбды
     for (var i = 0; i < cycle.size() - 1; i++) {
       if (i % 2 != 0) {
@@ -340,145 +226,29 @@ public class TableTransportTask {
       }
     }
     //проверка на то, чтобы не образовывалась вырожденная таблица
-    count = 0;
+   var count = 0;
     for (var c : cycle) {
-      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
+      if (c.getTraffic() == 0 && c != cycle.get(0)) {
         count += 1;
-        if (count == 2 && c!= cycle.get(0)) {
+        if (count == 2 && c != cycle.get(0)) {
           c.setTraffic(0);
         }
       }
     }
     System.out.println(cycle + "\n");
     PrintTable(cells);
+    return  false;
+  }
 
-
-    calculatePotentials2();
-    System.out.println(
-        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
-    calculateIndirectCosts2();
-    for (var c : cells) {
-      for (var cc : c) {
-        System.out.print(cc.getDelta() + " ");
+  public void potentialMethod() {
+    prepareToPotentialMethod();
+    var ccc=0;
+    while(true){
+      if (pM(ccc)){
+        return;
       }
-      System.out.print("\n");
+      ccc+=1;
     }
-    min = new Cell(0, 0, 0);
-    min.setTraffic(1000);
-    min.setDelta(1000);
-    for (var c : cells) {
-      for (var cc : c) {
-        if (cc.getDelta() < min.getDelta()) {
-          min = cc;
-        }
-
-      }
-    }
-    min.setTraffic(0);
-    cycle = new ArrayList<>(Collections.singleton(min));
-    CycleFinder.FindCycle(cycle, cells);
-    System.out.println(cycle + "\n");
-
-
-    lambda = 1000;
-    //нахождение лямбды
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() < lambda) {
-          lambda = cycle.get(i).getTraffic();
-        }
-      }
-    }
-    //убираем те ситуации, когда в цикле на "-" стоит 0
-
-    //перестановка значений в цикле
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() == lambda) {
-          cycle.get(i).removeTraffic();
-        } else {
-          cycle.get(i).setTraffic(cycle.get(i).getTraffic() - lambda);
-        }
-      } else {
-        cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
-      }
-    }
-    //проверка на то, чтобы не образовывалась вырожденная таблица
-    count = 0;
-    for (var c : cycle) {
-      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
-        count += 1;
-        if (count == 2 && c!= cycle.get(0)) {
-          c.setTraffic(0);
-        }
-      }
-    }
-    System.out.println(cycle + "\n");
-    PrintTable(cells);
-
-
-    calculatePotentials2();
-    System.out.println(
-        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
-    calculateIndirectCosts2();
-    for (var c : cells) {
-      for (var cc : c) {
-        System.out.print(cc.getDelta() + " ");
-      }
-      System.out.print("\n");
-    }
-    min = new Cell(0, 0, 0);
-    min.setTraffic(1000);
-    min.setDelta(1000);
-    for (var c : cells) {
-      for (var cc : c) {
-        if (cc.getDelta() < min.getDelta()) {
-          min = cc;
-        }
-
-      }
-    }
-    min.setTraffic(0);
-    cycle = new ArrayList<>(Collections.singleton(min));
-    CycleFinder.FindCycle(cycle, cells);
-    System.out.println(cycle + "\n");
-
-
-    lambda = 1000;
-    //нахождение лямбды
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() < lambda) {
-          lambda = cycle.get(i).getTraffic();
-        }
-      }
-    }
-    //убираем те ситуации, когда в цикле на "-" стоит 0
-
-    //перестановка значений в цикле
-    for (var i = 0; i < cycle.size() - 1; i++) {
-      if (i % 2 != 0) {
-        if (cycle.get(i).getTraffic() == lambda) {
-          cycle.get(i).removeTraffic();
-        } else {
-          cycle.get(i).setTraffic(cycle.get(i).getTraffic() - lambda);
-        }
-      } else {
-        cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
-      }
-    }
-    //проверка на то, чтобы не образовывалась вырожденная таблица
-    count = 0;
-    for (var c : cycle) {
-      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
-        count += 1;
-        if (count == 2 && c!= cycle.get(0)) {
-          c.setTraffic(0);
-        }
-      }
-    }
-    System.out.println(cycle + "\n");
-    PrintTable(cells);
   }
 
   public void calculatePotentials2() {
@@ -501,18 +271,22 @@ public class TableTransportTask {
     }
   }
 
-  public void calculateIndirectCosts2() {
+  public boolean calculateIndirectCosts2() {
+    var flag = true;
     for (var i = 0; i < cells.length; i++) {
       for (var j = 0; j < cells[0].length; j++) {
         if (!cells[i][j].isHasTraffic()) {
           cells[i][j].setDelta(
               cells[i][j].getCost() - demandsPotentials[i] - suppliesPotentials[j]);
+          if(cells[i][j].getDelta() <0){
+            flag = false;
+          }
         } else {
           cells[i][j].setDelta(0);
         }
       }
     }
-
+return flag;
   }
 
   public void prepareToPotentialMethod() {

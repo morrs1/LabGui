@@ -4,7 +4,7 @@ import expOperation.firstLab.TableTransportTask.Direction;
 
 public class Main {
 
-  private static final int task = 17;
+  private static final int task = 7;
 
   public static void main(String[] args) {
     var mainTable = getTableTransportTask();
@@ -41,6 +41,15 @@ public class Main {
         };
         supplies = new int[]{120, 120, 200, 180, 110};
         demands = new int[]{200, 150, 350};
+      }
+      case 7 -> {
+        costs = new int[][]{
+            {1, 4, 5, 3, 1},
+            {2, 3, 1, 4, 2},
+            {2, 1, 3, 1, 1}
+        };
+        supplies = new int[]{100, 100, 80, 90, 70};
+        demands = new int[]{200, 350, 150};
       }
       case 9 -> {
         costs = new int[][]{
