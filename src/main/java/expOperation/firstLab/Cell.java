@@ -81,8 +81,7 @@ public class Cell {
 
   @Override
   public String toString() {
-    return  traffic + " ";
-
+    return  traffic + " " + hasTraffic;
 
   }
 }
