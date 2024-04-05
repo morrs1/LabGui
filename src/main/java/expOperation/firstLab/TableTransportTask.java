@@ -288,6 +288,7 @@ public class TableTransportTask {
     System.out.println(cycle + "\n");
     PrintTable(cells);
 
+
     calculatePotentials2();
     System.out.println(
         "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
@@ -314,6 +315,7 @@ public class TableTransportTask {
     CycleFinder.FindCycle(cycle, cells);
     System.out.println(cycle + "\n");
 
+
     lambda = 1000;
     //нахождение лямбды
     for (var i = 0; i < cycle.size() - 1; i++) {
@@ -323,6 +325,136 @@ public class TableTransportTask {
         }
       }
     }
+    //убираем те ситуации, когда в цикле на "-" стоит 0
+
+    //перестановка значений в цикле
+    for (var i = 0; i < cycle.size() - 1; i++) {
+      if (i % 2 != 0) {
+        if (cycle.get(i).getTraffic() == lambda) {
+          cycle.get(i).removeTraffic();
+        } else {
+          cycle.get(i).setTraffic(cycle.get(i).getTraffic() - lambda);
+        }
+      } else {
+        cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
+      }
+    }
+    //проверка на то, чтобы не образовывалась вырожденная таблица
+    count = 0;
+    for (var c : cycle) {
+      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
+        count += 1;
+        if (count == 2 && c!= cycle.get(0)) {
+          c.setTraffic(0);
+        }
+      }
+    }
+    System.out.println(cycle + "\n");
+    PrintTable(cells);
+
+
+    calculatePotentials2();
+    System.out.println(
+        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
+    calculateIndirectCosts2();
+    for (var c : cells) {
+      for (var cc : c) {
+        System.out.print(cc.getDelta() + " ");
+      }
+      System.out.print("\n");
+    }
+    min = new Cell(0, 0, 0);
+    min.setTraffic(1000);
+    min.setDelta(1000);
+    for (var c : cells) {
+      for (var cc : c) {
+        if (cc.getDelta() < min.getDelta()) {
+          min = cc;
+        }
+
+      }
+    }
+    min.setTraffic(0);
+    cycle = new ArrayList<>(Collections.singleton(min));
+    CycleFinder.FindCycle(cycle, cells);
+    System.out.println(cycle + "\n");
+
+
+    lambda = 1000;
+    //нахождение лямбды
+    for (var i = 0; i < cycle.size() - 1; i++) {
+      if (i % 2 != 0) {
+        if (cycle.get(i).getTraffic() < lambda) {
+          lambda = cycle.get(i).getTraffic();
+        }
+      }
+    }
+    //убираем те ситуации, когда в цикле на "-" стоит 0
+
+    //перестановка значений в цикле
+    for (var i = 0; i < cycle.size() - 1; i++) {
+      if (i % 2 != 0) {
+        if (cycle.get(i).getTraffic() == lambda) {
+          cycle.get(i).removeTraffic();
+        } else {
+          cycle.get(i).setTraffic(cycle.get(i).getTraffic() - lambda);
+        }
+      } else {
+        cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
+      }
+    }
+    //проверка на то, чтобы не образовывалась вырожденная таблица
+    count = 0;
+    for (var c : cycle) {
+      if (c.getTraffic() == 0 && c!= cycle.get(0)) {
+        count += 1;
+        if (count == 2 && c!= cycle.get(0)) {
+          c.setTraffic(0);
+        }
+      }
+    }
+    System.out.println(cycle + "\n");
+    PrintTable(cells);
+
+
+    calculatePotentials2();
+    System.out.println(
+        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
+    calculateIndirectCosts2();
+    for (var c : cells) {
+      for (var cc : c) {
+        System.out.print(cc.getDelta() + " ");
+      }
+      System.out.print("\n");
+    }
+    min = new Cell(0, 0, 0);
+    min.setTraffic(1000);
+    min.setDelta(1000);
+    for (var c : cells) {
+      for (var cc : c) {
+        if (cc.getDelta() < min.getDelta()) {
+          min = cc;
+        }
+
+      }
+    }
+    min.setTraffic(0);
+    cycle = new ArrayList<>(Collections.singleton(min));
+    CycleFinder.FindCycle(cycle, cells);
+    System.out.println(cycle + "\n");
+
+
+    lambda = 1000;
+    //нахождение лямбды
+    for (var i = 0; i < cycle.size() - 1; i++) {
+      if (i % 2 != 0) {
+        if (cycle.get(i).getTraffic() < lambda) {
+          lambda = cycle.get(i).getTraffic();
+        }
+      }
+    }
+    //убираем те ситуации, когда в цикле на "-" стоит 0
+
     //перестановка значений в цикле
     for (var i = 0; i < cycle.size() - 1; i++) {
       if (i % 2 != 0) {

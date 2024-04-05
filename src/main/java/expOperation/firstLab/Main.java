@@ -4,7 +4,7 @@ import expOperation.firstLab.TableTransportTask.Direction;
 
 public class Main {
 
-  private static final int task = 1;
+  private static final int task = 17;
 
   public static void main(String[] args) {
     var mainTable = getTableTransportTask();
