@@ -188,7 +188,6 @@ public class TableTransportTask {
 //        System.out.println(cycle);
         for (var i = 0; i < cycle.size() - 1; i++) {
             if (i % 2 != 0){
-
             }
         }
         PrintTable(cells);
