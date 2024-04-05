@@ -20,13 +20,11 @@ public class Main {
     System.out.println("Таблица потенциалов:");
     mainTable.printPotentialTable(1);
     mainTable.calculateIndirectCosts();
-    System.out.println("Таблица косвенных стоимостей:");
-    mainTable.printPotentialTable(2);
+//    System.out.println("Таблица косвенных стоимостей:");
+//    mainTable.printPotentialTable(2);
 
 
-    mainTable.getNearestCell(new Cell(1,1), Direction.UP);
-
-    mainTable.potentialMethod();
+  mainTable.potentialMethod();
   }
 
   private static TableTransportTask getTableTransportTask() {
