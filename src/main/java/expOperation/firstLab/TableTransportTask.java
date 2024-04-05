@@ -8,8 +8,8 @@ import org.checkerframework.checker.units.qual.A;
 public class TableTransportTask {
 
   private int[][] costs; // Затраты на перевоз товаров
-  private int[] demands; // Заголовки слева и их объем
-  private int[] supplies; // Заголовки сверху и их объем
+  private Integer[] demands; // Заголовки слева и их объем
+  private Integer[] supplies; // Заголовки сверху и их объем
   private Integer[][] amount;//Объем товаров после разгрузки
 
   private Integer[] demandsPotentials; // Заголовки слева и их потенциалы
@@ -21,15 +21,15 @@ public class TableTransportTask {
 
   private static final int WIDTH = 10;
 
-  public TableTransportTask(int[][] costs, int[] supplies, int[] demands) {
+  public TableTransportTask(int[][] costs, Integer[] supplies, Integer[] demands) {
     this.costs = costs;
     this.supplies = supplies;
     this.demands = demands;
   }
 
   public void checkForEquality() {
-    int sumSup = Arrays.stream(supplies).sum();
-    int sumDem = Arrays.stream(demands).sum();
+    int sumSup = Arrays.stream(supplies).mapToInt(Integer::intValue).sum();
+    int sumDem = Arrays.stream(demands).mapToInt(Integer::intValue).sum();
 
     if (sumSup > sumDem) {
       var newCosts = Arrays.copyOf(costs, costs.length + 1);
@@ -175,17 +175,12 @@ public class TableTransportTask {
     if(ccc>0){
       calculatePotentials2();
     }
-    System.out.println(
-        "\n" + Arrays.toString(demandsPotentials) + " " + Arrays.toString(suppliesPotentials));
     if (calculateIndirectCosts2()){
       return true;
     };
-    for (var c : cells) {
-      for (var cc : c) {
-        System.out.print(cc.getDelta() + " ");
-      }
-      System.out.print("\n");
-    }
+    System.out.println("Таблица потенциалов и дельт: ");
+    PrintTable(cells, 0);
+
     var min = new Cell(0, 0, 0);
     min.setTraffic(1000);
     min.setDelta(1000);
@@ -200,8 +195,8 @@ public class TableTransportTask {
     min.setTraffic(0);
    var  cycle = new ArrayList<>(Collections.singleton(min));
     CycleFinder.FindCycle(cycle, cells);
-    System.out.println(cycle + "\n");
-
+    System.out.println("Цикл: " + cycle + "\n");
+    System.out.println("-------------------------------------------------");
    var lambda = 1000;
     //нахождение лямбды
     for (var i = 0; i < cycle.size() - 1; i++) {
@@ -225,6 +220,8 @@ public class TableTransportTask {
         cycle.get(i).setTraffic(cycle.get(i).getTraffic() + lambda);
       }
     }
+    System.out.println("Таблица трафика: ");
+    PrintTable(cells, 1);
     //проверка на то, чтобы не образовывалась вырожденная таблица
    var count = 0;
     for (var c : cycle) {
@@ -235,8 +232,7 @@ public class TableTransportTask {
         }
       }
     }
-    System.out.println(cycle + "\n");
-    PrintTable(cells);
+
     return  false;
   }
 
@@ -314,9 +310,53 @@ return flag;
   }
 
 
-  public void PrintTable(Cell[][] cells) {
-    for (var c : cells) {
-      System.out.println(Arrays.toString(c));
+  public void PrintTable(Cell[][] cells, int flag) {
+    if (flag == 0) {
+      StringBuilder table = new StringBuilder();
+
+      table.append(String.format("%-" + WIDTH + "s", ""));
+      for (int i = 0; i < cells[0].length; i++) {
+        table.append(String.format("%-" + WIDTH + "d", suppliesPotentials[i]));
+      }
+      table.append("\n");
+
+      for (int i = 0; i < cells.length; i++) {
+        table.append(String.format("%-" + WIDTH + "d", demandsPotentials[i]));
+        for (int j = 0; j < cells[0].length; j++) {
+          if (!cells[i][j].isHasTraffic()) {
+            table.append(String.format("%-" + WIDTH + "d", cells[i][j].getDelta()));
+          } else {
+            table.append(String.format("%-" + WIDTH + "s", "---"));
+          }
+        }
+        table.append("\n");
+      }
+
+      table.append("\n");
+      System.out.println(table);
+    }else{
+      StringBuilder table = new StringBuilder();
+
+      table.append(String.format("%-" + WIDTH + "s", ""));
+      for (int i = 0; i < cells[0].length; i++) {
+        table.append(String.format("%-" + WIDTH + "d", supplies[i]));
+      }
+      table.append("\n");
+
+      for (int i = 0; i < cells.length; i++) {
+        table.append(String.format("%-" + WIDTH + "d", demands[i]));
+        for (int j = 0; j < cells[0].length; j++) {
+          if (cells[i][j].isHasTraffic()) {
+            table.append(String.format("%-" + WIDTH + "d", cells[i][j].getTraffic()));
+          } else {
+            table.append(String.format("%-" + WIDTH + "s", "---"));
+          }
+        }
+        table.append("\n");
+      }
+
+      table.append("\n");
+      System.out.println(table);
     }
   }
 //    public Cell getNearestCell(Cell cell, Direction dir) {
