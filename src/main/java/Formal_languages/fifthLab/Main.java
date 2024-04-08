@@ -1,22 +1,11 @@
 package Formal_languages.fifthLab;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Queue;
 import java.util.Set;
-import java.util.Stack;
-import java.util.stream.Collectors;
-import org.checkerframework.checker.units.qual.A;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
@@ -29,7 +18,7 @@ public class Main extends Formal_languages.firstLab.Main {
 
   static Scanner scanner = new Scanner(System.in);
   private static final Graph<String, NamedEdge> graph = new DefaultDirectedGraph<>(NamedEdge.class);
-  private static ArrayList<Character> alphabet = new ArrayList<>(Arrays.asList('a', 'b', 'c'));
+  private static ArrayList<Character> alphabet = new ArrayList<>();
   private static ArrayList<String> arrConditions;
 
   public static void main(String[] args) {
