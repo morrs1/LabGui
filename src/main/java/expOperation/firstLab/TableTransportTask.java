@@ -1,9 +1,7 @@
 package expOperation.firstLab;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
-import org.checkerframework.checker.units.qual.A;
 
 public class TableTransportTask {
 
@@ -359,173 +357,7 @@ return flag;
       System.out.println(table);
     }
   }
-//    public Cell getNearestCell(Cell cell, Direction dir) {
-//        var I = cell.getI();
-//        var J = cell.getJ();
-//
-//        switch (dir) {
-//            case RIGHT -> {
-//                for (var j = J + 1; j < amount[0].length; j++) {
-//                    if (amount[I][j] != null) {
-////            System.out.println(amount[I][j] + " "+  I + " "+ j);
-//                        return new Cell(I, j);
-//                    }
-//                }
-//                return null;
-//            }
-//            case DOWN -> {
-//                for (var i = I + 1; i < amount.length; i++) {
-//                    if (amount[i][J] != null) {
-////            System.out.println(amount[i][J]+ " " + i + " "+ J);
-//                        return new Cell(i, J);
-//                    }
-//                }
-//                return null;
-//            }
-//            case LEFT -> {
-//                for (var j = J - 1; j >= 0; j--) {
-//                    if (amount[I][j] != null) {
-////            System.out.println(amount[I][j]+ " " + I + " "+ j);
-//                        return new Cell(I, j);
-//                    }
-//                }
-//                return null;
-//            }
-//            case UP -> {
-//                for (var i = I - 1; i >= 0; i--) {
-//                    if (amount[i][J] != null) {
-////            System.out.println(amount[i][J]+ " " + i + " "+ J);
-//                        return new Cell(i, J);
-//                    }
-//                }
-//                return null;
-//            }
-//        }
-//        return null;
-//    }
 
-//    public Cell getFirstCellOfCycle() {
-//        var min = 1000;
-//        var I = 0;
-//        var J = 0;
-//        for (var i = 0; i < amount.length; i++) {
-//            for (var j = 0; j < amount[0].length; j++) {
-//                if (tableIndirectCosts[i][j] != null && tableIndirectCosts[i][j] < min) {
-//                    min = tableIndirectCosts[i][j];
-//                    I = i;
-//                    J = j;
-//                }
-//            }
-//        }
-//        amount[I][J] = 0;
-//
-//        return new Cell(I, J);
-//    }
-//
-//    public void potentialMethod() {
-//        var cycle = new ArrayList<Cell>(Collections.singleton(getFirstCellOfCycle()));
-//        System.out.println(cycle);
-//        findCycle(cycle, null);
-//
-//        System.out.println(getNearestCell(new Cell(1,2), Direction.RIGHT));
-//        System.out.println(cycle);
-//    }
-//
-//    private boolean findCycle(List<Cell> cycle, Direction prevDir) {
-//        var cell = cycle.get(cycle.size() - 1);
-//        for (var dir : Direction.values()) {
-//            var nearestCell = getNearestCell(cell, dir);
-//            if (nearestCell != null) {
-//                if (cycle.contains(nearestCell)) {
-//                    // Если пришли в начальную ячейку
-//                    if (nearestCell.getI() == cycle.get(0).getI() && nearestCell.getJ() == cycle.get(0).getJ() ) {
-//                        // Убираем из цикла ячейку-посредника на линии
-//                        if (dir == prevDir) {
-//                            cycle.remove(cell);
-//                        }
-//                        // Цикл существует
-//                        if (cycle.size() % 2 == 0 && cycle.size() >= 4) {
-//                            cycle.add(nearestCell);
-//                            return true;
-//                        }
-//                        // Цикл невозможен
-//                        continue;
-//                    }
-//                    continue;
-//                }
-//                // Если есть прошлое направление
-//                if (prevDir != null) {
-//                    // Если направление совпадает с прошлым направлением (не ломанная)
-//                    if (dir == prevDir) {
-//                        cycle.remove(cell);
-//                        cycle.add(nearestCell);
-//                        if (findCycle(cycle, dir)) return true;
-//                        continue;
-//                    }
-//                    // Если направление противоположно прошлому направлению (не ломанная)
-//                    if (dir.getCode() == prevDir.getCode()) continue;
-//                }
-//                cycle.add(nearestCell);
-//                if (findCycle(cycle, dir)) return true;
-//            }
-//        }
-//        cycle.remove(cell);
-//        return false;
-//    }
-
-//  public boolean FindNextStep(List<Cell> cycle, Direction prevDir) {
-//    Cell cell = cycle.get(cycle.size() - 1);
-//    // Ищем соседей по всем направлениям
-//    for (Direction dir : Direction.values()) {
-//      Cell nearestCell = getNearestCell(cell, dir);
-//      if (nearestCell != null) {
-//        // Если в цикле уже есть ячейка
-//        if (cycle.contains(nearestCell)) {
-//          // Если пришли в начальную ячейку
-//          if (nearestCell == cycle.get(0)) {
-//            // Убираем из цикла ячейку-посредника на линии
-//            if (dir == prevDir) {
-//              cycle.remove(cell);
-//            }
-//            // Цикл существует
-//            if (cycle.size() % 2 == 0 && cycle.size() >= 4) {
-//              cycle.add(nearestCell);
-//              return true;
-//            }
-//            // Цикл невозможен
-//            continue;
-//          }
-//          continue;
-//        }
-//        // Если есть прошлое направление
-//        if (prevDir != null) {
-//          // Если направление совпадает с прошлым направлением (не ломанная)
-//          if (dir == prevDir) {
-//            cycle.remove(cell);
-//            cycle.add(nearestCell);
-//            if (FindNextStep(cycle, dir)) {
-//              return true;
-//            }
-//            continue;
-//          }
-//          // Если направление противоположно прошлому направлению (не ломанная)
-//          if (dir.getCode() == prevDir.getCode()) {
-//            continue;
-//          }
-//        }
-//        cycle.add(nearestCell);
-//        if (FindNextStep(cycle, dir)) {
-//          return true;
-//        }
-//      }
-//      cycle.forEach(x -> {
-//        System.out.print(amount[x.getI()][x.getJ()] + " ");
-//      });
-//      System.out.println("\n");
-//    }
-//    cycle.remove(cell);
-//    return false;
-//  }
 
   /**
    * Метод в котором происходит обход массива amount и подсчет потенциалов верхний цикл сделан для
@@ -551,16 +383,4 @@ return flag;
   }
 
 
-  enum Direction {
-    UP(0), RIGHT(1), DOWN(0), LEFT(1);
-    private final int code;
-
-    Direction(int code) {
-      this.code = code;
-    }
-
-    public int getCode() {
-      return code;
-    }
-  }
 }
