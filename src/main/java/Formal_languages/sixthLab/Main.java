@@ -15,5 +15,10 @@ public class Main {
     automat.addVertexToGraph();
     automat.addEdgesToGraph();
     System.out.println(automat);
+    System.out.println(automat.getDelta());
+    System.out.println(automat.isDeterministic());
+    GraphA graphA = new GraphA(automat.getDelta());
+    System.out.println(graphA.bfs());
+
   }
 }

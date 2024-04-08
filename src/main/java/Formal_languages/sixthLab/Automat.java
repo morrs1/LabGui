@@ -13,7 +13,6 @@ import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
 public class Automat {
-
   static Scanner scanner = new Scanner(System.in);
   private ArrayList<Character> alphabet = new ArrayList<>();
   private ArrayList<String> arrayConditions;
@@ -128,4 +127,16 @@ public class Automat {
         ", delta=" + delta +
         '}';
   }
+
+  public boolean isDeterministic(){
+    for(var k: delta.keySet()){
+      for(var a: alphabet){
+        if (delta.get(k).get(a.toString()).size() > 1){
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
 }
