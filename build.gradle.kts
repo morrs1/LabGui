@@ -32,7 +32,10 @@ dependencies {
 //    implementation ("net.automatalib:automata-parent:0.11.0")
 //    implementation("net.automatalib:automata-serialization-saf:0.11.0")
 //    implementation("com.github.LearnLib:automatalib:develop-SNAPSHOT")
-
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+    testCompileOnly("org.projectlombok:lombok:1.18.32")
+    testAnnotationProcessor ("org.projectlombok:lombok:1.18.32")
 
 }
 
