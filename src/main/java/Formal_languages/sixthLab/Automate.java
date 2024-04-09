@@ -125,7 +125,7 @@ public class Automate {
       }
     }
     System.out.println(
-        "Новое множество состояний:" + arrayConditions + "\n" + "Новая дельта:" + delta);
+        "Новое множество состояний:" + arrayConditions + "\n" + "Новая дельта:" + delta + "\n");
   }
 
   public ArrayList<Set<String>> partition() {
@@ -133,17 +133,21 @@ public class Automate {
     previousPartition.add(new LinkedHashSet<>(getNotEndSet()));
     previousPartition.add(new LinkedHashSet<>(endV));
 
-//    while(currentPartition!=previousPartition) {
+    while(true) {
     System.out.println(deepCopy(previousPartition));
     currentPartition = newClassEquality(deepCopy(previousPartition));
+    if(currentPartition.containsAll(previousPartition)){
+      break;
+    }
     previousPartition = currentPartition;
-//    }
+    }
     return null;
   }
 
   public ArrayList<Set<String>> newClassEquality(ArrayList<Set<String>> previousPartition) {
     currentPartition = new ArrayList<>();
     for (var classEq : previousPartition) {
+
       ArrayList<Set<String>> arrayNewClassEq = new ArrayList<>();
       for (var symbol : alphabet) {
         var transitionsOfSymbol = new LinkedHashMap<String, Set<String>>();
@@ -153,7 +157,7 @@ public class Automate {
           transitionsOfSymbol.put(vertex,
               checkForBelongingToClassEq(reachableVertex, previousPartition));
         }
-        System.out.printf("По символу %s " + transitionsOfSymbol, symbol.toString());
+        System.out.printf("По символу %s " + transitionsOfSymbol + "\n", symbol.toString());
         var transitionsOfSymbol2 = new LinkedHashMap<Set<String>, Set<String>>();
         for (var vertex : classEq) {
           if (!transitionsOfSymbol2.containsKey(transitionsOfSymbol.get(vertex))) {
@@ -164,21 +168,18 @@ public class Automate {
             transitionsOfSymbol2.get(transitionsOfSymbol.get(vertex)).add(vertex);
           }
         }
-        System.out.printf("--------" + transitionsOfSymbol2 + "------");
+
         var newClassEq = new HashSet<String>();
         if (!(transitionsOfSymbol2.keySet().size() == 1)) {
           for (var key : transitionsOfSymbol2.keySet()) {
             if (key != classEq) {
               newClassEq = (HashSet<String>) transitionsOfSymbol2.get(key);
-              System.out.print(newClassEq + "\n");
+
             }
           }
-        } else {
-          System.out.print("Ничего" + "\n");
         }
         arrayNewClassEq.add(newClassEq);
       }
-      System.out.println(arrayNewClassEq);
       HashSet<String> hs = new HashSet<>();
       if(arrayNewClassEq.stream().anyMatch(x-> !x.isEmpty())){
         for(var c: arrayNewClassEq){
@@ -189,17 +190,20 @@ public class Automate {
               }
             }
             if(!hs.isEmpty()){
+              System.out.println(hs + " " + c);
               currentPartition.add(hs);
               currentPartition.add(c);
             }
           }
         }
       }else {
+        System.out.println(classEq);
         currentPartition.add(classEq);
       }
-      System.out.println(currentPartition);
+
     }
-    return null;
+    System.out.println("\nНовое разбиение: " + currentPartition + "\n\n");
+    return currentPartition;
   }
 
   private Set<String> checkForBelongingToClassEq(String vertex, ArrayList<Set<String>> partition) {

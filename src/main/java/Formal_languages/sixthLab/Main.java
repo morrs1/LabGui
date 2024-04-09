@@ -16,7 +16,6 @@ public class Main {
     automate.addVertexToGraph();
     automate.addEdgesToGraph();
     System.out.println(automate);
-    System.out.println(automate.getDelta());
     System.out.println(automate.isDeterministic());
     GraphA graphA = new GraphA(automate.getDelta());
     automate.checkForReachable(graphA.bfs());

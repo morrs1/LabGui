@@ -21,7 +21,6 @@ public class GraphA {
 
   private void convertToGraph() {
     for (var entry : transitions.entrySet()) {
-      System.out.println(entry);
       String key = entry.getKey();
       for (Set<String> values : entry.getValue().values()) {
         if (!graph.containsKey(key)) {
