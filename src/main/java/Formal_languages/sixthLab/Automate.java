@@ -144,6 +144,7 @@ public class Automate {
   public ArrayList<Set<String>> newClassEquality(ArrayList<Set<String>> previousPartition) {
     currentPartition = new ArrayList<>();
     for (var classEq : previousPartition) {
+      ArrayList<Set<String>> arrayNewClassEq = new ArrayList<>();
       for (var symbol : alphabet) {
         var transitionsOfSymbol = new LinkedHashMap<String, Set<String>>();
 
@@ -175,32 +176,26 @@ public class Automate {
         } else {
           System.out.print("Ничего" + "\n");
         }
-        if (newClassEq != null) {
-
-          Set<String> hs = new HashSet<>();
-          for (var vertex: newClassEq){
-            hs = checkForBelongingToClassEq(vertex, previousPartition);
-            Objects.requireNonNull(hs).remove(vertex);
-          }
-          System.out.println("hs" + hs);
-          if(hs.isEmpty()){
-            if(!newClassEq.isEmpty()){
-              currentPartition.add(newClassEq);
+        arrayNewClassEq.add(newClassEq);
+      }
+      System.out.println(arrayNewClassEq);
+      HashSet<String> hs = new HashSet<>();
+      if(arrayNewClassEq.stream().anyMatch(x-> !x.isEmpty())){
+        for(var c: arrayNewClassEq){
+          if(!c.isEmpty()){
+            for(var vertex: classEq){
+              if(!c.contains(vertex)){
+                hs.add(vertex);
+              }
             }
-          }else {
-            if(newClassEq.isEmpty()){
+            if(!hs.isEmpty()){
               currentPartition.add(hs);
-            }else {
-              currentPartition.add(hs);
-              currentPartition.add(newClassEq);
+              currentPartition.add(c);
             }
           }
-
-
-          System.out.println("newClassEq" + newClassEq);
-
-
         }
+      }else {
+        currentPartition.add(classEq);
       }
       System.out.println(currentPartition);
     }
