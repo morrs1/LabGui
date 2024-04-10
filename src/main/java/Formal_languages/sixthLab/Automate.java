@@ -29,8 +29,8 @@ public class Automate {
     private ArrayList<String> endV;
     private static final Graph<String, NamedEdge> graph = new DefaultDirectedGraph<>(NamedEdge.class);
     private Map<String, Map<String, Set<String>>> delta;
-    private ArrayList<Set<String>> previousPartition;
-    private ArrayList<Set<String>> currentPartition;
+    private LinkedHashSet<Set<String>> previousPartition;
+    private LinkedHashSet<Set<String>> currentPartition;
 
     public void setupAlphabet() {
         System.out.println("Введите алфавит: ");
@@ -131,7 +131,7 @@ public class Automate {
     }
 
     public ArrayList<Set<String>> partition() {
-        previousPartition = new ArrayList<>();
+        previousPartition = new LinkedHashSet<>();
         previousPartition.add(new LinkedHashSet<>(getNotEndSet()));
         previousPartition.add(new LinkedHashSet<>(endV));
 
@@ -146,8 +146,8 @@ public class Automate {
         return null;
     }
 
-    public ArrayList<Set<String>> newClassEquality(ArrayList<Set<String>> previousPartition) {
-        currentPartition = new ArrayList<>();
+    public LinkedHashSet<Set<String>> newClassEquality(LinkedHashSet<Set<String>> previousPartition) {
+        currentPartition = new LinkedHashSet<>();
         for (var classEq : previousPartition) {
 
             ArrayList<Set<String>> arrayNewClassEq = new ArrayList<>();
@@ -180,8 +180,11 @@ public class Automate {
                         }
                     }
                 }
-                arrayNewClassEq.add(newClassEq);
+                if(!arrayNewClassEq.contains(newClassEq)){
+                    arrayNewClassEq.add(newClassEq);
+                }
             }
+
             HashSet<String> hs = new HashSet<>();
             if (arrayNewClassEq.stream().anyMatch(x -> !x.isEmpty())) {
                 for (var c : arrayNewClassEq) {
@@ -208,7 +211,7 @@ public class Automate {
         return currentPartition;
     }
 
-    private Set<String> checkForBelongingToClassEq(String vertex, ArrayList<Set<String>> partition) {
+    private Set<String> checkForBelongingToClassEq(String vertex, LinkedHashSet<Set<String>> partition) {
         for (var classEq : partition) {
             if (classEq.contains(vertex)) {
                 return classEq;
@@ -217,8 +220,8 @@ public class Automate {
         return null;
     }
 
-    private ArrayList<Set<String>> deepCopy(ArrayList<Set<String>> previousPartition) {
-        var currPar = new ArrayList<Set<String>>();
+    private LinkedHashSet<Set<String>> deepCopy(LinkedHashSet<Set<String>> previousPartition) {
+        var currPar = new LinkedHashSet<Set<String>>();
         for (var el : previousPartition) {
             currPar.add(new LinkedHashSet<>(el));
         }
