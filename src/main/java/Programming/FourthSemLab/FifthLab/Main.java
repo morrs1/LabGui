@@ -1,6 +1,7 @@
 package Programming.FourthSemLab.FifthLab;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class Main {
 
@@ -22,7 +23,17 @@ public class Main {
 
   }
 
-  public void secondTask(String args){
-
+  public String secondTask(String args){
+    var res = new StringBuilder();
+    Bag bag = new Bag(10);
+    IntStream.range(0,11).forEach(x-> bag.add(String.format("item%d", x)));
+    res.append(bag.getCurrentSize()).append("\n");
+    res.append(bag.remove()).append("\n");
+    res.append(bag.remove()).append("\n");
+    res.append(bag.getCurrentSize()).append("\n");
+    bag.add("item11");
+    res.append(bag.getCurrentSize()).append("\n");
+    res.append(bag.remove()).append("\n");
+    return res.toString();
   }
 }
