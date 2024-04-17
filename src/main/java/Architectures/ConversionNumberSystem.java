@@ -8,7 +8,7 @@ public class ConversionNumberSystem {
 
 
   private static String convert(String firstSystem, String secondSystem, String number) {
-    return convertFrom10System(Integer.parseInt(secondSystem), convertTo10System(firstSystem, number)).toString();
+    return convertFrom10System(Integer.parseInt(secondSystem), convertTo10System(firstSystem, number));
   }
 
   private static Integer convertTo10System(String System, String number) {
