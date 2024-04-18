@@ -3,7 +3,7 @@ package expOperation.firstLab;
 
 public class Main {
 
-  private static final int task = 1;
+  private static final int task = 2;
 
   public static void main(String[] args) {
     var mainTable = getTableTransportTask();
@@ -38,6 +38,15 @@ public class Main {
         };
         supplies = new Integer[]{120, 120, 200, 180, 110};
         demands = new Integer[]{200, 150, 350};
+      }
+      case 2 -> {
+        costs = new int[][]{
+                {4, 3, 4, 5, 3},
+                {2, 4, 5, 7, 8},
+                {4, 3, 7, 2, 1}
+        };
+        supplies = new Integer[]{140, 110, 170, 90, 140};
+        demands = new Integer[]{250, 200, 220};
       }
       case 7 -> {
         costs = new int[][]{
