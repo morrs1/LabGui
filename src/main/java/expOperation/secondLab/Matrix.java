@@ -92,62 +92,82 @@ public class Matrix {
         // Список для хранения найденных матриц
         List<String> foundMatrices = new ArrayList<>();
 
-        // Цикл по всем совпадениям
-        while (matcher.find()) {
-            // Извлечение текущего совпадения и добавление его в список
-            if (matcher.group().length() > 3) {
-                foundMatrices.add(matcher.group());
-            }
-        }
         var c = 7;
-        for (var l : foundMatrices) {
-            if(res.indexOf("(" + l + ")") != -1){
-                res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
-                c+=1;
+        while(res.length()>3){
+            matcher = pattern.matcher(res);
+            while (matcher.find()) {
+                // Извлечение текущего совпадения и добавление его в список
+                if (matcher.group().length() > 3) {
+                    foundMatrices.add(matcher.group());
+                }
+            }
+            for (var l : foundMatrices) {
+                if(res.indexOf("(" + l + ")") != -1){
+                    res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
+                    c+=1;
+                }
+
             }
 
+            System.out.println(foundMatrices);
+            System.out.println(res.toString());
         }
-
-        System.out.println(foundMatrices);
-        System.out.println(res.toString());
-
-
-        matcher = pattern.matcher(res);
-        while (matcher.find()) {
-            // Извлечение текущего совпадения и добавление его в список
-            if (matcher.group().length() > 3) {
-                foundMatrices.add(matcher.group());
-            }
-        }
-        for (var l : foundMatrices) {
-            if(res.indexOf("(" + l + ")") != -1){
-                res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
-                c+=1;
-            }
-
-        }
-
-        System.out.println(foundMatrices);
-        System.out.println(res.toString());
-
-////////////////
-        matcher = pattern.matcher(res);
-        while (matcher.find()) {
-            // Извлечение текущего совпадения и добавление его в список
-            if (matcher.group().length() > 3) {
-                foundMatrices.add(matcher.group());
-            }
-        }
-        for (var l : foundMatrices) {
-            if(res.indexOf("(" + l + ")") != -1){
-                res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
-                c+=1;
-            }
-
-        }
-
-        System.out.println(foundMatrices);
-        System.out.println(res.toString());
+//        // Цикл по всем совпадениям
+//        while (matcher.find()) {
+//            // Извлечение текущего совпадения и добавление его в список
+//            if (matcher.group().length() > 3) {
+//                foundMatrices.add(matcher.group());
+//            }
+//        }
+//        var c = 7;
+//        for (var l : foundMatrices) {
+//            if(res.indexOf("(" + l + ")") != -1){
+//                res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
+//                c+=1;
+//            }
+//
+//        }
+//
+//        System.out.println(foundMatrices);
+//        System.out.println(res.toString());
+//
+//
+//        matcher = pattern.matcher(res);
+//        while (matcher.find()) {
+//            // Извлечение текущего совпадения и добавление его в список
+//            if (matcher.group().length() > 3) {
+//                foundMatrices.add(matcher.group());
+//            }
+//        }
+//        for (var l : foundMatrices) {
+//            if(res.indexOf("(" + l + ")") != -1){
+//                res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
+//                c+=1;
+//            }
+//
+//        }
+//
+//        System.out.println(foundMatrices);
+//        System.out.println(res.toString());
+//
+//////////////////
+//        matcher = pattern.matcher(res);
+//        while (matcher.find()) {
+//            // Извлечение текущего совпадения и добавление его в список
+//            if (matcher.group().length() > 3) {
+//                foundMatrices.add(matcher.group());
+//            }
+//        }
+//        for (var l : foundMatrices) {
+//            if(res.indexOf("(" + l + ")") != -1){
+//                res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
+//                c+=1;
+//            }
+//
+//        }
+//
+//        System.out.println(foundMatrices);
+//        System.out.println(res.toString());
         return null;
     }
 
