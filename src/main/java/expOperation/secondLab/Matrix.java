@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -209,45 +210,69 @@ public class Matrix {
 
     System.out.println("Количество арифметических действий: " + countOperations);
   }
+  /**
+   * Создает и заполняет матрицу случайными числами.
+   *
+   * @param rows количество строк
+   * @param cols количество столбцов
+   * @return заполненная матрица
+   */
+  public static int[][] createAndFillMatrix(int rows, int cols) {
+    Random random = new Random();
+    int[][] matrix = new int[rows][cols];
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        matrix[i][j] = random.nextInt(101); // Генерация случайного числа от 0 до 100
+      }
+    }
+    return matrix;
+  }
 
   public static void main(String[] args) {
-    int[][] A1 =
-        {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9}
-        };
-    int[][] A2 =
-        {
-            {1},
-            {4},
-            {7}
-        };
-    int[][] A3 =
-        {
-            {1, 2, 3, 5, 6}
-        };
-    int[][] A4 =
-        {
-            {1},
-            {4},
-            {7},
-            {8},
-            {9}
-        };
-    int[][] A5 =
-        {
-            {1, 2}
-        };
+//    int[][] A1 =
+//        {
+//            {1, 2, 3},
+//            {4, 5, 6},
+//            {7, 8, 9}
+//        };
+//    int[][] A2 =
+//        {
+//            {1},
+//            {4},
+//            {7}
+//        };
+//    int[][] A3 =
+//        {
+//            {1, 2, 3, 5, 6}
+//        };
+//    int[][] A4 =
+//        {
+//            {1},
+//            {4},
+//            {7},
+//            {8},
+//            {9}
+//        };
+//    int[][] A5 =
+//        {
+//            {1, 2}
+//        };
+//
+//    int[][] A6 =
+//        {
+//            {1, 2},
+//            {4, 5}
+//        };
 
-    int[][] A6 =
-        {
-            {1, 2},
-            {4, 5}
-        };
+    int[][] A1 = createAndFillMatrix(30, 30);
+    int[][] A2 = createAndFillMatrix(30, 10);
+    int[][] A3 = createAndFillMatrix(10, 50);
+    int[][] A4 = createAndFillMatrix(50, 10);
+    int[][] A5 = createAndFillMatrix(10, 20);
+    int[][] A6 = createAndFillMatrix(20, 20);
     int[][][] arrA = {A1, A2, A3, A4, A5, A6};
-//    int[] p = {30, 30, 10, 50, 10, 20, 20};
-    int[] p = {3, 3, 1, 5, 1, 2, 2};
+    int[] p = {30, 30, 10, 50, 10, 20, 20};
+//    int[] p = {3, 3, 1, 5, 1, 2, 2};
     int n = p.length;
 
     int[][] m = new int[n][n];
