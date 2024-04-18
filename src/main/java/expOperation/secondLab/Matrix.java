@@ -37,7 +37,7 @@ public class Matrix {
       for (int j = 0; j < columnsB; j++) {
         for (int k = 0; k < columnsA; k++) {
           C[i][j] += A[i][k] * B[k][j];
-          countOperations+=1;
+          countOperations += 1;
         }
       }
     }
@@ -175,18 +175,38 @@ public class Matrix {
   }
 
   public static void multiplyOrderedMatrix(int[][][] arrA, ArrayList<String> order) {
-var A7 = matrixMultiply(arrA[0], arrA[1]);
-    System.out.println(Arrays.deepToString(A7) + "\n");
-var A8 = matrixMultiply(arrA[2], arrA[3]);
-    System.out.println(Arrays.deepToString(A8) + "\n");
-var A9 = matrixMultiply(arrA[4], arrA[5]);
-    System.out.println(Arrays.deepToString(A9) + "\n");
-var A10 = matrixMultiply(A8, A9);
-    System.out.println(Arrays.deepToString(A10) + "\n");
-var A11 = matrixMultiply(A7, A10);
-    for(var a:A11){
-      System.out.println(Arrays.toString(a));
+    var arrAA = new ArrayList<>(Arrays.asList(arrA));
+    for (var o : order) {
+      if(o.length() == 5){
+//        System.out.println(o);
+//        System.out.println(
+//            Arrays.deepToString(arrAA.get(Integer.parseInt(String.valueOf(o.charAt(1))))));
+//        System.out.println(Arrays.deepToString(arrAA.get(Integer.parseInt(o.substring(3, 5)))));
+        arrAA.add(matrixMultiply(arrAA.get(Integer.parseInt(String.valueOf(o.charAt(1))) - 1), arrAA.get(Integer.parseInt(o.substring(3,5)) - 1)));  //+ o.substring(3,5));
+      }
+      if(o.length() == 6){
+//        System.out.println(o);
+//        System.out.println(Arrays.deepToString(arrAA.get(Integer.parseInt(o.substring(1, 3)))));
+//        System.out.println(Arrays.deepToString(arrAA.get(Integer.parseInt(o.substring(4, 6)))));
+        arrAA.add(matrixMultiply(arrAA.get(Integer.parseInt(o.substring(1,3)) -1 ), arrAA.get(Integer.parseInt(o.substring(4, 6)) - 1)));
+        //System.out.println(o.substring(1,3) + " " + o.substring(4, 6));
+      }
+      if(o.length() == 4){
+//        System.out.println(o);
+//        System.out.println(
+//            Arrays.deepToString(arrAA.get(Integer.parseInt(String.valueOf(o.charAt(1))))));
+//        System.out.println(
+//            Arrays.deepToString(arrAA.get(Integer.parseInt(String.valueOf(o.charAt(3))))));
+        arrAA.add(matrixMultiply(arrAA.get(Integer.parseInt(String.valueOf(o.charAt(1))) - 1), arrAA.get(Integer.parseInt(String.valueOf(o.charAt(3))) - 1)));
+        //System.out.println(o.charAt(1) + " " + o.charAt(3));
+      }
+
+
     }
+    System.out.println(Arrays.deepToString(arrAA.get(arrAA.size() - 1)));
+//    for(var a:A11){
+//      System.out.println(Arrays.toString(a));
+//    }
     System.out.println(countOperations);
   }
 
