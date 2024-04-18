@@ -112,8 +112,8 @@ public class Matrix {
 
       }
 
-      System.out.println(foundMatrices);
-      System.out.println(res.toString());
+//      System.out.println(foundMatrices);
+//      System.out.println(res.toString());
     }
 //        // Цикл по всем совпадениям
 //        while (matcher.find()) {
@@ -201,13 +201,13 @@ public class Matrix {
         //System.out.println(o.charAt(1) + " " + o.charAt(3));
       }
 
-
     }
-    System.out.println(Arrays.deepToString(arrAA.get(arrAA.size() - 1)));
-//    for(var a:A11){
-//      System.out.println(Arrays.toString(a));
-//    }
-    System.out.println(countOperations);
+    System.out.println("Матрица после умножения: ");
+    for(var a: arrAA.get(arrAA.size() - 1)){
+      System.out.println(Arrays.toString(a));
+    };
+
+    System.out.println("Количество арифметических действий: " + countOperations);
   }
 
   public static void main(String[] args) {
@@ -255,8 +255,8 @@ public class Matrix {
 
     matrixChainOrder(p, m, s);
 
-    System.out.println("Minimum number of multiplications: " + m[1][n - 1]);
-    System.out.print("Optimal parenthesization: ");
+    System.out.println("Оптимальное количество операций: " + m[1][n - 1]);
+    System.out.print("Оптимальный порядок: ");
 
     printOptimalParens(s, 1, n - 1);
     System.out.println(res.toString());
