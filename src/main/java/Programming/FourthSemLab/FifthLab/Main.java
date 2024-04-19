@@ -1,12 +1,12 @@
 package Programming.FourthSemLab.FifthLab;
 
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Main {
-
     public static void main(String[] args) {
-
+sixthTaskk("");
     }
 
     public String firstTask(String ignoredUnused) {
@@ -40,7 +40,7 @@ public class Main {
     public String thirdTask(String args) {
         StringBuilder res = new StringBuilder();
         PairBag pairBag = new PairBag(10);
-        pairBag.putPair(new Pair<>(1, "Cool String"));
+        pairBag.putPair(new Pair<>(10, "sdsdsdsa"));
         Pair<Object, Object> some = pairBag.getPair();
 
         res.append(some.getSecond()).append("\n");
@@ -52,7 +52,7 @@ public class Main {
         StringBuilder res = new StringBuilder();
         GPairBag<String> bag = new GPairBag<>(10);
 
-        bag.putPair(new Pair<>("Hello", "World"));
+        bag.putPair(new Pair<>("s1", "s2"));
 
         Pair<String, String> some = bag.getPair();
 
@@ -74,6 +74,20 @@ public class Main {
         Pair<String, String> pair = bag.getPair();
         res.append(pair.getFirst()).append(" ").append(pair.getSecond());
         return res.toString();
+    }
+    public static String sixthTaskk(String args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите количество команд: ");
+        int numTeams = scanner.nextInt();
+
+        if (numTeams <= 1 || numTeams % 2 != 0) {
+            System.out.println("Некорректное количество команд. Используется значение по умолчанию (8).");
+            numTeams = 8;
+        }
+
+        Tournament tournament = new Tournament(numTeams);
+        System.out.println("Победитель турнира: " + tournament.playTournament());
+        return null;
     }
 
 

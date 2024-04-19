@@ -283,10 +283,13 @@ public class Matrix {
 
     printOptimalParens(s, 1, n - 1);
     System.out.println(res.toString());
-//    for(var ss: m){
-//      System.out.println(Arrays.toString(ss));
-//    }
-//    System.out.println(Arrays.deepToString(s));
+    for(var ss: m){
+      System.out.println(Arrays.toString(ss));
+    }
+    System.out.println("\n");
+    for(var ss: s){
+      System.out.println(Arrays.toString(ss));
+    }
     System.out.println();
     multiplyOrderedMatrix(arrA, getOrderMultiply(arrA));
   }
