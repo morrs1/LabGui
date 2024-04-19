@@ -78,6 +78,8 @@ public class Matrix {
     }
 
     public static LinkedHashMap<String, String> getOrderMultiply() {
+        LinkedHashMap<String,String> orderMultiply= new LinkedHashMap<String,String>();
+
         String inputString = res.toString();
 
         // Регулярное выражение для поиска матриц
@@ -98,11 +100,13 @@ public class Matrix {
             while (matcher.find()) {
                 // Извлечение текущего совпадения и добавление его в список
                 if (matcher.group().length() > 3) {
+
                     foundMatrices.add(matcher.group());
                 }
             }
             for (var l : foundMatrices) {
                 if(res.indexOf("(" + l + ")") != -1){
+                    orderMultiply.put("A" + c,matcher.group());
                     res = new StringBuilder(res.toString().replace("(" + l + ")", "A"+c));
                     c+=1;
                 }
@@ -111,6 +115,7 @@ public class Matrix {
 
             System.out.println(foundMatrices);
             System.out.println(res.toString());
+//            System.out.println(orderMultiply);
         }
 //        // Цикл по всем совпадениям
 //        while (matcher.find()) {
