@@ -2,8 +2,6 @@ package expOperation.secondLab;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -222,7 +220,7 @@ public class Matrix {
     int[][] matrix = new int[rows][cols];
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        matrix[i][j] = random.nextInt(101); // Генерация случайного числа от 0 до 100
+        matrix[i][j] = random.nextInt(6); // Генерация случайного числа от 0 до 5
       }
     }
     return matrix;
