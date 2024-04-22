@@ -13,6 +13,7 @@ int vv = 0;
             }
         }
 
+
         private Node first;
 
         public List() {
