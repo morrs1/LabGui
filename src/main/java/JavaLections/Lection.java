@@ -1,7 +1,7 @@
 package JavaLections;
 
 public class Lection {
-
+int vv = 0;
     public class List {
         private static class Node {
             public int value;
@@ -22,6 +22,12 @@ public class Lection {
         void test() {
             Node n = new Node(1);
 
+        }
+    }
+
+    {
+        for(var i= 0; i<100;i++){
+        vv+=1;
         }
     }
 
