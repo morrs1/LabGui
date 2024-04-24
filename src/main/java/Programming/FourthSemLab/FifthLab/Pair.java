@@ -15,4 +15,10 @@ public class Pair<T extends Object, K extends Object> {
   static <T, K> Pair<T, K> makePair(T firstElem, K secondElem) {
     return new Pair<>(firstElem, secondElem);
   }
+
+  @Override
+  public String toString() {
+    return
+             first + "->" + second;
+  }
 }
