@@ -7,7 +7,6 @@ import java.util.Arrays;
 public class Prima {
 
 
-  // Функция для поиска вершины с минимальным ключом в очереди
   static int minKey(int[] key, boolean[] inMST, int V) {
     int min = Integer.MAX_VALUE;
     int min_index = -1;
@@ -22,7 +21,7 @@ public class Prima {
     return min_index;
   }
 
-  // Функция для построения минимального остовного дерева
+  // Метод для построения минимального остовного дерева
   static ArrayList<Integer> primMST(int[][] graph, int V) {
     ArrayList<Integer> parent = new ArrayList<>(Arrays.asList(new Integer[V]));
     int[] key = new int[V];
