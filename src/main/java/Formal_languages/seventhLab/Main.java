@@ -10,6 +10,8 @@ public class Main {
     public static void main(String[] args) {
         Grammar grammar = setupGrammar();
         System.out.println(grammar);
+        System.out.println(grammar.isRRG());
+        System.out.println(grammar.isLRG());
     }
 
     private static Grammar setupGrammar() {
