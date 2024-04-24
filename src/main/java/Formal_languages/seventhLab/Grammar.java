@@ -95,6 +95,26 @@ public class Grammar {
     return true;
   }
 
+  public boolean isCZ(){
+    //Проверка на то, если ли нетерминалы в левой части
+    var c = 0;
+    for(var rule : rules) {
+      for (var el : nonTerms) {
+        if (rule.getFirst().contains(el)){
+          c++;
+        }
+      }
+      if (c == 0){
+        return false;
+      }
+    }
+    //
+
+
+
+    return true;
+  }
+
   @Override
   public String toString() {
     return

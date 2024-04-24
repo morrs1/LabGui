@@ -10,9 +10,10 @@ public class Main {
     public static void main(String[] args) {
         Grammar grammar = setupGrammar();
         System.out.println(grammar);
-        System.out.println(grammar.isRLG());
-        System.out.println(grammar.isLLG());
-        System.out.println(grammar.isCS());
+//        System.out.println(grammar.isRLG());
+//        System.out.println(grammar.isLLG());
+//        System.out.println(grammar.isCS());
+        System.out.println(grammar.isCZ());
     }
 
     private static Grammar setupGrammar() {
