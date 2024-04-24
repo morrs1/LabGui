@@ -3,12 +3,13 @@ package Formal_languages.seventhLab;
 import Programming.FourthSemLab.FifthLab.Pair;
 import lombok.AllArgsConstructor;
 import lombok.Generated;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 
 @AllArgsConstructor
-@Generated
+@Getter
 @Setter
 public class Grammar {
     public ArrayList<Pair<String, String>> rules;
@@ -21,7 +22,7 @@ public class Grammar {
 
     @Override
     public String toString() {
-        return "Grammar" +
+        return
                 "rules=" + rules +
                 "\nterms=" + terms +
                 "\nnonTerms=" + nonTerms;
