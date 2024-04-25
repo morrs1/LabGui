@@ -129,6 +129,9 @@ public class Grammar {
       if (leftPart.substring(i,j).length() > 1) return false;
       if (!rightPart.contains(psi1) && !rightPart.contains(psi2)) return false;
       if (i == j && !psi1.isEmpty() && !psi2.isEmpty()) return false;
+
+//      if (!rightPart.substring(0, i).equals(psi1) || !rightPart.substring(rightPart.length() - j).equals(psi2)) return false;
+
     }
     return true;
   }
