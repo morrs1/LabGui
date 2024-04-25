@@ -96,24 +96,54 @@ public class Grammar {
   }
 
   public boolean isCZ(){
-    //Проверка на то, если ли нетерминалы в левой части
-    var c = 0;
-    for(var rule : rules) {
-      for (var el : nonTerms) {
-        if (rule.getFirst().contains(el)){
-          c++;
+    for (Pair<String,String> rule: rules){
+      if (rule.getFirst().equals("S") && rule.getSecond().equals("eps")) {
+        for (Pair<String,String> r: rules){
+          if (r.getSecond().contains("S")) return false;
         }
       }
-      if (c == 0){
-        return false;
+      String leftPart = rule.getFirst();
+      boolean N = false;
+      for (String nonTerm: nonTerms){
+        if (leftPart.contains(nonTerm)) {
+          N = true;
+          break;
+        }
       }
+      if (!N) return false;
+      String rightPart = rule.getSecond();
+      if (rightPart.equals("eps")) return false;
+      String psi1,psi2;
+      int i = 0;
+      while(!nonTerms.contains(String.valueOf(leftPart.charAt(i)))){
+        i++;
+      }
+      if (i > 0) psi1 = leftPart.substring(0, i);
+      else psi1 = "";
+      int j = leftPart.length() - 1;
+      while(!nonTerms.contains(String.valueOf(leftPart.charAt(j)))){
+        j--;
+      }
+      if (j < leftPart.length() - 1) psi2 = leftPart.substring(j);
+      else psi2 = "";
+      if (leftPart.substring(i,j).length() > 1) return false;
+      if (!rightPart.contains(psi1) && !rightPart.contains(psi2)) return false;
+      if (i == j && !psi1.isEmpty() && !psi2.isEmpty()) return false;
     }
-    //
-
-
-
     return true;
   }
+  public boolean isNU(){
+    for (Pair<String,String> rule: rules){
+      if (rule.getFirst().equals("S") && rule.getSecond().equals("E")) {
+        for (Pair<String,String> r: rules){
+          if (r.getSecond().contains("S")) return false;
+        }
+      }
+      if (rule.getFirst().length() > rule.getSecond().length()) return false;
+    }
+    return true;
+  }
+
 
   @Override
   public String toString() {

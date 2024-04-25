@@ -10,10 +10,23 @@ public class Main {
     public static void main(String[] args) {
         Grammar grammar = setupGrammar();
         System.out.println(grammar);
-//        System.out.println(grammar.isRLG());
-//        System.out.println(grammar.isLLG());
-//        System.out.println(grammar.isCS());
-        System.out.println(grammar.isCZ());
+        if (grammar.isRLG()){
+            System.out.println("Тип 3: Грамматика праволинейная!");
+        } else if (grammar.isLLG()) {
+
+            System.out.println("Тип 3: Грамматика леволинейная!");
+        } else if (grammar.isCS()) {
+
+            System.out.println("Тип 2: Грамматика контекстно-свободная!");
+        } else if (grammar.isCZ()) {
+
+            System.out.println("Тип 1: Грамматика контекстно-зависимая!");
+        } else if (grammar.isNU()) {
+
+            System.out.println("Тип 1: Грамматика неукорачивающая!");
+        }else {
+            System.out.println("Грамматика типа 0!");
+        }
     }
 
     private static Grammar setupGrammar() {

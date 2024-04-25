@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class GrammarTest {
 
     @Test
-  void isRLG() {
+  void isRLGTest() {
     ArrayList<Pair<String, String>> rules = new ArrayList<>();
     ArrayList<String> terms = new ArrayList<>(), nonTerms = new ArrayList<>();
     rules.add(new Pair<>("S", "0A"));
