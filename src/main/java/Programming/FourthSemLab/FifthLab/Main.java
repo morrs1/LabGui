@@ -112,5 +112,18 @@ public class Main {
     return res.toString();
   }
 
+  public static String eighthTask(String ignoredUnused) {
+    StringBuilder res = new StringBuilder();
+    int[] denominations = {1, 2, 5, 10};
+    int[] denominations2 = {1, 4, 7, 9};
+
+    DList<Integer, Integer> dList = new DList<>();
+    dList.add(10, SupaCoin.minCoins(denominations, 10));
+    dList.add(11, SupaCoin.minCoins(denominations2, 11));
+    res.append("[1] Минимальное кол-во монет для " + 10 + " рублей: ").append(dList.getByElement(10)).append("\n");
+    res.append("[2] Минимальное кол-во монет для " + 11 + " рублей: ").append(dList.getByElement(11)).append("\n");
+    return res.toString();
+  }
+
 
 }
