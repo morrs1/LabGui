@@ -2,6 +2,7 @@ package Programming.FourthSemLab.FifthLab;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -122,6 +123,28 @@ public class Main {
     dList.add(11, SupaCoin.minCoins(denominations2, 11));
     res.append("[1] Минимальное кол-во монет для " + 10 + " рублей: ").append(dList.getByElement(10)).append("\n");
     res.append("[2] Минимальное кол-во монет для " + 11 + " рублей: ").append(dList.getByElement(11)).append("\n");
+    return res.toString();
+  }
+
+  public static String nineTask(String ignoredUnused) {
+   return null;
+  }
+
+  public static String tenthTask(String ignoredUnused) {
+    StringBuilder res = new StringBuilder();
+    HashFunction<String> hashFunction = new PersonNameHashFunction(10);
+    HashTable<Person, String> hashTable = new PersonHashTable(10, hashFunction);
+    Person p1 = new Person("John", 30);
+    Person p2 = new Person("Alice", 25);
+    Person p3 = new Person("Bob", 40);
+    hashTable.add(p1);
+    hashTable.add(p2);
+    hashTable.add(p3);
+    List<Person> persons = hashTable.get("Alice25");
+
+    for (Person person : persons) {
+      res.append(person.name()).append(" ").append(person.age()).append("\n");
+    }
     return res.toString();
   }
 
