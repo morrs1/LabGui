@@ -23,6 +23,8 @@ public class Prima {
 
   // Метод для построения минимального остовного дерева
   static ArrayList<Integer> primMST(int[][] graph, int V) {
+    System.out.println("Промежуточные этапы:\n");
+    var sum = 0;
     ArrayList<Integer> parent = new ArrayList<>(Arrays.asList(new Integer[V]));
     int[] key = new int[V];
     boolean[] inMST = new boolean[V];
@@ -41,10 +43,21 @@ public class Prima {
         if (graph[u][v] != 0 && !inMST[v] && graph[u][v] < key[v]) {
           parent.set(v, u);
           key[v] = graph[u][v];
+          sum+=key[v];
+          System.out.println(key[v]);
+
+          for(var el: parent){
+            if(el!= null) {
+              System.out.print(el+1 + " ");
+            }
+            else System.out.print(el + " ");
+          }
+          System.out.println("\n");
         }
       }
     }
 
+    System.out.println("Сумма: " + sum);
     return parent;
   }
 
