@@ -1,10 +1,9 @@
 package expOperation.fourthLab;
 
-import java.util.*;
-
 import java.util.Arrays;
 
 public class Dijkstra {
+
   public static void main(String[] args) {
     final int START = 0;
     final int VERTICES = 5;
@@ -48,11 +47,11 @@ public class Dijkstra {
 
     for (int i = 0; i < VERTICES; ++i) {
       if (distances[i] != Integer.MAX_VALUE) {
-        System.out.printf("Вес: %d ~> %d = %-6d\t", START+1, i+1, distances[i]);
+        System.out.printf("Вес: %d ~> %d = %-6d\t", START + 1, i + 1, distances[i]);
 
         int end = i;
         int weight = distances[end];
-        StringBuilder way = new StringBuilder(end+1 + " >~ ");
+        StringBuilder way = new StringBuilder(end + 1 + " >~ ");
 
         while (end != START) {
           for (int j = 0; j < VERTICES; ++j) {
@@ -61,12 +60,11 @@ public class Dijkstra {
               if (temp == distances[j]) {
                 end = j;
                 weight = temp;
-                way.append(j+1).append(" >~ ");
+                way.append(j + 1).append(" >~ ");
               }
             }
           }
         }
-
 
         System.out.print("Путь: ");
         for (int j = way.length() - 5; j >= 0; --j) {
@@ -74,11 +72,8 @@ public class Dijkstra {
         }
         System.out.println();
       } else {
-        System.out.println("Вес: " + START + " ~ " + i+1 + " = маршрут недоступен");
+        System.out.println("Вес: " + START + " ~ " + i + 1 + " = маршрут недоступен");
       }
     }
   }
 }
-
-
-
