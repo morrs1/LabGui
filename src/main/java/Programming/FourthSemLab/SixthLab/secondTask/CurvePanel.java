@@ -12,10 +12,12 @@ public class CurvePanel extends JPanel {
     double[] xValues = new double[360];
     double[] yValues = new double[360];
     for (int i = 0; i < 360; i++) {
-      double x = (i-180) * Math.PI / 180;
+      double x = (i) * Math.PI / 180;
       xValues[i] = x;
       yValues[i] = Math.sin(x);
+      System.out.println(x + " " + yValues[i]);
     }
+
     curve = new Curve(xValues, yValues);
   }
 
@@ -25,15 +27,15 @@ public class CurvePanel extends JPanel {
     Graphics2D g2d = (Graphics2D) g;
     Path2D path = new Path2D.Double();
 
-    double scaleX = getWidth() / (2 * Math.PI);
-    double scaleY = getHeight() / 2;
+    double scaleX = getWidth() / (4 * Math.PI);
+    double scaleY = getHeight() / 4;
 
-    path.moveTo(0, getHeight() / 2);
+    path.moveTo(getWidth()/2, getHeight() / 2);
     for (int i = 0; i < curve.getXValues().length; i++) {
       double x = curve.getXValues()[i];
       double y = curve.getYValues()[i];
       int drawX = (int) (x * scaleX + getWidth() / 2);
-      int drawY = (int) (y * scaleY + getHeight() / 2);
+      int drawY = (int) (-y * scaleY + getHeight() / 2);
       System.out.println(drawX + " " + drawY);
       path.lineTo(drawX, drawY);
     }
