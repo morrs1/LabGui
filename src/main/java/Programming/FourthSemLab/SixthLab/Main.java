@@ -36,6 +36,11 @@ public class Main {
     return "";
   }
 
+  public static String thirdTask(String ignoredUnused) {
+    new CurveApp();
+    return "";
+  }
+
 
   public static void main(String[] args) {
 
