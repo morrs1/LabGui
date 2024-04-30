@@ -1,6 +1,8 @@
 package Programming.FourthSemLab.SixthLab.thirdTask;
 
-public class Grid {
+import javax.swing.JPanel;
+
+public class Grid extends JPanel {
   private int xSpacing;
   private int ySpacing;
 
@@ -15,6 +17,6 @@ public class Grid {
   }
 
   public void draw() {
-    System.out.println("Рисую сетку с промежутками " + this.xSpacing + "x" + this.ySpacing + "...");
+
   }
 }

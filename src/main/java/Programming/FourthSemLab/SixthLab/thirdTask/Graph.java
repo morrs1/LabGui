@@ -1,9 +1,13 @@
 package Programming.FourthSemLab.SixthLab.thirdTask;
 
 import Programming.FourthSemLab.SixthLab.secondTask.Curve;
+import Programming.FourthSemLab.SixthLab.secondTask.CurvePanel;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
-public class Graph {
+public class Graph extends JFrame {
+
   private final ArrayList<Curve> curves;
   Axis xAxis;
   Axis yAxis;
@@ -22,6 +26,16 @@ public class Graph {
   }
 
   public void draw() {
+    setTitle("График функции sin(x)");
+    setSize(600, 600);
+    setLayout(new BorderLayout());
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
+    for(var c : curves){
+      add(c, BorderLayout.CENTER);
+    }
+    add(new Axis());
+    setVisible(true);
 
   }
 }

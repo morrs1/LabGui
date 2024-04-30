@@ -38,7 +38,7 @@ public class CurvePanel extends JPanel {
       double y = curve.getYValues()[i];
       int drawX = (int) (x * scaleX + getWidth() / 2);
       int drawY = (int) (-y * scaleY + getHeight() / 2);
-      System.out.println(drawX + " " + drawY);
+//      System.out.println(drawX + " " + drawY);
       path.lineTo(drawX, drawY);
     }
 

@@ -1,6 +1,9 @@
 package Programming.FourthSemLab.SixthLab;
 
+import Programming.FourthSemLab.SixthLab.secondTask.Curve;
 import Programming.FourthSemLab.SixthLab.secondTask.CurveApp;
+import Programming.FourthSemLab.SixthLab.thirdTask.Graph;
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +40,33 @@ public class Main {
   }
 
   public static String thirdTask(String ignoredUnused) {
-    new CurveApp();
+    double[] xValues = new double[360];
+    double[] yValues = new double[360];
+    for (int i = 0; i < 360; i++) {
+      double x = i * Math.PI / 180;
+      xValues[i] = x;
+      yValues[i] = Math.sin(x);
+    }
+
+    double[] xValues1 = new double[360];
+    double[] yValues1 = new double[360];
+    for (int i = 0; i < 360; i++) {
+      double x = (i-180) * Math.PI / 180;
+      xValues1[i] = x;
+      yValues1[i] = Math.sin(x);
+    }
+    Curve curve1 = new Curve(xValues1, yValues1);
+    Curve curve = new Curve(xValues, yValues);
+    Graph graph = new Graph();
+    curve.setOpaque(false);
+    graph.addCurve(curve);
+    curve1.setOpaque(false);
+    graph.addCurve(curve1);
+
+
+
+
+    graph.draw();
     return "";
   }
 
