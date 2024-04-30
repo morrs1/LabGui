@@ -2,7 +2,9 @@ package Programming.FourthSemLab.SixthLab;
 
 import Programming.FourthSemLab.SixthLab.secondTask.Curve;
 import Programming.FourthSemLab.SixthLab.secondTask.CurveApp;
+import Programming.FourthSemLab.SixthLab.thirdTask.Axis;
 import Programming.FourthSemLab.SixthLab.thirdTask.Graph;
+import Programming.FourthSemLab.SixthLab.thirdTask.GraphDrawer;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
@@ -53,20 +55,18 @@ public class Main {
     for (int i = 0; i < 360; i++) {
       double x = (i-180) * Math.PI / 180;
       xValues1[i] = x;
-      yValues1[i] = Math.sin(x);
+      yValues1[i] = Math.pow(x,2);
     }
     Curve curve1 = new Curve(xValues1, yValues1);
     Curve curve = new Curve(xValues, yValues);
     Graph graph = new Graph();
-    curve.setOpaque(false);
+
     graph.addCurve(curve);
-    curve1.setOpaque(false);
     graph.addCurve(curve1);
 
 
-
-
-    graph.draw();
+    var gd = new GraphDrawer(graph);
+    gd.draw();
     return "";
   }
 

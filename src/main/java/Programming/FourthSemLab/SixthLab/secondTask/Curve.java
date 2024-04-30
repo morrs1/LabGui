@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import javax.swing.JPanel;
 
-public class Curve extends JPanel {
+public class Curve {
   private double[] xValues;
   private double[] yValues;
 
@@ -27,26 +27,16 @@ public class Curve extends JPanel {
     return yValues;
   }
 
-  @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    Graphics2D g2d = (Graphics2D) g;
-    Path2D path = new Path2D.Double();
-
-    double scaleX = getWidth() / (4 * Math.PI);
-    double scaleY = getHeight() / 4;
-
-    path.moveTo(getXValues()[0] * scaleX + (double) getWidth() / 2,
-        -getYValues()[0] * scaleY + (double) getHeight() / 2);
+  public void draw(Path2D path, double scaleX, double scaleY, int width, int height) {
+    height += 3;
+    path.moveTo(getXValues()[0] * scaleX + (double) width / 2,
+        -getYValues()[0] * scaleY + (double) height / 2);
     for (int i = 0; i < getXValues().length; i++) {
       double x = getXValues()[i];
       double y = getYValues()[i];
-      int drawX = (int) (x * scaleX + getWidth() / 2);
-      int drawY = (int) (-y * scaleY + getHeight() / 2);
-//      System.out.println(drawX + " " + drawY);
+      int drawX = (int) (x * scaleX + width / 2);
+      int drawY = (int) (-y * scaleY + height / 2);
       path.lineTo(drawX, drawY);
     }
-
-    g2d.draw(path);
   }
 }

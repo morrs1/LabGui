@@ -6,37 +6,24 @@ import java.awt.geom.Path2D;
 import javax.swing.JPanel;
 import lombok.Setter;
 @Setter
-public class Axis extends JPanel {
-  private double minValue;
-  private double maxValue;
+public class Axis  {
+  private double xLen;
+  private double yLen;
   private String label;
 
-  public Axis() {
-    this.minValue = 0.0;
-    this.maxValue = 1.0;
+  public Axis(int xLen, int yLen) {
+    this.xLen = xLen;
+    this.yLen = yLen;
     this.label = "Axis";
   }
 
-  public void setRange(double minValue, double maxValue) {
-    this.minValue = minValue;
-    this.maxValue = maxValue;
-  }
 
-  @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    Graphics2D g2d = (Graphics2D) g;
-    Path2D path = new Path2D.Double();
+  protected void draw(Path2D path) {
+    path.moveTo(0, yLen / 2);
+    path.lineTo(xLen, yLen / 2);
 
-    double scaleX = getWidth() / (4 * Math.PI);
-    double scaleY = getHeight() / 4;
+    path.moveTo(xLen/2, 0);
+    path.lineTo(xLen/2, yLen);
 
-    path.moveTo(0, getHeight() / 2);
-    path.lineTo(getWidth(), getHeight() / 2);
-
-    path.moveTo(getWidth()/2, 0);
-    path.lineTo(getWidth()/2, getHeight());
-
-    g2d.draw(path);
   }
 }

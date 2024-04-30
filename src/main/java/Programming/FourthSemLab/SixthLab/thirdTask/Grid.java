@@ -1,8 +1,10 @@
 package Programming.FourthSemLab.SixthLab.thirdTask;
 
+import java.awt.geom.Path2D;
 import javax.swing.JPanel;
 
-public class Grid extends JPanel {
+public class Grid {
+
   private int xSpacing;
   private int ySpacing;
 
@@ -16,7 +18,16 @@ public class Grid extends JPanel {
     this.ySpacing = ySpacing;
   }
 
-  public void draw() {
+  protected void draw(Path2D path, int width, int height) {
+    for (var i = 0; i <= width; i+=15) {
+      path.moveTo(i, height / 2 + 2);
+      path.lineTo(i, height / 2 - 2);
+    }
+
+    for (var i = 0; i <= height; i+=15) {
+      path.moveTo(width/ 2 + 2, i);
+      path.lineTo( width / 2 - 2, i);
+    }
 
   }
 }
