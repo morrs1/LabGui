@@ -1,9 +1,6 @@
 package Programming.FourthSemLab.SixthLab.secondTask;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
-import javax.swing.JPanel;
 
 public class Curve {
   private double[] xValues;

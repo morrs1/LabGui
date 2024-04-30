@@ -1,14 +1,15 @@
 package Programming.FourthSemLab.SixthLab;
 
+import Programming.FourthSemLab.SixthLab.fifthTask.ImageViewerApp;
+import Programming.FourthSemLab.SixthLab.fourthTask.WindowApp;
 import Programming.FourthSemLab.SixthLab.secondTask.Curve;
 import Programming.FourthSemLab.SixthLab.secondTask.CurveApp;
-import Programming.FourthSemLab.SixthLab.thirdTask.Axis;
 import Programming.FourthSemLab.SixthLab.thirdTask.Graph;
 import Programming.FourthSemLab.SixthLab.thirdTask.GraphDrawer;
-import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class Main {
 
@@ -67,6 +68,16 @@ public class Main {
 
     var gd = new GraphDrawer(graph);
     gd.draw();
+    return "";
+  }
+
+  public static String fourthTask(String ignoredUnused) {
+    new WindowApp();
+    return "";
+  }
+
+  public static String fifthTask(String ignoredUnused) {
+    new ImageViewerApp();
     return "";
   }
 

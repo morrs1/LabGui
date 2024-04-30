@@ -1,7 +1,6 @@
 package Programming.FourthSemLab.SixthLab.thirdTask;
 
 import java.awt.geom.Path2D;
-import javax.swing.JPanel;
 
 public class Grid {
 
