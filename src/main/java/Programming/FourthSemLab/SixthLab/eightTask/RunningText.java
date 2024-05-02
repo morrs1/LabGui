@@ -30,9 +30,9 @@ public class RunningText extends JPanel {
         });
 
         Timer timer = new Timer(1000 / 60, e -> {
-            x -= 5;
-            if (x < -getWidth()) {
-                x = 0;
+            x += 5;
+            if (x > getWidth()) {
+                x = -250;
             }
             repaint();
         });
@@ -41,7 +41,7 @@ public class RunningText extends JPanel {
 
     private void setCurrentMessage(String message) {
         currentMessage = message;
-        x = getWidth();
+        x = -250;
     }
 
     @Override
