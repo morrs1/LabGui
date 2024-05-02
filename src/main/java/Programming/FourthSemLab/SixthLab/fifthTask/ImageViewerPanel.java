@@ -6,15 +6,14 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 
 public class ImageViewerPanel extends JPanel {
   private BufferedImage image;
   private boolean flipped = false;
   private Character keyPressed = 'o';
+  private boolean flagG = false;
 
   public ImageViewerPanel() {
     try {
@@ -47,56 +46,36 @@ public class ImageViewerPanel extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
+
+
     if(keyPressed == 'r' || keyPressed == 'R') {
-      paintReverse(g);
-      System.out.println("r");
+      image = reverseImage();
     }
     if(keyPressed == 'b' || keyPressed == 'B') {
-      BufferedImage blurredImage = blurImage(image);
-      g.drawImage(blurredImage, 0, 0, this);
-      System.out.println("b");
+      image = blurImage(image);
     }
-    if(keyPressed == 'o') {
-      paintReverse(g);
-      System.out.println("o");
+    if(keyPressed == 'g' || keyPressed == 'G') {
+      if (!flagG){
+        image = convertToGrayscale(image);
+        flagG = true;
+      }
     }
 
 
-
+    double scale = Math.min(getWidth() / (double) image.getWidth(), getHeight() / (double) image.getHeight());
+    int width = (int) (image.getWidth() * scale);
+    int height = (int) (image.getHeight() * scale);
+    int x = (getWidth() - width) / 2;
+    int y = (getHeight() - height) / 2;
+    g.drawImage(image, x, y, width, height, this);
   }
 
 
-private void paintReverse(Graphics g){
-  if (image != null) {
-    int width = getWidth();
-    int height = getHeight();
-    int imageWidth = image.getWidth(null);
-    int imageHeight = image.getHeight(null);
-
-    // Подстраиваем изображение под размер панели, сохраняя пропорции
-    if (width * imageHeight < height * imageWidth) {
-      height = width * imageHeight / imageWidth;
-    } else {
-      width = height * imageWidth / imageHeight;
-    }
-
-    // Создаем объект Graphics2D для работы с трансформациями
-    Graphics2D g2d = (Graphics2D) g;
-
-    // Переворачиваем изображение при необходимости
-    if (flipped) {
-      // Создаем трансформацию для переворачивания изображения
-      AffineTransform transform = AffineTransform.getScaleInstance(-1, -1);
-      transform.translate(-image.getWidth(null), -image.getHeight(null));
-
-      // Применяем трансформацию к изображению
-      AffineTransformOp operation = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-      BufferedImage rotatedImage = operation.filter(image, null);
-      g2d.drawImage(rotatedImage, (getWidth() - width) / 2, 0, width, height, null);
-    } else {
-      g2d.drawImage(image, (getWidth() - width) / 2, (getHeight() - height) / 2, width, height, null);
-    }
-  }
+private BufferedImage reverseImage(){
+  AffineTransform transform = new AffineTransform();
+  transform.rotate(Math.PI, image.getWidth() / 2, image.getHeight() / 2);
+  AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+  return op.filter(image, null);
 }
 
 
@@ -125,5 +104,23 @@ private void paintReverse(Graphics g){
       }
     }
     return new Color(sumR / 49, sumG / 49, sumB / 49);
+  }
+  private BufferedImage convertToGrayscale(BufferedImage originalImage) {
+    int width = originalImage.getWidth();
+    int height = originalImage.getHeight();
+    BufferedImage grayscaleImage = new BufferedImage(width, height, originalImage.getType());
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        int rgb = originalImage.getRGB(x, y);
+        int r = (rgb >> 16) & 0xff;
+        int g = (rgb >> 8) & 0xff;
+        int b = rgb & 0xff;
+        int average = (r + g + b) / 3;
+        grayscaleImage.setRGB(x, y, (average << 16) | (average << 8) | average);
+      }
+    }
+
+    return grayscaleImage;
   }
 }
