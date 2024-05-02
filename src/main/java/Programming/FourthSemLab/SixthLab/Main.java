@@ -1,9 +1,11 @@
 package Programming.FourthSemLab.SixthLab;
 
+import Programming.FourthSemLab.SixthLab.eightTask.RunningText;
 import Programming.FourthSemLab.SixthLab.fifthTask.ImageViewerApp;
 import Programming.FourthSemLab.SixthLab.fourthTask.WindowApp;
 import Programming.FourthSemLab.SixthLab.secondTask.Curve;
 import Programming.FourthSemLab.SixthLab.secondTask.CurveApp;
+import Programming.FourthSemLab.SixthLab.seventhTask.BouncingBallApp;
 import Programming.FourthSemLab.SixthLab.thirdTask.Graph;
 import Programming.FourthSemLab.SixthLab.thirdTask.GraphDrawer;
 import java.awt.Graphics;
@@ -78,6 +80,33 @@ public class Main {
 
   public static String fifthTask(String ignoredUnused) {
     new ImageViewerApp();
+    return "";
+  }
+  public static String sixthTask(String ignoredUnused) {
+    new ImageViewerApp();
+    return "";
+  }
+
+  public static String seventhTask(String ignoredUnused) {
+    SwingUtilities.invokeLater(() -> {
+      JFrame frame = new JFrame("Bouncing Balls");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.add(new BouncingBallApp());
+      frame.pack();
+      frame.setLocationRelativeTo(null);
+      frame.setVisible(true);
+    });
+    return "";
+  }
+  public static String eighthTask(String ignoredUnused) {
+    SwingUtilities.invokeLater(() -> {
+      JFrame frame = new JFrame("Бегущая строка");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.add(new RunningText());
+      frame.pack();
+      frame.setLocationRelativeTo(null);
+      frame.setVisible(true);
+    });
     return "";
   }
 
