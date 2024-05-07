@@ -1,5 +1,6 @@
 package Programming.FourthSemLab.SeventhLab.ThirdTask;
 
+import Programming.FourthSemLab.SixthLab.eightTask.RunningText;
 import Programming.FourthSemLab.SixthLab.seventhTask.BouncingBall;
 import Programming.FourthSemLab.SixthLab.seventhTask.BouncingBallApp;
 import java.awt.Color;
@@ -9,11 +10,13 @@ import java.util.Random;
 import lombok.Setter;
 
 public class BallAndLinePanel extends BouncingBallApp {
-private int amountOfBalls = 0;
+public int amountOfBalls = 0;
 @Setter
-private int maxAmountOfBalls = 5;
+private int maxAmountOfBalls = 0;
+public RunningText runningText = new RunningText();
   public BallAndLinePanel() {
     super();
+    runningText.setCurrentMessage("Кол-во шариков: " + amountOfBalls + " Максимальное кол-во шариков: " + maxAmountOfBalls);
     removeMouseListener(ma);
     addMouseListener(new MouseAdapter() {
       @Override
@@ -24,6 +27,7 @@ private int maxAmountOfBalls = 5;
           Color color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
           balls.add(new BouncingBall(x, y, 20, color));
           amountOfBalls++;
+          runningText.setCurrentMessage("Кол-во шариков: " + amountOfBalls + " Максимальное кол-во шариков: " + maxAmountOfBalls);
         }
       }
     });

@@ -26,13 +26,12 @@ public class BallAndLineApp extends JFrame {
     panel.add(buttonText);
     frame.add(panel, BorderLayout.NORTH);
 
-    //Добавление бегущей строки
-    RunningText runningText = new RunningText();
-    frame.add(runningText, BorderLayout.SOUTH);
-
     //Добавление самих шариков
     BallAndLinePanel ballAndLinePanel = new BallAndLinePanel();
+    //Добавление бегущей строки
+    frame.add(ballAndLinePanel.runningText, BorderLayout.SOUTH);
     frame.add(ballAndLinePanel);
+
     //Обработчики событий для кнопок
     buttonPause.addActionListener(e -> {
       ballAndLinePanel.stopTimer();
@@ -44,6 +43,7 @@ public class BallAndLineApp extends JFrame {
     buttonText.addActionListener(e -> {
       if (!textField.getText().isEmpty()) {
         ballAndLinePanel.setMaxAmountOfBalls(Integer.parseInt(textField.getText()));
+        ballAndLinePanel.runningText.setCurrentMessage("Кол-во шариков: " + ballAndLinePanel.amountOfBalls + " Максимальное кол-во шариков: " + textField.getText());;
       }
     });
 
