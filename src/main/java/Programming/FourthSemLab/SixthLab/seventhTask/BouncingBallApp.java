@@ -9,13 +9,14 @@ import java.util.List;
 import java.util.Random;
 
 public class BouncingBallApp extends JPanel {
-    private List<BouncingBall> balls = new ArrayList<>();
-
+    protected List<BouncingBall> balls = new ArrayList<>();
+    protected Timer timer;
+    protected MouseAdapter ma;
     public BouncingBallApp() {
         setPreferredSize(new Dimension(800, 600));
         setBackground(Color.WHITE);
 
-        addMouseListener(new MouseAdapter() {
+       ma = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int x = new Random().nextInt(getWidth() - 20);
@@ -23,9 +24,10 @@ public class BouncingBallApp extends JPanel {
                 Color color = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
                 balls.add(new BouncingBall(x, y, 20, color));
             }
-        });
+        };
+        addMouseListener(ma);
 
-        Timer timer = new Timer(1000 / 60, e -> {
+        timer = new Timer(1000 / 60, e -> {
             for (BouncingBall ball : balls) {
                 ball.move(getWidth(), getHeight());
             }
