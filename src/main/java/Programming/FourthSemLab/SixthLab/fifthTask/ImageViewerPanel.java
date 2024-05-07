@@ -10,10 +10,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class ImageViewerPanel extends JPanel {
-  private BufferedImage image;
+  protected BufferedImage image;
   private boolean flipped = false;
   private Character keyPressed = 'o';
-  private boolean flagG = false;
+  protected boolean flagG = false;
+  protected KeyListener k;
+  protected MouseListener ml;
 
   public ImageViewerPanel() {
     try {
@@ -23,23 +25,25 @@ public class ImageViewerPanel extends JPanel {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
-    addMouseListener(new MouseAdapter() {
+    ml = new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
         flipped = !flipped;
         repaint();
       }
-    });
+    };
+    addMouseListener(ml);
     setFocusable(true);
     requestFocusInWindow();
-    addKeyListener(new KeyAdapter() {
+
+    k = new KeyAdapter() {
       @Override
       public void keyPressed(KeyEvent e) {
         keyPressed = e.getKeyChar();
-        System.out.println(keyPressed);
       }
-    });
+    };
+    addKeyListener(k);
+
   }
 
 
@@ -67,11 +71,11 @@ public class ImageViewerPanel extends JPanel {
     int height = (int) (image.getHeight() * scale);
     int x = (getWidth() - width) / 2;
     int y = (getHeight() - height) / 2;
-    g.drawImage(image, x, y, width, height, this);
+    g.drawImage(image, x, y+50, width, height-50, this);
   }
 
 
-private BufferedImage reverseImage(){
+protected BufferedImage reverseImage(){
   AffineTransform transform = new AffineTransform();
   transform.rotate(Math.PI, image.getWidth() / 2, image.getHeight() / 2);
   AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
@@ -79,7 +83,7 @@ private BufferedImage reverseImage(){
 }
 
 
-  private BufferedImage blurImage(BufferedImage image) {
+  protected BufferedImage blurImage(BufferedImage image) {
     BufferedImage blurredImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
     for (int i = 0; i < image.getWidth(); i++) {
       for (int j = 0; j < image.getHeight(); j++) {
@@ -105,7 +109,7 @@ private BufferedImage reverseImage(){
     }
     return new Color(sumR / 49, sumG / 49, sumB / 49);
   }
-  private BufferedImage convertToGrayscale(BufferedImage originalImage) {
+  protected BufferedImage convertToGrayscale(BufferedImage originalImage) {
     int width = originalImage.getWidth();
     int height = originalImage.getHeight();
     BufferedImage grayscaleImage = new BufferedImage(width, height, originalImage.getType());

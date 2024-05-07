@@ -1,12 +1,7 @@
 package Programming.FourthSemLab.SeventhLab.firstTask;
 
-import java.awt.Component;
+
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.TextArea;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.stream.Stream;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -17,12 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.table.TableColumn;
 
 public class App extends JFrame {
 
@@ -66,7 +59,7 @@ public class App extends JFrame {
     panel.add(radioButton2);
 
     //Создание таблицы
-    JTable table = new JTable();
+    JTable table;
     String[] columnNames = {"Язык", "Автор", "Год"};
     Object[][] data = {
         {"Си", "Деннис Ритчи", 1972},
@@ -81,21 +74,18 @@ public class App extends JFrame {
     panel.add(table);
 
 
-    comboBox.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        String lafName = (String) comboBox.getSelectedItem();
-        try {
-          for (LookAndFeelInfo laf : lookAndFeels) {
-            if (laf.getName().equals(lafName)) {
-              UIManager.setLookAndFeel(laf.getClassName());
-              SwingUtilities.updateComponentTreeUI(App.this);
-              break;
-            }
+    comboBox.addActionListener(e -> {
+      String lafName = (String) comboBox.getSelectedItem();
+      try {
+        for (LookAndFeelInfo laf : lookAndFeels) {
+          if (laf.getName().equals(lafName)) {
+            UIManager.setLookAndFeel(laf.getClassName());
+            SwingUtilities.updateComponentTreeUI(App.this);
+            break;
           }
-        } catch (Exception ex) {
-          ex.printStackTrace();
         }
+      } catch (Exception ex) {
+        ex.printStackTrace();
       }
     });
     add(panel);
