@@ -6,7 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 public class BallAndLineApp extends JFrame {
 
@@ -18,25 +17,34 @@ public class BallAndLineApp extends JFrame {
     JButton buttonPause = new JButton("Pause");
     JButton buttonResume = new JButton("Resume");
     JTextField textField = new JTextField(20);
+    JButton buttonText = new JButton("✔");
 
     JPanel panel = new JPanel();
     panel.add(buttonPause);
     panel.add(buttonResume);
     panel.add(textField);
+    panel.add(buttonText);
     frame.add(panel, BorderLayout.NORTH);
 
     //Добавление бегущей строки
-    frame.add(new RunningText(), BorderLayout.SOUTH);
+    RunningText runningText = new RunningText();
+    frame.add(runningText, BorderLayout.SOUTH);
 
     //Добавление самих шариков
     BallAndLinePanel ballAndLinePanel = new BallAndLinePanel();
     frame.add(ballAndLinePanel);
-
-    buttonPause.addActionListener(e->{
-    ballAndLinePanel.stopTimer();
+    //Обработчики событий для кнопок
+    buttonPause.addActionListener(e -> {
+      ballAndLinePanel.stopTimer();
     });
-    buttonResume.addActionListener(e->{
+    buttonResume.addActionListener(e -> {
       ballAndLinePanel.resumeTimer();
+    });
+
+    buttonText.addActionListener(e -> {
+      if (!textField.getText().isEmpty()) {
+        ballAndLinePanel.setMaxAmountOfBalls(Integer.parseInt(textField.getText()));
+      }
     });
 
     frame.pack();
