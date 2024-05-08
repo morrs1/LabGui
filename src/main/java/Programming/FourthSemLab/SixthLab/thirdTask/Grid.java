@@ -17,7 +17,7 @@ public class Grid {
     this.ySpacing = ySpacing;
   }
 
-  protected void draw(Path2D path, int width, int height) {
+  public void draw(Path2D path, int width, int height) {
     for (var i = 0; i <= width; i+=15) {
       path.moveTo(i, height / 2 + 2);
       path.lineTo(i, height / 2 - 2);

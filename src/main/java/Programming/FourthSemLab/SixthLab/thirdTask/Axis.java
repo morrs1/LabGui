@@ -18,7 +18,7 @@ public class Axis  {
   }
 
 
-  protected void draw(Path2D path) {
+  public void draw(Path2D path) {
     path.moveTo(0, yLen / 2);
     path.lineTo(xLen, yLen / 2);
 

@@ -19,7 +19,7 @@ public class Dijkstra {
     boolean[] visited = new boolean[VERTICES];
     Arrays.fill(distances, Integer.MAX_VALUE);
     distances[START] = 0;
-
+//Сам алгоритм
     int minimalIndex;
     do {
       minimalIndex = Integer.MAX_VALUE;
@@ -38,13 +38,16 @@ public class Dijkstra {
             int temp = minimalWeight + ADJACENCY_MATRIX[minimalIndex][i];
             if (temp < distances[i]) {
               distances[i] = temp;
+              System.out.println(Arrays.toString(distances));
             }
           }
         }
         visited[minimalIndex] = true;
       }
-    } while (minimalIndex < Integer.MAX_VALUE);
-
+      System.out.println();
+    }
+    while (minimalIndex < Integer.MAX_VALUE);
+//Вывод
     for (int i = 0; i < VERTICES; ++i) {
       if (distances[i] != Integer.MAX_VALUE) {
         System.out.printf("Вес: %d ~> %d = %-6d\t", START + 1, i + 1, distances[i]);
