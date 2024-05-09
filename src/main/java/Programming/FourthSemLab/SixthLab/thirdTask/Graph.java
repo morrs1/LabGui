@@ -28,12 +28,11 @@ public class Graph extends JPanel {
 
   @Override
   protected void paintComponent(Graphics g) {
-
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
     Path2D path = new Path2D.Double();
     double scaleX = getWidth() / (4 * Math.PI);
-    double scaleY = getHeight() / 4;
+    double scaleY = getHeight() / (4*Math.PI);
     axis = new Axis(getWidth(), getHeight());
 
     axis.draw(path);
