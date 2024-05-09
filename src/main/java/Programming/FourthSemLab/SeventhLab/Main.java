@@ -2,6 +2,7 @@ package Programming.FourthSemLab.SeventhLab;
 
 
 import Programming.FourthSemLab.SeventhLab.ThirdTask.BallAndLineApp;
+import Programming.FourthSemLab.SeventhLab.eighthTask.DiceGame;
 import Programming.FourthSemLab.SeventhLab.fifthTask.CustomPanel;
 import Programming.FourthSemLab.SeventhLab.firstTask.App;
 import Programming.FourthSemLab.SeventhLab.fourthTask.GraphApp;
@@ -93,12 +94,7 @@ panel.addMouseListener(new MouseAdapter() {
   }
 
   public static String eighthTask(String ignoredUnused){
-    SwingUtilities.invokeLater(new Runnable() {
-      @Override
-      public void run() {
-//        new RollDicePanel();
-      }
-    });
+    DiceGame.run();
     return "";
   }
 

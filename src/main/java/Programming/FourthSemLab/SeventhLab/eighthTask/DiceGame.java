@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 public class DiceGame {
-  public static void main(String[] args) {
+  public static void run() {
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
