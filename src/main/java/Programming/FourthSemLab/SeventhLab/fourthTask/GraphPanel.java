@@ -67,7 +67,7 @@ public class GraphPanel extends Graph {
         }
         case "2*sin(x)+cos(2*x)" -> {
           for (int i = 0; i < 360; i++) {
-            double x = i * Math.PI / 180;
+            double x = (i-360) * Math.PI / 180;
             xValues[i] = x;
             yValues[i] = 2*Math.sin(x) + Math.cos(2 * x);
           }
